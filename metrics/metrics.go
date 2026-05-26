@@ -16,12 +16,6 @@
 // Monitoring metrics response.
 package metrics
 
-import (
-	"fmt"
-	"sort"
-	"strings"
-)
-
 const (
 	// MetricNameLabel is the label name indicating the metric name of a
 	// timeseries.
@@ -35,15 +29,7 @@ const (
 // match.
 type LabelSet map[LabelName]LabelValue
 
-func (l LabelSet) String() string {
-	lstrs := make([]string, 0, len(l))
-	for l, v := range l {
-		lstrs = append(lstrs, fmt.Sprintf("%s=%q", l, v))
-	}
-
-	sort.Strings(lstrs)
-	return fmt.Sprintf("{%s}", strings.Join(lstrs, ", "))
-}
+func (l LabelSet) String() string { _ = "STUB: not implemented"; return "" }
 
 // A LabelValue is an associated value for a MetricLabelName.
 type LabelValue string
@@ -55,27 +41,4 @@ type LabelName string
 // a singleton and refers to one and only one stream of samples.
 type Metric LabelSet
 
-func (m Metric) String() string {
-	metricName, hasName := m[MetricNameLabel]
-	numLabels := len(m) - 1
-	if !hasName {
-		numLabels = len(m)
-	}
-	labelStrings := make([]string, 0, numLabels)
-	for label, value := range m {
-		if label != MetricNameLabel {
-			labelStrings = append(labelStrings, fmt.Sprintf("%s=%q", label, value))
-		}
-	}
-
-	switch numLabels {
-	case 0:
-		if hasName {
-			return string(metricName)
-		}
-		return "{}"
-	default:
-		sort.Strings(labelStrings)
-		return fmt.Sprintf("%s{%s}", metricName, strings.Join(labelStrings, ", "))
-	}
-}
+func (m Metric) String() string { _ = "STUB: not implemented"; return "" }

@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 const (
@@ -89,77 +87,14 @@ type LoadBalancer struct {
 }
 
 // String creates a human-readable description of a LoadBalancer.
-func (l LoadBalancer) String() string {
-	return Stringify(l)
-}
+func (l LoadBalancer) String() string { _ = "STUB: not implemented"; return "" }
 
 // URN returns the load balancer ID in a valid DO API URN form.
-func (l LoadBalancer) URN() string {
-	return ToURN("LoadBalancer", l.ID)
-}
+func (l LoadBalancer) URN() string { _ = "STUB: not implemented"; return "" }
 
 // AsRequest creates a LoadBalancerRequest that can be submitted to Update with the current values of the LoadBalancer.
 // Modifying the returned LoadBalancerRequest will not modify the original LoadBalancer.
-func (l LoadBalancer) AsRequest() *LoadBalancerRequest {
-	r := LoadBalancerRequest{
-		Name:                         l.Name,
-		Algorithm:                    l.Algorithm,
-		SizeSlug:                     l.SizeSlug,
-		SizeUnit:                     l.SizeUnit,
-		Type:                         l.Type,
-		ForwardingRules:              append([]ForwardingRule(nil), l.ForwardingRules...),
-		DropletIDs:                   append([]int(nil), l.DropletIDs...),
-		Tag:                          l.Tag,
-		RedirectHttpToHttps:          l.RedirectHttpToHttps,
-		EnableProxyProtocol:          l.EnableProxyProtocol,
-		EnableBackendKeepalive:       l.EnableBackendKeepalive,
-		VPCUUID:                      l.VPCUUID,
-		DisableLetsEncryptDNSRecords: l.DisableLetsEncryptDNSRecords,
-		ValidateOnly:                 l.ValidateOnly,
-		ProjectID:                    l.ProjectID,
-		HTTPIdleTimeoutSeconds:       l.HTTPIdleTimeoutSeconds,
-		TargetLoadBalancerIDs:        append([]string(nil), l.TargetLoadBalancerIDs...),
-		Network:                      l.Network,
-		NetworkStack:                 l.NetworkStack,
-		TLSCipherPolicy:              l.TLSCipherPolicy,
-	}
-
-	if l.DisableLetsEncryptDNSRecords != nil {
-		*r.DisableLetsEncryptDNSRecords = *l.DisableLetsEncryptDNSRecords
-	}
-
-	if l.HealthCheck != nil {
-		r.HealthCheck = &HealthCheck{}
-		*r.HealthCheck = *l.HealthCheck
-	}
-
-	if l.StickySessions != nil {
-		r.StickySessions = &StickySessions{}
-		*r.StickySessions = *l.StickySessions
-	}
-
-	if l.Region != nil {
-		r.Region = l.Region.Slug
-	}
-
-	if l.Firewall != nil {
-		r.Firewall = l.Firewall.deepCopy()
-	}
-
-	for _, domain := range l.Domains {
-		lbDomain := &LBDomain{}
-		*lbDomain = *domain
-		lbDomain.VerificationErrorReasons = append([]string(nil), domain.VerificationErrorReasons...)
-		lbDomain.SSLValidationErrorReasons = append([]string(nil), domain.SSLValidationErrorReasons...)
-		r.Domains = append(r.Domains, lbDomain)
-	}
-
-	if l.GLBSettings != nil {
-		r.GLBSettings = l.GLBSettings.deepCopy()
-	}
-
-	return &r
-}
+func (l LoadBalancer) AsRequest() *LoadBalancerRequest { _ = "STUB: not implemented"; return nil }
 
 // ForwardingRule represents load balancer forwarding rules.
 type ForwardingRule struct {
@@ -172,9 +107,7 @@ type ForwardingRule struct {
 }
 
 // String creates a human-readable description of a ForwardingRule.
-func (f ForwardingRule) String() string {
-	return Stringify(f)
-}
+func (f ForwardingRule) String() string { _ = "STUB: not implemented"; return "" }
 
 // HealthCheck represents optional load balancer health check rules.
 type HealthCheck struct {
@@ -189,9 +122,7 @@ type HealthCheck struct {
 }
 
 // String creates a human-readable description of a HealthCheck.
-func (h HealthCheck) String() string {
-	return Stringify(h)
-}
+func (h HealthCheck) String() string { _ = "STUB: not implemented"; return "" }
 
 // StickySessions represents optional load balancer session affinity rules.
 type StickySessions struct {
@@ -201,9 +132,7 @@ type StickySessions struct {
 }
 
 // String creates a human-readable description of a StickySessions instance.
-func (s StickySessions) String() string {
-	return Stringify(s)
-}
+func (s StickySessions) String() string { _ = "STUB: not implemented"; return "" }
 
 // LBFirewall holds the allow and deny rules for a loadbalancer's firewall.
 // Currently, allow and deny rules support cidrs and ips.
@@ -213,24 +142,17 @@ type LBFirewall struct {
 	Deny  []string `json:"deny,omitempty"`
 }
 
-func (lbf *LBFirewall) deepCopy() *LBFirewall {
-	return &LBFirewall{
-		Allow: append([]string(nil), lbf.Allow...),
-		Deny:  append([]string(nil), lbf.Deny...),
-	}
-}
+func (lbf *LBFirewall) deepCopy() *LBFirewall { _ = "STUB: not implemented"; return nil }
 
 // IPSourceFirewall takes an IP (string) and returns a formatted ip source firewall rule
-func IPSourceFirewall(ip string) string { return fmt.Sprintf("ip:%s", ip) }
+func IPSourceFirewall(ip string) string { _ = "STUB: not implemented"; return "" }
 
 // CIDRSourceFirewall takes a CIDR notation IP address and prefix length string
 // like "192.0.2.0/24" and returns a formatted cidr source firewall rule
-func CIDRSourceFirewall(cidr string) string { return fmt.Sprintf("cidr:%s", cidr) }
+func CIDRSourceFirewall(cidr string) string { _ = "STUB: not implemented"; return "" }
 
 // String creates a human-readable description of an LBFirewall instance.
-func (f LBFirewall) String() string {
-	return Stringify(f)
-}
+func (f LBFirewall) String() string { _ = "STUB: not implemented"; return "" }
 
 // LoadBalancerRequest represents the configuration to be applied to an existing or a new load balancer.
 type LoadBalancerRequest struct {
@@ -266,25 +188,19 @@ type LoadBalancerRequest struct {
 }
 
 // String creates a human-readable description of a LoadBalancerRequest.
-func (l LoadBalancerRequest) String() string {
-	return Stringify(l)
-}
+func (l LoadBalancerRequest) String() string { _ = "STUB: not implemented"; return "" }
 
 type forwardingRulesRequest struct {
 	Rules []ForwardingRule `json:"forwarding_rules,omitempty"`
 }
 
-func (l forwardingRulesRequest) String() string {
-	return Stringify(l)
-}
+func (l forwardingRulesRequest) String() string { _ = "STUB: not implemented"; return "" }
 
 type dropletIDsRequest struct {
 	IDs []int `json:"droplet_ids,omitempty"`
 }
 
-func (l dropletIDsRequest) String() string {
-	return Stringify(l)
-}
+func (l dropletIDsRequest) String() string { _ = "STUB: not implemented"; return "" }
 
 // LBDomain defines domain names required to ingress traffic to a Global LB
 type LBDomain struct {
@@ -303,9 +219,7 @@ type LBDomain struct {
 }
 
 // String creates a human-readable description of a LBDomain
-func (d LBDomain) String() string {
-	return Stringify(d)
-}
+func (d LBDomain) String() string { _ = "STUB: not implemented"; return "" }
 
 // GLBSettings define settings for configuring a Global LB
 type GLBSettings struct {
@@ -322,22 +236,9 @@ type GLBSettings struct {
 }
 
 // String creates a human-readable description of a GLBSettings
-func (s GLBSettings) String() string {
-	return Stringify(s)
-}
+func (s GLBSettings) String() string { _ = "STUB: not implemented"; return "" }
 
-func (s GLBSettings) deepCopy() *GLBSettings {
-	settings := &GLBSettings{
-		TargetProtocol:    s.TargetProtocol,
-		TargetPort:        s.TargetPort,
-		RegionPriorities:  s.RegionPriorities,
-		FailoverThreshold: s.FailoverThreshold,
-	}
-	if s.CDN != nil {
-		settings.CDN = &CDNSettings{IsEnabled: s.CDN.IsEnabled}
-	}
-	return settings
-}
+func (s GLBSettings) deepCopy() *GLBSettings { _ = "STUB: not implemented"; return nil }
 
 // CDNSettings define CDN settings for a Global LB
 type CDNSettings struct {
@@ -346,9 +247,7 @@ type CDNSettings struct {
 }
 
 // String creates a human-readable description of a CDNSettings
-func (c CDNSettings) String() string {
-	return Stringify(c)
-}
+func (c CDNSettings) String() string { _ = "STUB: not implemented"; return "" }
 
 type loadBalancersRoot struct {
 	LoadBalancers []LoadBalancer `json:"load_balancers"`
@@ -369,217 +268,72 @@ var _ LoadBalancersService = &LoadBalancersServiceOp{}
 
 // Get an existing load balancer by its identifier.
 func (l *LoadBalancersServiceOp) Get(ctx context.Context, lbID string) (*LoadBalancer, *Response, error) {
-	path := fmt.Sprintf("%s/%s", loadBalancersBasePath, lbID)
-
-	req, err := l.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(loadBalancerRoot)
-	resp, err := l.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.LoadBalancer, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List load balancers, with optional pagination.
 func (l *LoadBalancersServiceOp) List(ctx context.Context, opt *ListOptions) ([]LoadBalancer, *Response, error) {
-	path, err := addOptions(loadBalancersBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := l.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(loadBalancersRoot)
-	resp, err := l.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.LoadBalancers, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListByNames lists load balancers filtered by resource names, with optional pagination.
 func (l *LoadBalancersServiceOp) ListByNames(ctx context.Context, names []string, opt *ListOptions) ([]LoadBalancer, *Response, error) {
-	path, err := addOptions(loadBalancersBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := l.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	q := req.URL.Query()
-	for _, name := range names {
-		q.Add("names", name)
-	}
-	req.URL.RawQuery = q.Encode()
-
-	root := new(loadBalancersRoot)
-	resp, err := l.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.LoadBalancers, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListByUUIDs lists load balancers filtered by resource UUIDs, with optional pagination.
 func (l *LoadBalancersServiceOp) ListByUUIDs(ctx context.Context, uuids []string, opt *ListOptions) ([]LoadBalancer, *Response, error) {
-	path, err := addOptions(loadBalancersBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := l.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	q := req.URL.Query()
-	for _, uuid := range uuids {
-		q.Add("uuids", uuid)
-	}
-	req.URL.RawQuery = q.Encode()
-
-	root := new(loadBalancersRoot)
-	resp, err := l.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.LoadBalancers, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create a new load balancer with a given configuration.
 func (l *LoadBalancersServiceOp) Create(ctx context.Context, lbr *LoadBalancerRequest) (*LoadBalancer, *Response, error) {
-	req, err := l.client.NewRequest(ctx, http.MethodPost, loadBalancersBasePath, lbr)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(loadBalancerRoot)
-	resp, err := l.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.LoadBalancer, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Update an existing load balancer with new configuration.
 func (l *LoadBalancersServiceOp) Update(ctx context.Context, lbID string, lbr *LoadBalancerRequest) (*LoadBalancer, *Response, error) {
-	path := fmt.Sprintf("%s/%s", loadBalancersBasePath, lbID)
-
-	req, err := l.client.NewRequest(ctx, "PUT", path, lbr)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(loadBalancerRoot)
-	resp, err := l.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.LoadBalancer, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete a load balancer by its identifier.
 func (l *LoadBalancersServiceOp) Delete(ctx context.Context, ldID string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", loadBalancersBasePath, ldID)
-
-	req, err := l.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return l.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // AddDroplets adds droplets to a load balancer.
 func (l *LoadBalancersServiceOp) AddDroplets(ctx context.Context, lbID string, dropletIDs ...int) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/%s", loadBalancersBasePath, lbID, dropletsPath)
-
-	req, err := l.client.NewRequest(ctx, http.MethodPost, path, &dropletIDsRequest{IDs: dropletIDs})
-	if err != nil {
-		return nil, err
-	}
-
-	return l.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // RemoveDroplets removes droplets from a load balancer.
 func (l *LoadBalancersServiceOp) RemoveDroplets(ctx context.Context, lbID string, dropletIDs ...int) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/%s", loadBalancersBasePath, lbID, dropletsPath)
-
-	req, err := l.client.NewRequest(ctx, http.MethodDelete, path, &dropletIDsRequest{IDs: dropletIDs})
-	if err != nil {
-		return nil, err
-	}
-
-	return l.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // AddForwardingRules adds forwarding rules to a load balancer.
 func (l *LoadBalancersServiceOp) AddForwardingRules(ctx context.Context, lbID string, rules ...ForwardingRule) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/%s", loadBalancersBasePath, lbID, forwardingRulesPath)
-
-	req, err := l.client.NewRequest(ctx, http.MethodPost, path, &forwardingRulesRequest{Rules: rules})
-	if err != nil {
-		return nil, err
-	}
-
-	return l.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // RemoveForwardingRules removes forwarding rules from a load balancer.
 func (l *LoadBalancersServiceOp) RemoveForwardingRules(ctx context.Context, lbID string, rules ...ForwardingRule) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/%s", loadBalancersBasePath, lbID, forwardingRulesPath)
-
-	req, err := l.client.NewRequest(ctx, http.MethodDelete, path, &forwardingRulesRequest{Rules: rules})
-	if err != nil {
-		return nil, err
-	}
-
-	return l.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // PurgeCache purges the CDN cache of a global load balancer by its identifier.
 func (l *LoadBalancersServiceOp) PurgeCache(ctx context.Context, ldID string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/%s", loadBalancersBasePath, ldID, cachePath)
-
-	req, err := l.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return l.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }

@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -76,143 +74,47 @@ type CDNFlushCacheRequest struct {
 
 // List all CDN endpoints
 func (c CDNServiceOp) List(ctx context.Context, opt *ListOptions) ([]CDN, *Response, error) {
-	path, err := addOptions(cdnBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := c.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(cdnsRoot)
-	resp, err := c.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Endpoints, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get individual CDN. It requires a non-empty cdn id.
 func (c CDNServiceOp) Get(ctx context.Context, id string) (*CDN, *Response, error) {
-	if len(id) == 0 {
-		return nil, nil, NewArgError("id", "cannot be an empty string")
-	}
-
-	path := fmt.Sprintf("%s/%s", cdnBasePath, id)
-
-	req, err := c.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(cdnRoot)
-	resp, err := c.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Endpoint, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create a new CDN
 func (c CDNServiceOp) Create(ctx context.Context, createRequest *CDNCreateRequest) (*CDN, *Response, error) {
-	if createRequest == nil {
-		return nil, nil, NewArgError("createRequest", "cannot be nil")
-	}
-
-	req, err := c.client.NewRequest(ctx, http.MethodPost, cdnBasePath, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(cdnRoot)
-	resp, err := c.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Endpoint, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateTTL updates the ttl of an individual CDN
 func (c CDNServiceOp) UpdateTTL(ctx context.Context, id string, updateRequest *CDNUpdateTTLRequest) (*CDN, *Response, error) {
-	return c.update(ctx, id, updateRequest)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateCustomDomain sets or removes the custom domain of an individual CDN
 func (c CDNServiceOp) UpdateCustomDomain(ctx context.Context, id string, updateRequest *CDNUpdateCustomDomainRequest) (*CDN, *Response, error) {
-	return c.update(ctx, id, updateRequest)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (c CDNServiceOp) update(ctx context.Context, id string, updateRequest interface{}) (*CDN, *Response, error) {
-	if updateRequest == nil {
-		return nil, nil, NewArgError("updateRequest", "cannot be nil")
-	}
-
-	if len(id) == 0 {
-		return nil, nil, NewArgError("id", "cannot be an empty string")
-	}
-	path := fmt.Sprintf("%s/%s", cdnBasePath, id)
-
-	req, err := c.client.NewRequest(ctx, http.MethodPut, path, updateRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(cdnRoot)
-	resp, err := c.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Endpoint, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // FlushCache flushes the cache of an individual CDN. Requires a non-empty slice of file paths and/or wildcards
 func (c CDNServiceOp) FlushCache(ctx context.Context, id string, flushCacheRequest *CDNFlushCacheRequest) (*Response, error) {
-	if flushCacheRequest == nil {
-		return nil, NewArgError("flushCacheRequest", "cannot be nil")
-	}
-
-	if len(id) == 0 {
-		return nil, NewArgError("id", "cannot be an empty string")
-	}
-
-	path := fmt.Sprintf("%s/%s/cache", cdnBasePath, id)
-
-	req, err := c.client.NewRequest(ctx, http.MethodDelete, path, flushCacheRequest)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := c.client.Do(ctx, req, nil)
-
-	return resp, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Delete an individual CDN
 func (c CDNServiceOp) Delete(ctx context.Context, id string) (*Response, error) {
-	if len(id) == 0 {
-		return nil, NewArgError("id", "cannot be an empty string")
-	}
-
-	path := fmt.Sprintf("%s/%s", cdnBasePath, id)
-
-	req, err := c.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := c.client.Do(ctx, req, nil)
-
-	return resp, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }

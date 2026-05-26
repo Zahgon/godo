@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -127,133 +125,48 @@ var _ DropletAutoscaleService = &DropletAutoscaleServiceOp{}
 
 // Create a new droplet autoscale pool
 func (d *DropletAutoscaleServiceOp) Create(ctx context.Context, createReq *DropletAutoscalePoolRequest) (*DropletAutoscalePool, *Response, error) {
-	req, err := d.client.NewRequest(ctx, http.MethodPost, dropletAutoscaleBasePath, createReq)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(dropletAutoscalePoolRoot)
-	resp, err := d.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	return root.AutoscalePool, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an existing droplet autoscale pool
 func (d *DropletAutoscaleServiceOp) Get(ctx context.Context, id string) (*DropletAutoscalePool, *Response, error) {
-	req, err := d.client.NewRequest(ctx, http.MethodGet, fmt.Sprintf("%s/%s", dropletAutoscaleBasePath, id), nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(dropletAutoscalePoolRoot)
-	resp, err := d.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	return root.AutoscalePool, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List all existing droplet autoscale pools
 func (d *DropletAutoscaleServiceOp) List(ctx context.Context, opts *ListOptions) ([]*DropletAutoscalePool, *Response, error) {
-	path, err := addOptions(dropletAutoscaleBasePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := d.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(dropletAutoscalePoolsRoot)
-	resp, err := d.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-	return root.AutoscalePools, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListMembers all members for an existing droplet autoscale pool
 func (d *DropletAutoscaleServiceOp) ListMembers(ctx context.Context, id string, opts *ListOptions) ([]*DropletAutoscaleResource, *Response, error) {
-	path, err := addOptions(fmt.Sprintf("%s/%s/members", dropletAutoscaleBasePath, id), opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := d.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(dropletAutoscaleMembersRoot)
-	resp, err := d.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-	return root.Droplets, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListHistory all history events for an existing droplet autoscale pool
 func (d *DropletAutoscaleServiceOp) ListHistory(ctx context.Context, id string, opts *ListOptions) ([]*DropletAutoscaleHistoryEvent, *Response, error) {
-	path, err := addOptions(fmt.Sprintf("%s/%s/history", dropletAutoscaleBasePath, id), opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := d.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(dropletAutoscaleHistoryEventsRoot)
-	resp, err := d.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-	return root.History, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Update an existing autoscale pool
 func (d *DropletAutoscaleServiceOp) Update(ctx context.Context, id string, updateReq *DropletAutoscalePoolRequest) (*DropletAutoscalePool, *Response, error) {
-	req, err := d.client.NewRequest(ctx, http.MethodPut, fmt.Sprintf("%s/%s", dropletAutoscaleBasePath, id), updateReq)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(dropletAutoscalePoolRoot)
-	resp, err := d.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	return root.AutoscalePool, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete an existing autoscale pool
 func (d *DropletAutoscaleServiceOp) Delete(ctx context.Context, id string) (*Response, error) {
-	req, err := d.client.NewRequest(ctx, http.MethodDelete, fmt.Sprintf("%s/%s", dropletAutoscaleBasePath, id), nil)
-	if err != nil {
-		return nil, err
-	}
-	return d.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DeleteDangerous deletes an existing autoscale pool with all underlying resources
 func (d *DropletAutoscaleServiceOp) DeleteDangerous(ctx context.Context, id string) (*Response, error) {
-	req, err := d.client.NewRequest(ctx, http.MethodDelete, fmt.Sprintf("%s/%s/dangerous", dropletAutoscaleBasePath, id), nil)
-	req.Header.Set("X-Dangerous", "true")
-	if err != nil {
-		return nil, err
-	}
-	return d.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }

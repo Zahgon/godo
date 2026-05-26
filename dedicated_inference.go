@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -139,9 +137,7 @@ type DedicatedInference struct {
 	UpdatedAt             time.Time                     `json:"updated_at,omitempty"`
 }
 
-func (d DedicatedInference) String() string {
-	return Stringify(d)
-}
+func (d DedicatedInference) String() string { _ = "STUB: not implemented"; return "" }
 
 // DedicatedInferenceEndpoints represents the endpoints for a Dedicated Inference.
 type DedicatedInferenceEndpoints struct {
@@ -194,9 +190,7 @@ type DedicatedInferenceToken struct {
 	CreatedAt time.Time `json:"created_at"`
 }
 
-func (t DedicatedInferenceToken) String() string {
-	return Stringify(t)
-}
+func (t DedicatedInferenceToken) String() string { _ = "STUB: not implemented"; return "" }
 
 // DedicatedInferenceSizesResponse represents the response from GetSizes.
 type DedicatedInferenceSizesResponse struct {
@@ -282,213 +276,66 @@ type dedicatedInferenceTokensRoot struct {
 
 // Create a new Dedicated Inference with the given configuration.
 func (s *DedicatedInferenceServiceOp) Create(ctx context.Context, createRequest *DedicatedInferenceCreateRequest) (*DedicatedInference, *DedicatedInferenceToken, *Response, error) {
-	req, err := s.client.NewRequest(ctx, http.MethodPost, dedicatedInferenceBasePath, createRequest)
-	if err != nil {
-		return nil, nil, nil, err
-	}
-
-	root := new(dedicatedInferenceRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, resp, err
-	}
-
-	return root.DedicatedInference, root.Token, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil, nil
 }
 
 // Get an existing Dedicated Inference by its UUID.
 func (s *DedicatedInferenceServiceOp) Get(ctx context.Context, id string) (*DedicatedInference, *Response, error) {
-	path := fmt.Sprintf("%s/%s", dedicatedInferenceBasePath, id)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dedicatedInferenceRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.DedicatedInference, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete an existing Dedicated Inference by its UUID.
 func (s *DedicatedInferenceServiceOp) Delete(ctx context.Context, id string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", dedicatedInferenceBasePath, id)
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return s.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Update an existing Dedicated Inference.
 func (s *DedicatedInferenceServiceOp) Update(ctx context.Context, id string, updateRequest *DedicatedInferenceUpdateRequest) (*DedicatedInference, *Response, error) {
-	path := fmt.Sprintf("%s/%s", dedicatedInferenceBasePath, id)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dedicatedInferenceRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.DedicatedInference, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List all Dedicated Inferences.
 func (s *DedicatedInferenceServiceOp) List(ctx context.Context, opt *DedicatedInferenceListOptions) ([]DedicatedInferenceListItem, *Response, error) {
-	path, err := addOptions(dedicatedInferenceBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dedicatedInferencesRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.DedicatedInferences, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListAccelerators lists accelerators for a Dedicated Inference.
 func (s *DedicatedInferenceServiceOp) ListAccelerators(ctx context.Context, diID string, opt *DedicatedInferenceListAcceleratorsOptions) ([]DedicatedInferenceAcceleratorInfo, *Response, error) {
-	basePath := fmt.Sprintf("%s/%s/accelerators", dedicatedInferenceBasePath, diID)
-	path, err := addOptions(basePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dedicatedInferenceAcceleratorsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Accelerators, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateToken creates a new auth token for a Dedicated Inference.
 func (s *DedicatedInferenceServiceOp) CreateToken(ctx context.Context, diID string, createRequest *DedicatedInferenceTokenCreateRequest) (*DedicatedInferenceToken, *Response, error) {
-	path := fmt.Sprintf("%s/%s/tokens", dedicatedInferenceBasePath, diID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dedicatedInferenceTokenRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Token, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListTokens lists all auth tokens for a Dedicated Inference.
 func (s *DedicatedInferenceServiceOp) ListTokens(ctx context.Context, diID string, opt *ListOptions) ([]DedicatedInferenceToken, *Response, error) {
-	basePath := fmt.Sprintf("%s/%s/tokens", dedicatedInferenceBasePath, diID)
-	path, err := addOptions(basePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dedicatedInferenceTokensRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Tokens, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // RevokeToken revokes (deletes) an auth token for a Dedicated Inference.
 func (s *DedicatedInferenceServiceOp) RevokeToken(ctx context.Context, diID string, tokenID string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/tokens/%s", dedicatedInferenceBasePath, diID, tokenID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return s.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetSizes returns available Dedicated Inference sizes and pricing.
 func (s *DedicatedInferenceServiceOp) GetSizes(ctx context.Context) (*DedicatedInferenceSizesResponse, *Response, error) {
-	path := fmt.Sprintf("%s/sizes", dedicatedInferenceBasePath)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DedicatedInferenceSizesResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetGPUModelConfig returns supported GPU model configurations.
 func (s *DedicatedInferenceServiceOp) GetGPUModelConfig(ctx context.Context) (*DedicatedInferenceGPUModelConfigResponse, *Response, error) {
-	path := fmt.Sprintf("%s/gpu-model-config", dedicatedInferenceBasePath)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DedicatedInferenceGPUModelConfigResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

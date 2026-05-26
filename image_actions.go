@@ -2,9 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
-	"net/url"
 )
 
 // ImageActionsService is an interface for interfacing with the image actions
@@ -27,91 +24,29 @@ var _ ImageActionsService = &ImageActionsServiceOp{}
 
 // Transfer an image
 func (i *ImageActionsServiceOp) Transfer(ctx context.Context, imageID int, transferRequest *ActionRequest) (*Action, *Response, error) {
-	if imageID < 1 {
-		return nil, nil, NewArgError("imageID", "cannot be less than 1")
-	}
-
-	if transferRequest == nil {
-		return nil, nil, NewArgError("transferRequest", "cannot be nil")
-	}
-
-	path := fmt.Sprintf("v2/images/%d/actions", imageID)
-
-	req, err := i.client.NewRequest(ctx, http.MethodPost, path, transferRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionRoot)
-	resp, err := i.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Event, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Convert an image to a snapshot
 func (i *ImageActionsServiceOp) Convert(ctx context.Context, imageID int) (*Action, *Response, error) {
-	if imageID < 1 {
-		return nil, nil, NewArgError("imageID", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("v2/images/%d/actions", imageID)
-
-	convertRequest := &ActionRequest{
-		"type": "convert",
-	}
-
-	req, err := i.client.NewRequest(ctx, http.MethodPost, path, convertRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionRoot)
-	resp, err := i.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Event, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an action for a particular image by id.
 func (i *ImageActionsServiceOp) Get(ctx context.Context, imageID, actionID int) (*Action, *Response, error) {
-	if imageID < 1 {
-		return nil, nil, NewArgError("imageID", "cannot be less than 1")
-	}
-
-	if actionID < 1 {
-		return nil, nil, NewArgError("actionID", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("v2/images/%d/actions/%d", imageID, actionID)
-	return i.get(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetByURI gets an action for a particular image by URI.
 func (i *ImageActionsServiceOp) GetByURI(ctx context.Context, rawurl string) (*Action, *Response, error) {
-	u, err := url.Parse(rawurl)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return i.get(ctx, u.Path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (i *ImageActionsServiceOp) get(ctx context.Context, path string) (*Action, *Response, error) {
-	req, err := i.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionRoot)
-	resp, err := i.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Event, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

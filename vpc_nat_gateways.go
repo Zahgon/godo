@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -96,75 +94,30 @@ var _ VPCNATGatewaysService = &VPCNATGatewaysServiceOp{}
 
 // Create a new VPC NAT Gateway
 func (n *VPCNATGatewaysServiceOp) Create(ctx context.Context, createReq *VPCNATGatewayRequest) (*VPCNATGateway, *Response, error) {
-	req, err := n.client.NewRequest(ctx, http.MethodPost, vpcNatGatewaysBasePath, createReq)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vpcNatGatewayRoot)
-	resp, err := n.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	return root.VPCNATGateway, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an existing VPC NAT Gateway
 func (n *VPCNATGatewaysServiceOp) Get(ctx context.Context, id string) (*VPCNATGateway, *Response, error) {
-	req, err := n.client.NewRequest(ctx, http.MethodGet, fmt.Sprintf("%s/%s", vpcNatGatewaysBasePath, id), nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vpcNatGatewayRoot)
-	resp, err := n.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	return root.VPCNATGateway, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List all active VPC NAT Gateways
 func (n *VPCNATGatewaysServiceOp) List(ctx context.Context, opts *VPCNATGatewaysListOptions) ([]*VPCNATGateway, *Response, error) {
-	path, err := addOptions(vpcNatGatewaysBasePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := n.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vpcNatGatewaysRoot)
-	resp, err := n.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-	return root.VPCNATGateways, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Update an existing VPC NAT Gateway
 func (n *VPCNATGatewaysServiceOp) Update(ctx context.Context, id string, updateReq *VPCNATGatewayRequest) (*VPCNATGateway, *Response, error) {
-	req, err := n.client.NewRequest(ctx, http.MethodPut, fmt.Sprintf("%s/%s", vpcNatGatewaysBasePath, id), updateReq)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vpcNatGatewayRoot)
-	resp, err := n.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	return root.VPCNATGateway, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete an existing VPC NAT Gateway
 func (n *VPCNATGatewaysServiceOp) Delete(ctx context.Context, id string) (*Response, error) {
-	req, err := n.client.NewRequest(ctx, http.MethodDelete, fmt.Sprintf("%s/%s", vpcNatGatewaysBasePath, id), nil)
-	if err != nil {
-		return nil, err
-	}
-	return n.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }

@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -56,14 +54,10 @@ type Volume struct {
 	Tags            []string  `json:"tags"`
 }
 
-func (f Volume) String() string {
-	return Stringify(f)
-}
+func (f Volume) String() string { _ = "STUB: not implemented"; return "" }
 
 // URN returns the volume ID as a valid DO API URN
-func (f Volume) URN() string {
-	return ToURN("Volume", f.ID)
-}
+func (f Volume) URN() string { _ = "STUB: not implemented"; return "" }
 
 type storageVolumesRoot struct {
 	Volumes []Volume `json:"volumes"`
@@ -91,90 +85,26 @@ type VolumeCreateRequest struct {
 
 // ListVolumes lists all storage volumes.
 func (svc *StorageServiceOp) ListVolumes(ctx context.Context, params *ListVolumeParams) ([]Volume, *Response, error) {
-	path := storageAllocPath
-	if params != nil {
-		if params.Region != "" && params.Name != "" {
-			path = fmt.Sprintf("%s?name=%s&region=%s", path, params.Name, params.Region)
-		} else if params.Region != "" {
-			path = fmt.Sprintf("%s?region=%s", path, params.Region)
-		} else if params.Name != "" {
-			path = fmt.Sprintf("%s?name=%s", path, params.Name)
-		}
-
-		if params.ListOptions != nil {
-			var err error
-			path, err = addOptions(path, params.ListOptions)
-			if err != nil {
-				return nil, nil, err
-			}
-		}
-	}
-
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(storageVolumesRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Volumes, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateVolume creates a storage volume. The name must be unique.
 func (svc *StorageServiceOp) CreateVolume(ctx context.Context, createRequest *VolumeCreateRequest) (*Volume, *Response, error) {
-	path := storageAllocPath
-
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(storageVolumeRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Volume, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetVolume retrieves an individual storage volume.
 func (svc *StorageServiceOp) GetVolume(ctx context.Context, id string) (*Volume, *Response, error) {
-	path := fmt.Sprintf("%s/%s", storageAllocPath, id)
-
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(storageVolumeRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Volume, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteVolume deletes a storage volume.
 func (svc *StorageServiceOp) DeleteVolume(ctx context.Context, id string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", storageAllocPath, id)
-
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	return svc.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // SnapshotCreateRequest represents a request to create a block store
@@ -188,75 +118,24 @@ type SnapshotCreateRequest struct {
 
 // ListSnapshots lists all snapshots related to a storage volume.
 func (svc *StorageServiceOp) ListSnapshots(ctx context.Context, volumeID string, opt *ListOptions) ([]Snapshot, *Response, error) {
-	path := fmt.Sprintf("%s/%s/snapshots", storageAllocPath, volumeID)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(snapshotsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Snapshots, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateSnapshot creates a snapshot of a storage volume.
 func (svc *StorageServiceOp) CreateSnapshot(ctx context.Context, createRequest *SnapshotCreateRequest) (*Snapshot, *Response, error) {
-	path := fmt.Sprintf("%s/%s/snapshots", storageAllocPath, createRequest.VolumeID)
-
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(snapshotRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Snapshot, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetSnapshot retrieves an individual snapshot.
 func (svc *StorageServiceOp) GetSnapshot(ctx context.Context, id string) (*Snapshot, *Response, error) {
-	path := fmt.Sprintf("%s/%s", storageSnapPath, id)
-
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(snapshotRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Snapshot, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteSnapshot deletes a snapshot.
 func (svc *StorageServiceOp) DeleteSnapshot(ctx context.Context, id string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", storageSnapPath, id)
-
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	return svc.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }

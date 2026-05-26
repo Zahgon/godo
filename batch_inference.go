@@ -2,7 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -133,139 +132,52 @@ type BatchResultsResponse struct {
 // rather than the default api.digitalocean.com. The resulting absolute URL is
 // passed to Client.NewRequest so that standard headers and auth are applied.
 func (s *BatchInferenceServiceOp) newRequest(ctx context.Context, method, path string, body interface{}) (*http.Request, error) {
-	rel, err := url.Parse(path)
-	if err != nil {
-		return nil, err
-	}
-	u := s.baseURL.ResolveReference(rel)
-	return s.client.NewRequest(ctx, method, u.String(), body)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // -- Service methods --
 
 // CreatePresignedUploadURL creates a presigned URL for uploading a batch JSONL input file.
 func (s *BatchInferenceServiceOp) CreatePresignedUploadURL(ctx context.Context, createReq *CreateBatchFileRequest) (*CreateBatchFileResponse, *Response, error) {
-	req, err := s.newRequest(ctx, http.MethodPost, batchInferenceFilePath, createReq)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(CreateBatchFileResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UploadInputFile uploads batch JSONL content to a presigned S3 URL returned by
 // CreatePresignedUploadURL. A plain HTTP client is used (no Authorization header)
 // because the presigned URL already embeds authentication in its query parameters.
 func (s *BatchInferenceServiceOp) UploadInputFile(ctx context.Context, uploadURL string, content io.Reader) (*Response, error) {
-	req, err := http.NewRequestWithContext(ctx, http.MethodPut, uploadURL, content)
-	if err != nil {
-		return nil, err
-	}
-	req.Header.Set("Content-Type", "application/x-ndjson")
-
-	resp, err := (&http.Client{}).Do(req)
-	if err != nil {
-		return nil, err
-	}
-	defer func() {
-		io.Copy(io.Discard, resp.Body)
-		resp.Body.Close()
-	}()
-
-	response := newResponse(resp)
-	if err := CheckResponse(resp); err != nil {
-		return response, err
-	}
-	return response, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // CreateJob creates a new batch inference job.
 func (s *BatchInferenceServiceOp) CreateJob(ctx context.Context, createReq *CreateBatchRequest) (*Batch, *Response, error) {
-	req, err := s.newRequest(ctx, http.MethodPost, batchInferenceBasePath, createReq)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(Batch)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListJobs returns a list of batch inference jobs with optional filtering and pagination.
 func (s *BatchInferenceServiceOp) ListJobs(ctx context.Context, opts *ListBatchesOptions) (*ListBatchesResponse, *Response, error) {
-	path, err := addOptions(batchInferenceBasePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.newRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(ListBatchesResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetJob retrieves a batch inference job by ID.
 func (s *BatchInferenceServiceOp) GetJob(ctx context.Context, batchID string) (*Batch, *Response, error) {
-	path := fmt.Sprintf(batchInferenceByIDPath, batchID)
-
-	req, err := s.newRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(Batch)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CancelJob requests cancellation of a batch inference job.
 func (s *BatchInferenceServiceOp) CancelJob(ctx context.Context, batchID string) (*Batch, *Response, error) {
-	path := fmt.Sprintf(batchInferenceCancelPath, batchID)
-
-	req, err := s.newRequest(ctx, http.MethodPost, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(Batch)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetJobResult retrieves the result download URLs for a completed batch inference job.
 func (s *BatchInferenceServiceOp) GetJobResult(ctx context.Context, batchID string) (*BatchResultsResponse, *Response, error) {
-	path := fmt.Sprintf(batchInferenceResultsPath, batchID)
-
-	req, err := s.newRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(BatchResultsResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 // StorageActionsService is an interface for interfacing with the
@@ -31,102 +29,47 @@ type StorageAttachment struct {
 
 // Attach a storage volume to a Droplet.
 func (s *StorageActionsServiceOp) Attach(ctx context.Context, volumeID string, dropletID int) (*Action, *Response, error) {
-	request := &ActionRequest{
-		"type":       "attach",
-		"droplet_id": dropletID,
-	}
-	return s.doAction(ctx, volumeID, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DetachByDropletID a storage volume from a Droplet by Droplet ID.
 func (s *StorageActionsServiceOp) DetachByDropletID(ctx context.Context, volumeID string, dropletID int) (*Action, *Response, error) {
-	request := &ActionRequest{
-		"type":       "detach",
-		"droplet_id": dropletID,
-	}
-	return s.doAction(ctx, volumeID, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an action for a particular storage volume by id.
 func (s *StorageActionsServiceOp) Get(ctx context.Context, volumeID string, actionID int) (*Action, *Response, error) {
-	path := fmt.Sprintf("%s/%d", storageAllocationActionPath(volumeID), actionID)
-	return s.get(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List the actions for a particular storage volume.
 func (s *StorageActionsServiceOp) List(ctx context.Context, volumeID string, opt *ListOptions) ([]Action, *Response, error) {
-	path := storageAllocationActionPath(volumeID)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return s.list(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Resize a storage volume.
 func (s *StorageActionsServiceOp) Resize(ctx context.Context, volumeID string, sizeGigabytes int, regionSlug string) (*Action, *Response, error) {
-	request := &ActionRequest{
-		"type":           "resize",
-		"size_gigabytes": sizeGigabytes,
-		"region":         regionSlug,
-	}
-	return s.doAction(ctx, volumeID, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *StorageActionsServiceOp) doAction(ctx context.Context, volumeID string, request *ActionRequest) (*Action, *Response, error) {
-	path := storageAllocationActionPath(volumeID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, request)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Event, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *StorageActionsServiceOp) get(ctx context.Context, path string) (*Action, *Response, error) {
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Event, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *StorageActionsServiceOp) list(ctx context.Context, path string) ([]Action, *Response, error) {
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Actions, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
-func storageAllocationActionPath(volumeID string) string {
-	return fmt.Sprintf("%s/%s/actions", storageAllocPath, volumeID)
-}
+func storageAllocationActionPath(volumeID string) string { _ = "STUB: not implemented"; return "" }

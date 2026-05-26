@@ -2,9 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
-	"path"
 )
 
 const (
@@ -152,200 +149,68 @@ var _ UptimeChecksService = &UptimeChecksServiceOp{}
 
 // List Checks.
 func (p *UptimeChecksServiceOp) List(ctx context.Context, opts *ListOptions) ([]UptimeCheck, *Response, error) {
-	path, err := addOptions(uptimeChecksBasePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := p.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(uptimeChecksRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.UptimeChecks, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetState of uptime check.
 func (p *UptimeChecksServiceOp) GetState(ctx context.Context, uptimeCheckID string) (*UptimeCheckState, *Response, error) {
-	path := path.Join(uptimeChecksBasePath, uptimeCheckID, "/state")
-
-	req, err := p.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(uptimeCheckStateRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return &root.UptimeCheckState, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get retrieves a single uptime check by its ID.
 func (p *UptimeChecksServiceOp) Get(ctx context.Context, uptimeCheckID string) (*UptimeCheck, *Response, error) {
-	path := path.Join(uptimeChecksBasePath, uptimeCheckID)
-
-	req, err := p.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(uptimeCheckRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.UptimeCheck, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create a new uptime check.
 func (p *UptimeChecksServiceOp) Create(ctx context.Context, cr *CreateUptimeCheckRequest) (*UptimeCheck, *Response, error) {
-	req, err := p.client.NewRequest(ctx, http.MethodPost, uptimeChecksBasePath, cr)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(uptimeCheckRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.UptimeCheck, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Update an uptime check.
 func (p *UptimeChecksServiceOp) Update(ctx context.Context, uptimeCheckID string, ur *UpdateUptimeCheckRequest) (*UptimeCheck, *Response, error) {
-	path := path.Join(uptimeChecksBasePath, uptimeCheckID)
-	req, err := p.client.NewRequest(ctx, http.MethodPut, path, ur)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(uptimeCheckRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.UptimeCheck, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete an existing uptime check.
 func (p *UptimeChecksServiceOp) Delete(ctx context.Context, uptimeCheckID string) (*Response, error) {
-	path := path.Join(uptimeChecksBasePath, uptimeCheckID)
-	req, err := p.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return p.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // alerts
 
 // ListAlerts lists alerts for a check.
 func (p *UptimeChecksServiceOp) ListAlerts(ctx context.Context, uptimeCheckID string, opts *ListOptions) ([]UptimeAlert, *Response, error) {
-	fullPath := path.Join(uptimeChecksBasePath, uptimeCheckID, "/alerts")
-	path, err := addOptions(fullPath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := p.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(uptimeAlertsRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.UptimeAlerts, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateAlert creates a new check alert.
 func (p *UptimeChecksServiceOp) CreateAlert(ctx context.Context, uptimeCheckID string, cr *CreateUptimeAlertRequest) (*UptimeAlert, *Response, error) {
-	fullPath := path.Join(uptimeChecksBasePath, uptimeCheckID, "/alerts")
-	req, err := p.client.NewRequest(ctx, http.MethodPost, fullPath, cr)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(uptimeAlertRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.UptimeAlert, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetAlert retrieves a single uptime check alert by its ID.
 func (p *UptimeChecksServiceOp) GetAlert(ctx context.Context, uptimeCheckID string, alertID string) (*UptimeAlert, *Response, error) {
-	path := fmt.Sprintf("v2/uptime/checks/%s/alerts/%s", uptimeCheckID, alertID)
-
-	req, err := p.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(uptimeAlertRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.UptimeAlert, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateAlert updates an check's alert.
 func (p *UptimeChecksServiceOp) UpdateAlert(ctx context.Context, uptimeCheckID string, alertID string, ur *UpdateUptimeAlertRequest) (*UptimeAlert, *Response, error) {
-	path := path.Join(uptimeChecksBasePath, uptimeCheckID, "/alerts/", alertID)
-	req, err := p.client.NewRequest(ctx, http.MethodPut, path, ur)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(uptimeAlertRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.UptimeAlert, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteAlert deletes an existing check's alert.
 func (p *UptimeChecksServiceOp) DeleteAlert(ctx context.Context, uptimeCheckID string, alertID string) (*Response, error) {
-	path := path.Join(uptimeChecksBasePath, uptimeCheckID, "/alerts/", alertID)
-	req, err := p.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return p.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }

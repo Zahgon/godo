@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"net/url"
-	"strconv"
 )
 
 // Links manages links that are returned along with a List
@@ -29,95 +27,35 @@ type LinkAction struct {
 
 // CurrentPage is current page of the list
 func (l *Links) CurrentPage() (int, error) {
-	return l.Pages.current()
+	_ = "STUB: not implemented"
+	return 0,
+
+		// NextPageToken is the page token to request the next page of the list
+		nil
 }
 
-// NextPageToken is the page token to request the next page of the list
-func (l *Links) NextPageToken() (string, error) {
-	return l.Pages.nextPageToken()
-}
+func (l *Links) NextPageToken() (string, error) { _ = "STUB: not implemented"; return "", nil }
 
 // PrevPageToken is the page token to request the previous page of the list
-func (l *Links) PrevPageToken() (string, error) {
-	return l.Pages.prevPageToken()
-}
+func (l *Links) PrevPageToken() (string, error) { _ = "STUB: not implemented"; return "", nil }
 
-func (p *Pages) current() (int, error) {
-	switch {
-	case p == nil:
-		return 1, nil
-	case p.Prev == "" && p.Next != "":
-		return 1, nil
-	case p.Prev != "":
-		prevPage, err := pageForURL(p.Prev)
-		if err != nil {
-			return 0, err
-		}
+func (p *Pages) current() (int, error) { _ = "STUB: not implemented"; return 0, nil }
 
-		return prevPage + 1, nil
-	}
+func (p *Pages) nextPageToken() (string, error) { _ = "STUB: not implemented"; return "", nil }
 
-	return 0, nil
-}
-
-func (p *Pages) nextPageToken() (string, error) {
-	if p == nil || p.Next == "" {
-		return "", nil
-	}
-	token, err := pageTokenFromURL(p.Next)
-	if err != nil {
-		return "", err
-	}
-	return token, nil
-}
-
-func (p *Pages) prevPageToken() (string, error) {
-	if p == nil || p.Prev == "" {
-		return "", nil
-	}
-	token, err := pageTokenFromURL(p.Prev)
-	if err != nil {
-		return "", err
-	}
-	return token, nil
-}
+func (p *Pages) prevPageToken() (string, error) { _ = "STUB: not implemented"; return "", nil }
 
 // IsLastPage returns true if the current page is the last
-func (l *Links) IsLastPage() bool {
-	if l.Pages == nil {
-		return true
-	}
-	return l.Pages.isLast()
-}
+func (l *Links) IsLastPage() bool { _ = "STUB: not implemented"; return false }
 
-func (p *Pages) isLast() bool {
-	return p.Next == ""
-}
+func (p *Pages) isLast() bool { _ = "STUB: not implemented"; return false }
 
-func pageForURL(urlText string) (int, error) {
-	u, err := url.ParseRequestURI(urlText)
-	if err != nil {
-		return 0, err
-	}
+func pageForURL(urlText string) (int, error) { _ = "STUB: not implemented"; return 0, nil }
 
-	pageStr := u.Query().Get("page")
-	page, err := strconv.Atoi(pageStr)
-	if err != nil {
-		return 0, err
-	}
-
-	return page, nil
-}
-
-func pageTokenFromURL(urlText string) (string, error) {
-	u, err := url.ParseRequestURI(urlText)
-	if err != nil {
-		return "", err
-	}
-	return u.Query().Get("page_token"), nil
-}
+func pageTokenFromURL(urlText string) (string, error) { _ = "STUB: not implemented"; return "", nil }
 
 // Get a link action by id.
 func (la *LinkAction) Get(ctx context.Context, client *Client) (*Action, *Response, error) {
-	return client.Actions.Get(ctx, la.ID)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

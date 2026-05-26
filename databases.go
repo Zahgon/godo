@@ -2,11 +2,7 @@ package godo
 
 import (
 	"context"
-	"encoding/json"
-	"fmt"
 	"math/big"
-	"net/http"
-	"strings"
 	"time"
 )
 
@@ -587,55 +583,16 @@ type DatabaseCreateLogsinkRequest struct {
 // MarshalJSON implements custom JSON marshaling for DatabaseCreateLogsinkRequest
 // to ensure the TLS field is always included for rsyslog sink types
 func (r DatabaseCreateLogsinkRequest) MarshalJSON() ([]byte, error) {
+	_ = "STUB: not implemented"
 	// For rsyslog, we need to ensure TLS field is always present
-	if r.Type == "rsyslog" {
-		type rsyslogConfig struct {
-			URL          string  `json:"url,omitempty"`
-			IndexPrefix  string  `json:"index_prefix,omitempty"`
-			IndexDaysMax int     `json:"index_days_max,omitempty"`
-			Timeout      float32 `json:"timeout,omitempty"`
-			Server       string  `json:"server,omitempty"`
-			Port         int     `json:"port,omitempty"`
-			TLS          bool    `json:"tls"` // Always include for rsyslog
-			Format       string  `json:"format,omitempty"`
-			Logline      string  `json:"logline,omitempty"`
-			SD           string  `json:"sd,omitempty"`
-			CA           string  `json:"ca,omitempty"`
-			Key          string  `json:"key,omitempty"`
-			Cert         string  `json:"cert,omitempty"`
-		}
-
-		// Create wrapper struct with rsyslog-specific config
-		wrapper := struct {
-			Name   string         `json:"sink_name"`
-			Type   string         `json:"sink_type"`
-			Config *rsyslogConfig `json:"config"`
-		}{
-			Name: r.Name,
-			Type: r.Type,
-			Config: &rsyslogConfig{
-				URL:          r.Config.URL,
-				IndexPrefix:  r.Config.IndexPrefix,
-				IndexDaysMax: r.Config.IndexDaysMax,
-				Timeout:      r.Config.Timeout,
-				Server:       r.Config.Server,
-				Port:         r.Config.Port,
-				TLS:          r.Config.TLS,
-				Format:       r.Config.Format,
-				Logline:      r.Config.Logline,
-				SD:           r.Config.SD,
-				CA:           r.Config.CA,
-				Key:          r.Config.Key,
-				Cert:         r.Config.Cert,
-			},
-		}
-		return json.Marshal(wrapper)
-	}
-
-	// For other sink types, use default marshaling
-	type alias DatabaseCreateLogsinkRequest
-	return json.Marshal(alias(r))
+	return nil, nil
 }
+
+// Always include for rsyslog
+
+// Create wrapper struct with rsyslog-specific config
+
+// For other sink types, use default marshaling
 
 // DatabaseUpdateLogsinkRequest is used to update logsink for a database cluster
 type DatabaseUpdateLogsinkRequest struct {
@@ -1106,536 +1063,205 @@ type DatabaseKafkaSchemaRegistrySubjectConfigResponse struct {
 }
 
 // URN returns a URN identifier for the database
-func (d Database) URN() string {
-	return ToURN("dbaas", d.ID)
-}
+func (d Database) URN() string { _ = "STUB: not implemented"; return "" }
 
 // List returns a list of the Databases visible with the caller's API token
 func (svc *DatabasesServiceOp) List(ctx context.Context, opts *ListOptions) ([]Database, *Response, error) {
-	path := databaseBasePath
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databasesRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Databases, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get retrieves the details of a database cluster
 func (svc *DatabasesServiceOp) Get(ctx context.Context, databaseID string) (*Database, *Response, error) {
-	path := fmt.Sprintf(databaseSinglePath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Database, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetCA retrieves the CA of a database cluster.
 func (svc *DatabasesServiceOp) GetCA(ctx context.Context, databaseID string) (*DatabaseCA, *Response, error) {
-	path := fmt.Sprintf(databaseCAPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseCARoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.CA, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create creates a database cluster
 func (svc *DatabasesServiceOp) Create(ctx context.Context, create *DatabaseCreateRequest) (*Database, *Response, error) {
-	path := databaseBasePath
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, create)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Database, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete deletes a database cluster. There is no way to recover a cluster once
 // it has been destroyed.
 func (svc *DatabasesServiceOp) Delete(ctx context.Context, databaseID string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", databaseBasePath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Resize resizes a database cluster by number of nodes or size
 func (svc *DatabasesServiceOp) Resize(ctx context.Context, databaseID string, resize *DatabaseResizeRequest) (*Response, error) {
-	path := fmt.Sprintf(databaseResizePath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, resize)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Migrate migrates a database cluster to a new region
 func (svc *DatabasesServiceOp) Migrate(ctx context.Context, databaseID string, migrate *DatabaseMigrateRequest) (*Response, error) {
-	path := fmt.Sprintf(databaseMigratePath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, migrate)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // UpdateMaintenance updates the maintenance window on a cluster
 func (svc *DatabasesServiceOp) UpdateMaintenance(ctx context.Context, databaseID string, maintenance *DatabaseUpdateMaintenanceRequest) (*Response, error) {
-	path := fmt.Sprintf(databaseMaintenancePath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, maintenance)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetStorageAutoscale retrieves the storage autoscaling configuration for a database cluster.
 func (svc *DatabasesServiceOp) GetStorageAutoscale(ctx context.Context, databaseID string) (*DatabaseStorageAutoscale, *Response, error) {
-	path := fmt.Sprintf(databaseStorageAutoscalePath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseStorageAutoscaleRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.StorageAutoscale, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateStorageAutoscale updates the storage autoscaling configuration on a cluster
 func (svc *DatabasesServiceOp) UpdateStorageAutoscale(ctx context.Context, databaseID string, autoscale *DatabaseStorageAutoscale) (*Response, error) {
-	path := fmt.Sprintf(databaseStorageAutoscalePath, databaseID)
-	root := &databaseStorageAutoscaleRoot{
-		StorageAutoscale: autoscale,
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, root)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // InstallUpdate starts installation of updates
 func (svc *DatabasesServiceOp) InstallUpdate(ctx context.Context, databaseID string) (*Response, error) {
-	path := fmt.Sprintf(databaseUpdateInstallationPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListBackups returns a list of the current backups of a database
 func (svc *DatabasesServiceOp) ListBackups(ctx context.Context, databaseID string, opts *ListOptions) ([]DatabaseBackup, *Response, error) {
-	path := fmt.Sprintf(databaseBackupsPath, databaseID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseBackupsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Backups, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetUser returns the database user identified by userID
 func (svc *DatabasesServiceOp) GetUser(ctx context.Context, databaseID, userID string) (*DatabaseUser, *Response, error) {
-	path := fmt.Sprintf(databaseUserPath, databaseID, userID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseUserRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.User, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListUsers returns all database users for the database
 func (svc *DatabasesServiceOp) ListUsers(ctx context.Context, databaseID string, opts *ListOptions) ([]DatabaseUser, *Response, error) {
-	path := fmt.Sprintf(databaseUsersPath, databaseID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseUsersRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Users, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateUser will create a new database user
 func (svc *DatabasesServiceOp) CreateUser(ctx context.Context, databaseID string, createUser *DatabaseCreateUserRequest) (*DatabaseUser, *Response, error) {
-	path := fmt.Sprintf(databaseUsersPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, createUser)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseUserRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.User, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateUser will update an existing database user
 func (svc *DatabasesServiceOp) UpdateUser(ctx context.Context, databaseID, userID string, updateUser *DatabaseUpdateUserRequest) (*DatabaseUser, *Response, error) {
-	path := fmt.Sprintf(databaseUserPath, databaseID, userID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, updateUser)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseUserRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.User, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ResetUserAuth will reset user authentication
 func (svc *DatabasesServiceOp) ResetUserAuth(ctx context.Context, databaseID, userID string, resetAuth *DatabaseResetUserAuthRequest) (*DatabaseUser, *Response, error) {
-	path := fmt.Sprintf(databaseResetUserAuthPath, databaseID, userID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, resetAuth)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseUserRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.User, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteUser will delete an existing database user
 func (svc *DatabasesServiceOp) DeleteUser(ctx context.Context, databaseID, userID string) (*Response, error) {
-	path := fmt.Sprintf(databaseUserPath, databaseID, userID)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListDBs returns all databases for a given database cluster
 func (svc *DatabasesServiceOp) ListDBs(ctx context.Context, databaseID string, opts *ListOptions) ([]DatabaseDB, *Response, error) {
-	path := fmt.Sprintf(databaseDBsPath, databaseID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseDBsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.DBs, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDB returns a single database by name
 func (svc *DatabasesServiceOp) GetDB(ctx context.Context, databaseID, name string) (*DatabaseDB, *Response, error) {
-	path := fmt.Sprintf(databaseDBPath, databaseID, name)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseDBRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.DB, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateDB will create a new database
 func (svc *DatabasesServiceOp) CreateDB(ctx context.Context, databaseID string, createDB *DatabaseCreateDBRequest) (*DatabaseDB, *Response, error) {
-	path := fmt.Sprintf(databaseDBsPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, createDB)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseDBRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.DB, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteDB will delete an existing database
 func (svc *DatabasesServiceOp) DeleteDB(ctx context.Context, databaseID, name string) (*Response, error) {
-	path := fmt.Sprintf(databaseDBPath, databaseID, name)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListPools returns all connection pools for a given database cluster
 func (svc *DatabasesServiceOp) ListPools(ctx context.Context, databaseID string, opts *ListOptions) ([]DatabasePool, *Response, error) {
-	path := fmt.Sprintf(databasePoolsPath, databaseID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databasePoolsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Pools, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetPool returns a single database connection pool by name
 func (svc *DatabasesServiceOp) GetPool(ctx context.Context, databaseID, name string) (*DatabasePool, *Response, error) {
-	path := fmt.Sprintf(databasePoolPath, databaseID, name)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databasePoolRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Pool, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreatePool will create a new database connection pool
 func (svc *DatabasesServiceOp) CreatePool(ctx context.Context, databaseID string, createPool *DatabaseCreatePoolRequest) (*DatabasePool, *Response, error) {
-	path := fmt.Sprintf(databasePoolsPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, createPool)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databasePoolRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Pool, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeletePool will delete an existing database connection pool
 func (svc *DatabasesServiceOp) DeletePool(ctx context.Context, databaseID, name string) (*Response, error) {
-	path := fmt.Sprintf(databasePoolPath, databaseID, name)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // UpdatePool will update an existing database connection pool
 func (svc *DatabasesServiceOp) UpdatePool(ctx context.Context, databaseID, name string, updatePool *DatabaseUpdatePoolRequest) (*Response, error) {
-	path := fmt.Sprintf(databasePoolPath, databaseID, name)
-
-	if updatePool == nil {
-		return nil, NewArgError("updatePool", "cannot be nil")
-	}
-
-	if updatePool.Mode == "" {
-		return nil, NewArgError("mode", "cannot be empty")
-	}
-
-	if updatePool.Database == "" {
-		return nil, NewArgError("database", "cannot be empty")
-	}
-
-	if updatePool.Size < 1 {
-		return nil, NewArgError("size", "cannot be less than 1")
-	}
-
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, updatePool)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetReplica returns a single database replica
 func (svc *DatabasesServiceOp) GetReplica(ctx context.Context, databaseID, name string) (*DatabaseReplica, *Response, error) {
-	path := fmt.Sprintf(databaseReplicaPath, databaseID, name)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseReplicaRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Replica, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListReplicas returns all read-only replicas for a given database cluster
 func (svc *DatabasesServiceOp) ListReplicas(ctx context.Context, databaseID string, opts *ListOptions) ([]DatabaseReplica, *Response, error) {
-	path := fmt.Sprintf(databaseReplicasPath, databaseID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseReplicasRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Replicas, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateReplica will create a new database connection pool
 func (svc *DatabasesServiceOp) CreateReplica(ctx context.Context, databaseID string, createReplica *DatabaseCreateReplicaRequest) (*DatabaseReplica, *Response, error) {
-	path := fmt.Sprintf(databaseReplicasPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, createReplica)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseReplicaRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Replica, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteReplica will delete an existing database replica
 func (svc *DatabasesServiceOp) DeleteReplica(ctx context.Context, databaseID, name string) (*Response, error) {
-	path := fmt.Sprintf(databaseReplicaPath, databaseID, name)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // PromoteReplicaToPrimary will sever the read replica integration and then promote the replica cluster to be a R/W cluster
 func (svc *DatabasesServiceOp) PromoteReplicaToPrimary(ctx context.Context, databaseID, name string) (*Response, error) {
-	path := fmt.Sprintf(databasePromoteReplicaToPrimaryPath, databaseID, name)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetEvictionPolicy loads the eviction policy for a given Redis cluster.
 func (svc *DatabasesServiceOp) GetEvictionPolicy(ctx context.Context, databaseID string) (string, *Response, error) {
-	path := fmt.Sprintf(databaseEvictionPolicyPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return "", nil, err
-	}
-	root := new(evictionPolicyRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return "", resp, err
-	}
-	return root.EvictionPolicy, resp, nil
+	_ = "STUB: not implemented"
+	return "", nil, nil
 }
 
 // SetEvictionPolicy updates the eviction policy for a given Redis cluster.
@@ -1643,757 +1269,288 @@ func (svc *DatabasesServiceOp) GetEvictionPolicy(ctx context.Context, databaseID
 // The valid eviction policies are documented by the exported string constants
 // with the prefix `EvictionPolicy`.
 func (svc *DatabasesServiceOp) SetEvictionPolicy(ctx context.Context, databaseID, policy string) (*Response, error) {
-	path := fmt.Sprintf(databaseEvictionPolicyPath, databaseID)
-	root := &evictionPolicyRoot{EvictionPolicy: policy}
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, root)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetSQLMode loads the SQL Mode settings for a given MySQL cluster.
 func (svc *DatabasesServiceOp) GetSQLMode(ctx context.Context, databaseID string) (string, *Response, error) {
-	path := fmt.Sprintf(databaseSQLModePath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return "", nil, err
-	}
-	root := &sqlModeRoot{}
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return "", resp, err
-	}
-	return root.SQLMode, resp, nil
+	_ = "STUB: not implemented"
+	return "", nil, nil
 }
 
 // SetSQLMode updates the SQL Mode settings for a given MySQL cluster.
 func (svc *DatabasesServiceOp) SetSQLMode(ctx context.Context, databaseID string, sqlModes ...string) (*Response, error) {
-	path := fmt.Sprintf(databaseSQLModePath, databaseID)
-	root := &sqlModeRoot{SQLMode: strings.Join(sqlModes, ",")}
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, root)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetFirewallRules loads the inbound sources for a given cluster.
 func (svc *DatabasesServiceOp) GetFirewallRules(ctx context.Context, databaseID string) ([]DatabaseFirewallRule, *Response, error) {
-	path := fmt.Sprintf(databaseFirewallRulesPath, databaseID)
-	root := new(databaseFirewallRuleRoot)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Rules, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateFirewallRules sets the inbound sources for a given cluster.
 func (svc *DatabasesServiceOp) UpdateFirewallRules(ctx context.Context, databaseID string, firewallRulesReq *DatabaseUpdateFirewallRulesRequest) (*Response, error) {
-	path := fmt.Sprintf(databaseFirewallRulesPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, firewallRulesReq)
-	if err != nil {
-		return nil, err
-	}
-	return svc.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetPostgreSQLConfig retrieves the config for a PostgreSQL database cluster.
 func (svc *DatabasesServiceOp) GetPostgreSQLConfig(ctx context.Context, databaseID string) (*PostgreSQLConfig, *Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databasePostgreSQLConfigRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Config, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdatePostgreSQLConfig updates the config for a PostgreSQL database cluster.
 func (svc *DatabasesServiceOp) UpdatePostgreSQLConfig(ctx context.Context, databaseID string, config *PostgreSQLConfig) (*Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	root := &databasePostgreSQLConfigRoot{
-		Config: config,
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodPatch, path, root)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetRedisConfig retrieves the config for a Redis database cluster.
 func (svc *DatabasesServiceOp) GetRedisConfig(ctx context.Context, databaseID string) (*RedisConfig, *Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseRedisConfigRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Config, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateRedisConfig updates the config for a Redis database cluster.
 func (svc *DatabasesServiceOp) UpdateRedisConfig(ctx context.Context, databaseID string, config *RedisConfig) (*Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-
-	// We provide consts for use with SetEvictionPolicy method. Unfortunately, those are
-	// in a different format than what can be used for RedisConfig.RedisMaxmemoryPolicy.
-	// So we attempt to normalize them here to use dashes as separators if provided in
-	// the old format (underscores). Other values are passed through untouched.
-	if config.RedisMaxmemoryPolicy != nil {
-		if policy, ok := evictionPolicyMap[*config.RedisMaxmemoryPolicy]; ok {
-			config.RedisMaxmemoryPolicy = &policy
-		}
-	}
-
-	root := &databaseRedisConfigRoot{
-		Config: config,
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodPatch, path, root)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
+// We provide consts for use with SetEvictionPolicy method. Unfortunately, those are
+// in a different format than what can be used for RedisConfig.RedisMaxmemoryPolicy.
+// So we attempt to normalize them here to use dashes as separators if provided in
+// the old format (underscores). Other values are passed through untouched.
 
 // GetValkeyConfig updates the config for a Valkey database cluster.
 func (svc *DatabasesServiceOp) GetValkeyConfig(ctx context.Context, databaseID string) (*ValkeyConfig, *Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseValkeyConfigRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Config, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateValkeyConfig updates the config for a Valkey database cluster.
 func (svc *DatabasesServiceOp) UpdateValkeyConfig(ctx context.Context, databaseID string, config *ValkeyConfig) (*Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	root := &databaseValkeyConfigRoot{
-		Config: config,
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodPatch, path, root)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetMySQLConfig retrieves the config for a MySQL database cluster.
 func (svc *DatabasesServiceOp) GetMySQLConfig(ctx context.Context, databaseID string) (*MySQLConfig, *Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseMySQLConfigRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Config, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateMySQLConfig updates the config for a MySQL database cluster.
 func (svc *DatabasesServiceOp) UpdateMySQLConfig(ctx context.Context, databaseID string, config *MySQLConfig) (*Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	root := &databaseMySQLConfigRoot{
-		Config: config,
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodPatch, path, root)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetMongoDBConfig retrieves the config for a MongoDB database cluster.
 func (svc *DatabasesServiceOp) GetMongoDBConfig(ctx context.Context, databaseID string) (*MongoDBConfig, *Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseMongoDBConfigRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Config, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateMongoDBConfig updates the config for a MongoDB database cluster.
 func (svc *DatabasesServiceOp) UpdateMongoDBConfig(ctx context.Context, databaseID string, config *MongoDBConfig) (*Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	root := &databaseMongoDBConfigRoot{
-		Config: config,
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodPatch, path, root)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetKafkaConfig retrieves the config for a Kafka database cluster.
 func (svc *DatabasesServiceOp) GetKafkaConfig(ctx context.Context, databaseID string) (*KafkaConfig, *Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseKafkaConfigRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Config, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateKafkaConfig updates the config for a Kafka database cluster.
 func (svc *DatabasesServiceOp) UpdateKafkaConfig(ctx context.Context, databaseID string, config *KafkaConfig) (*Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	root := &databaseKafkaConfigRoot{
-		Config: config,
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodPatch, path, root)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetOpensearchConfig retrieves the config for a Opensearch database cluster.
 func (svc *DatabasesServiceOp) GetOpensearchConfig(ctx context.Context, databaseID string) (*OpensearchConfig, *Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseOpensearchConfigRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Config, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateOpensearchConfig updates the config for a Opensearch database cluster.
 func (svc *DatabasesServiceOp) UpdateOpensearchConfig(ctx context.Context, databaseID string, config *OpensearchConfig) (*Response, error) {
-	path := fmt.Sprintf(databaseConfigPath, databaseID)
-	root := &databaseOpensearchConfigRoot{
-		Config: config,
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodPatch, path, root)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListOptions gets the database options available.
 func (svc *DatabasesServiceOp) ListOptions(ctx context.Context) (*DatabaseOptions, *Response, error) {
-	root := new(databaseOptionsRoot)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, databaseOptionsPath, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Options, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpgradeMajorVersion upgrades the major version of a cluster.
 func (svc *DatabasesServiceOp) UpgradeMajorVersion(ctx context.Context, databaseID string, upgradeReq *UpgradeVersionRequest) (*Response, error) {
-	path := fmt.Sprintf(databaseUpgradeMajorVersionPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, upgradeReq)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListTopics returns all topics for a given kafka cluster
 func (svc *DatabasesServiceOp) ListTopics(ctx context.Context, databaseID string, opts *ListOptions) ([]DatabaseTopic, *Response, error) {
-	path := fmt.Sprintf(databaseTopicsPath, databaseID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseTopicsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Topics, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetTopic returns a single kafka topic by name
 func (svc *DatabasesServiceOp) GetTopic(ctx context.Context, databaseID, name string) (*DatabaseTopic, *Response, error) {
-	path := fmt.Sprintf(databaseTopicPath, databaseID, name)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseTopicRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Topic, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateTopic will create a new kafka topic
 func (svc *DatabasesServiceOp) CreateTopic(ctx context.Context, databaseID string, createTopic *DatabaseCreateTopicRequest) (*DatabaseTopic, *Response, error) {
-	path := fmt.Sprintf(databaseTopicsPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, createTopic)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseTopicRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Topic, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateTopic updates a single kafka topic
 func (svc *DatabasesServiceOp) UpdateTopic(ctx context.Context, databaseID string, name string, updateTopic *DatabaseUpdateTopicRequest) (*Response, error) {
-	path := fmt.Sprintf(databaseTopicPath, databaseID, name)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, updateTopic)
-	if err != nil {
-		return nil, err
-	}
-	root := new(databaseTopicRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DeleteTopic will delete an existing kafka topic
 func (svc *DatabasesServiceOp) DeleteTopic(ctx context.Context, databaseID, name string) (*Response, error) {
-	path := fmt.Sprintf(databaseTopicPath, databaseID, name)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetMetricsCredentials gets the credentials required to access a user's metrics endpoints
 func (svc *DatabasesServiceOp) GetMetricsCredentials(ctx context.Context) (*DatabaseMetricsCredentials, *Response, error) {
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, databaseMetricsCredentialsPath, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(databaseMetricsCredentialsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Credentials, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateMetricsAuth updates the credentials required to access a user's metrics endpoints
 func (svc *DatabasesServiceOp) UpdateMetricsCredentials(ctx context.Context, updateCreds *DatabaseUpdateMetricsCredentialsRequest) (*Response, error) {
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, databaseMetricsCredentialsPath, updateCreds)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListDatabaseEvents returns all the events for a given cluster
 func (svc *DatabasesServiceOp) ListDatabaseEvents(ctx context.Context, databaseID string, opts *ListOptions) ([]DatabaseEvent, *Response, error) {
-	path := fmt.Sprintf(databaseEvents, databaseID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(ListDatabaseEventsRoot)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Events, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListIndexes returns all indexes for a given opensearch cluster
 func (svc *DatabasesServiceOp) ListIndexes(ctx context.Context, databaseID string, opts *ListOptions) ([]DatabaseIndex, *Response, error) {
-	path := fmt.Sprintf(databaseIndexesPath, databaseID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseIndexesRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Indexes, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteIndex will delete an existing opensearch index
 func (svc *DatabasesServiceOp) DeleteIndex(ctx context.Context, databaseID, name string) (*Response, error) {
-	path := fmt.Sprintf(databaseIndexPath, databaseID, name)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // CreateLogsink creates a new logsink for a database
 func (svc *DatabasesServiceOp) CreateLogsink(ctx context.Context, databaseID string, createLogsink *DatabaseCreateLogsinkRequest) (*DatabaseLogsink, *Response, error) {
-	path := fmt.Sprintf(databaseLogsinksPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, createLogsink)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(databaseLogsinkRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Sink, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLogsink gets a logsink for a database
 func (svc *DatabasesServiceOp) GetLogsink(ctx context.Context, databaseID string, logsinkID string) (*DatabaseLogsink, *Response, error) {
-	path := fmt.Sprintf(databaseLogsinkPath, databaseID, logsinkID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DatabaseLogsink)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListTopics returns all topics for a given kafka cluster
 func (svc *DatabasesServiceOp) ListLogsinks(ctx context.Context, databaseID string, opts *ListOptions) ([]DatabaseLogsink, *Response, error) {
-	path := fmt.Sprintf(databaseLogsinksPath, databaseID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(databaseLogsinksRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Sinks, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateLogsink updates a logsink for a database cluster
 func (svc *DatabasesServiceOp) UpdateLogsink(ctx context.Context, databaseID string, logsinkID string, updateLogsink *DatabaseUpdateLogsinkRequest) (*Response, error) {
-	path := fmt.Sprintf(databaseLogsinkPath, databaseID, logsinkID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, updateLogsink)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DeleteLogsink deletes a logsink for a database cluster
 func (svc *DatabasesServiceOp) DeleteLogsink(ctx context.Context, databaseID, logsinkID string) (*Response, error) {
-	path := fmt.Sprintf(databaseLogsinkPath, databaseID, logsinkID)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // StartOnlineMigration starts an online migration for a database. Migrating a cluster establishes a connection with an existing cluster
 // and replicates its contents to the target cluster. Online migration is only available for MySQL, PostgreSQL, Redis and Valkey clusters.
 func (svc *DatabasesServiceOp) StartOnlineMigration(ctx context.Context, databaseID string, onlineMigration *DatabaseStartOnlineMigrationRequest) (*DatabaseOnlineMigrationStatus, *Response, error) {
-	path := fmt.Sprintf(databaseOnlineMigrationsPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, onlineMigration)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DatabaseOnlineMigrationStatus)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetOnlineMigrationStatus retrieves the status of the most recent online migration
 func (svc *DatabasesServiceOp) GetOnlineMigrationStatus(ctx context.Context, databaseID string) (*DatabaseOnlineMigrationStatus, *Response, error) {
-	path := fmt.Sprintf(databaseOnlineMigrationsPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DatabaseOnlineMigrationStatus)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // StopOnlineMigration stops an online migration
 func (svc *DatabasesServiceOp) StopOnlineMigration(ctx context.Context, databaseID, migrationID string) (*Response, error) {
-	path := fmt.Sprintf(databaseOnlineMigrationPath, databaseID, migrationID)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListKafkaSchemaRegistry lists the kafka schema registry subjects
 func (svc *DatabasesServiceOp) ListKafkaSchemaRegistry(ctx context.Context, databaseID string, opts *ListOptions) ([]DatabaseKafkaSchemaRegistrySubject, *Response, error) {
-	path := fmt.Sprintf(databaseKafkaSchemaRegistryPath, databaseID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(ListDatabaseKafkaSchemaRegistrySubjectsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Subjects, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateKafkaSchemaRegistry creates a kafka schema registry subject
 func (svc *DatabasesServiceOp) CreateKafkaSchemaRegistry(ctx context.Context, databaseID string, createKafkaSchemaRegistry *DatabaseKafkaSchemaRegistryRequest) (*DatabaseKafkaSchemaRegistrySubject, *Response, error) {
-	path := fmt.Sprintf(databaseKafkaSchemaRegistryPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, createKafkaSchemaRegistry)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DatabaseKafkaSchemaRegistrySubject)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetKafkaSchemaRegistry retrieves a kafka schema registry subject
 func (svc *DatabasesServiceOp) GetKafkaSchemaRegistry(ctx context.Context, databaseID, subjectName string) (*DatabaseKafkaSchemaRegistrySubject, *Response, error) {
-	path := fmt.Sprintf(databaseKafkaSchemaRegistrySubjectPath, databaseID, subjectName)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DatabaseKafkaSchemaRegistrySubject)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteKafkaSchemaRegistry deletes a kafka schema registry subject
 func (svc *DatabasesServiceOp) DeleteKafkaSchemaRegistry(ctx context.Context, databaseID, subjectName string) (*Response, error) {
-	path := fmt.Sprintf(databaseKafkaSchemaRegistrySubjectPath, databaseID, subjectName)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // UpdateKafkaSchemaRegistryConfig updates the configuration for a kafka schema registry
 func (svc *DatabasesServiceOp) UpdateKafkaSchemaRegistryConfig(ctx context.Context, databaseID string, updateKafkaSchemaRegistryConfig *DatabaseKafkaSchemaRegistryConfig) (*DatabaseKafkaSchemaRegistryConfig, *Response, error) {
-	path := fmt.Sprintf(databaseKafkaSchemaRegistryConfigPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, updateKafkaSchemaRegistryConfig)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DatabaseKafkaSchemaRegistryConfig)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetKafkaSchemaRegistryConfig retrieves the configuration for a kafka schema registry
 func (svc *DatabasesServiceOp) GetKafkaSchemaRegistryConfig(ctx context.Context, databaseID string) (*DatabaseKafkaSchemaRegistryConfig, *Response, error) {
-	path := fmt.Sprintf(databaseKafkaSchemaRegistryConfigPath, databaseID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DatabaseKafkaSchemaRegistryConfig)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateKafkaSchemaRegistrySubjectConfig updates the configuration for a kafka schema registry subject
 func (svc *DatabasesServiceOp) UpdateKafkaSchemaRegistrySubjectConfig(ctx context.Context, databaseID, subject string, updateKafkaSchemaRegistrySubjectConfig *DatabaseKafkaSchemaRegistryConfig) (*DatabaseKafkaSchemaRegistrySubjectConfigResponse, *Response, error) {
-	path := fmt.Sprintf(databaseKafkaSchemaRegistrySubjectConfigPath, databaseID, subject)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, updateKafkaSchemaRegistrySubjectConfig)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DatabaseKafkaSchemaRegistrySubjectConfigResponse)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetKafkaSchemaRegistrySubjectConfig retrieves the configuration for a kafka schema registry subject
 func (svc *DatabasesServiceOp) GetKafkaSchemaRegistrySubjectConfig(ctx context.Context, databaseID, subject string) (*DatabaseKafkaSchemaRegistrySubjectConfigResponse, *Response, error) {
-	path := fmt.Sprintf(databaseKafkaSchemaRegistrySubjectConfigPath, databaseID, subject)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DatabaseKafkaSchemaRegistrySubjectConfigResponse)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

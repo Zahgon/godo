@@ -2,9 +2,6 @@ package godo
 
 import (
 	"context"
-	"encoding/json"
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -72,27 +69,8 @@ type partnerAttachmentRequestBody struct {
 }
 
 func (req *PartnerAttachmentCreateRequest) buildReq() *partnerAttachmentRequestBody {
-	request := &partnerAttachmentRequestBody{
-		Name:                      req.Name,
-		ConnectionBandwidthInMbps: req.ConnectionBandwidthInMbps,
-		Region:                    req.Region,
-		NaaSProvider:              req.NaaSProvider,
-		VPCIDs:                    req.VPCIDs,
-		RedundancyZone:            req.RedundancyZone,
-		ParentUuid:                req.ParentUuid,
-	}
-
-	if req.BGP != (BGP{}) {
-		request.BGP = &BGPInput{
-			LocalASN:      req.BGP.LocalASN,
-			LocalRouterIP: req.BGP.LocalRouterIP,
-			PeerASN:       req.BGP.PeerASN,
-			PeerRouterIP:  req.BGP.PeerRouterIP,
-			AuthKey:       req.BGP.AuthKey,
-		}
-	}
-
-	return request
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // PartnerAttachmentUpdateRequest represents a request to update a Partner Attachment.
@@ -117,34 +95,7 @@ type BGP struct {
 	AuthKey string `json:"auth_key,omitempty"`
 }
 
-func (b *BGP) UnmarshalJSON(data []byte) error {
-	type Alias BGP
-	aux := &struct {
-		LocalASN       *int `json:"local_asn,omitempty"`
-		LocalRouterASN *int `json:"local_router_asn,omitempty"`
-		PeerASN        *int `json:"peer_asn,omitempty"`
-		PeerRouterASN  *int `json:"peer_router_asn,omitempty"`
-		*Alias
-	}{
-		Alias: (*Alias)(b),
-	}
-	if err := json.Unmarshal(data, &aux); err != nil {
-		return err
-	}
-
-	if aux.LocalASN != nil {
-		b.LocalASN = *aux.LocalASN
-	} else if aux.LocalRouterASN != nil {
-		b.LocalASN = *aux.LocalRouterASN
-	}
-
-	if aux.PeerASN != nil {
-		b.PeerASN = *aux.PeerASN
-	} else if aux.PeerRouterASN != nil {
-		b.PeerASN = *aux.PeerRouterASN
-	}
-	return nil
-}
+func (b *BGP) UnmarshalJSON(data []byte) error { _ = "STUB: not implemented"; return nil }
 
 // BGPInput represents the BGP configuration of a Partner Attachment.
 type BGPInput struct {
@@ -239,169 +190,53 @@ type regenerateServiceKeyRoot struct {
 
 // List returns a list of all Partner Attachment, with optional pagination.
 func (s *PartnerAttachmentServiceOp) List(ctx context.Context, opt *ListOptions) ([]*PartnerAttachment, *Response, error) {
-	path, err := addOptions(partnerNetworkConnectBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(partnerNetworkConnectAttachmentsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.PartnerAttachments, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create creates a new Partner Attachment.
 func (s *PartnerAttachmentServiceOp) Create(ctx context.Context, create *PartnerAttachmentCreateRequest) (*PartnerAttachment, *Response, error) {
-	path := partnerNetworkConnectBasePath
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, create.buildReq())
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(partnerNetworkConnectAttachmentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.PartnerAttachment, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get returns the details of a Partner Attachment.
 func (s *PartnerAttachmentServiceOp) Get(ctx context.Context, id string) (*PartnerAttachment, *Response, error) {
-	path := fmt.Sprintf("%s/%s", partnerNetworkConnectBasePath, id)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(partnerNetworkConnectAttachmentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.PartnerAttachment, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Update updates a Partner Attachment properties.
 func (s *PartnerAttachmentServiceOp) Update(ctx context.Context, id string, update *PartnerAttachmentUpdateRequest) (*PartnerAttachment, *Response, error) {
-	path := fmt.Sprintf("%s/%s", partnerNetworkConnectBasePath, id)
-	req, err := s.client.NewRequest(ctx, http.MethodPatch, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(partnerNetworkConnectAttachmentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.PartnerAttachment, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete deletes a Partner Attachment.
 func (s *PartnerAttachmentServiceOp) Delete(ctx context.Context, id string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", partnerNetworkConnectBasePath, id)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (s *PartnerAttachmentServiceOp) GetServiceKey(ctx context.Context, id string) (*ServiceKey, *Response, error) {
-	path := fmt.Sprintf("%s/%s/service_key", partnerNetworkConnectBasePath, id)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(serviceKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.ServiceKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListRoutes lists all remote routes for a Partner Attachment.
 func (s *PartnerAttachmentServiceOp) ListRoutes(ctx context.Context, id string, opt *ListOptions) ([]*RemoteRoute, *Response, error) {
-	path, err := addOptions(fmt.Sprintf("%s/%s/remote_routes", partnerNetworkConnectBasePath, id), opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(remoteRoutesRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.RemoteRoutes, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetBGPAuthKey returns Partner Attachment bgp auth key
 func (s *PartnerAttachmentServiceOp) GetBGPAuthKey(ctx context.Context, iaID string) (*BgpAuthKey, *Response, error) {
-	path := fmt.Sprintf("%s/%s/bgp_auth_key", partnerNetworkConnectBasePath, iaID)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(bgpAuthKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.BgpAuthKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // RegenerateServiceKey regenerates the service key of a Partner Attachment.
 func (s *PartnerAttachmentServiceOp) RegenerateServiceKey(ctx context.Context, iaID string) (*RegenerateServiceKey, *Response, error) {
-	path := fmt.Sprintf("%s/%s/service_key", partnerNetworkConnectBasePath, iaID)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(regenerateServiceKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.RegenerateServiceKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

@@ -1,12 +1,7 @@
 package godo
 
 import (
-	"bytes"
 	"context"
-	"fmt"
-	"net/http"
-	"net/url"
-	"strconv"
 	"time"
 )
 
@@ -257,44 +252,21 @@ type RegistriesCreateRequest struct {
 
 // Get retrieves the details of a Registry.
 func (svc *RegistryServiceOp) Get(ctx context.Context) (*Registry, *Response, error) {
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, registryPath, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(registryRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Registry, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create creates a registry.
 func (svc *RegistryServiceOp) Create(ctx context.Context, create *RegistryCreateRequest) (*Registry, *Response, error) {
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, registryPath, create)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(registryRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Registry, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete deletes a registry. There is no way to recover a registry once it has
 // been destroyed.
 func (svc *RegistryServiceOp) Delete(ctx context.Context) (*Response, error) {
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, registryPath, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DockerCredentials is the content of a Docker config file
@@ -306,240 +278,70 @@ type DockerCredentials struct {
 
 // DockerCredentials retrieves a Docker config file containing the registry's credentials.
 func (svc *RegistryServiceOp) DockerCredentials(ctx context.Context, request *RegistryDockerCredentialsRequest) (*DockerCredentials, *Response, error) {
-	path := fmt.Sprintf("%s/%s", registryPath, "docker-credentials")
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	q := req.URL.Query()
-	q.Add("read_write", strconv.FormatBool(request.ReadWrite))
-	if request.ExpirySeconds != nil {
-		q.Add("expiry_seconds", strconv.Itoa(*request.ExpirySeconds))
-	}
-	req.URL.RawQuery = q.Encode()
-
-	var buf bytes.Buffer
-	resp, err := svc.client.Do(ctx, req, &buf)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	dc := &DockerCredentials{
-		DockerConfigJSON: buf.Bytes(),
-	}
-	return dc, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListRepositories returns a list of the Repositories visible with the registry's credentials.
 func (svc *RegistryServiceOp) ListRepositories(ctx context.Context, registry string, opts *ListOptions) ([]*Repository, *Response, error) {
-	path := fmt.Sprintf("%s/%s/repositories", registryPath, registry)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(repositoriesRoot)
-
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Repositories, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListRepositoriesV2 returns a list of the Repositories in a registry.
 func (svc *RegistryServiceOp) ListRepositoriesV2(ctx context.Context, registry string, opts *TokenListOptions) ([]*RepositoryV2, *Response, error) {
-	path := fmt.Sprintf("%s/%s/repositoriesV2", registryPath, registry)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(repositoriesV2Root)
-
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	resp.Links = root.Links
-	resp.Meta = root.Meta
-
-	return root.Repositories, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListRepositoryTags returns a list of the RepositoryTags available within the given repository.
 func (svc *RegistryServiceOp) ListRepositoryTags(ctx context.Context, registry, repository string, opts *ListOptions) ([]*RepositoryTag, *Response, error) {
-	path := fmt.Sprintf("%s/%s/repositories/%s/tags", registryPath, registry, url.PathEscape(repository))
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(repositoryTagsRoot)
-
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Tags, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteTag deletes a tag within a given repository.
 func (svc *RegistryServiceOp) DeleteTag(ctx context.Context, registry, repository, tag string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/repositories/%s/tags/%s", registryPath, registry, url.PathEscape(repository), tag)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListRepositoryManifests returns a list of the RepositoryManifests available within the given repository.
 func (svc *RegistryServiceOp) ListRepositoryManifests(ctx context.Context, registry, repository string, opts *ListOptions) ([]*RepositoryManifest, *Response, error) {
-	path := fmt.Sprintf("%s/%s/repositories/%s/digests", registryPath, registry, url.PathEscape(repository))
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(repositoryManifestsRoot)
-
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	resp.Links = root.Links
-	resp.Meta = root.Meta
-
-	return root.Manifests, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteManifest deletes a manifest by its digest within a given repository.
 func (svc *RegistryServiceOp) DeleteManifest(ctx context.Context, registry, repository, digest string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/repositories/%s/digests/%s", registryPath, registry, url.PathEscape(repository), digest)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // StartGarbageCollection requests a garbage collection for the specified
 // registry.
 func (svc *RegistryServiceOp) StartGarbageCollection(ctx context.Context, registry string, request ...*StartGarbageCollectionRequest) (*GarbageCollection, *Response, error) {
-	path := fmt.Sprintf("%s/%s/garbage-collection", registryPath, registry)
-	var requestParams interface{}
-	if len(request) < 1 {
-		// default to only garbage collecting unreferenced blobs for backwards
-		// compatibility
-		requestParams = &StartGarbageCollectionRequest{
-			Type: GCTypeUnreferencedBlobsOnly,
-		}
-	} else {
-		requestParams = request[0]
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, requestParams)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(garbageCollectionRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.GarbageCollection, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
+
+// default to only garbage collecting unreferenced blobs for backwards
+// compatibility
 
 // GetGarbageCollection retrieves the currently-active garbage collection for
 // the specified registry; if there are no active garbage collections, then
 // return a 404/NotFound error. There can only be one active garbage
 // collection on a registry.
 func (svc *RegistryServiceOp) GetGarbageCollection(ctx context.Context, registry string) (*GarbageCollection, *Response, error) {
-	path := fmt.Sprintf("%s/%s/garbage-collection", registryPath, registry)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(garbageCollectionRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.GarbageCollection, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListGarbageCollections retrieves all garbage collections (active and
 // inactive) for the specified registry.
 func (svc *RegistryServiceOp) ListGarbageCollections(ctx context.Context, registry string, opts *ListOptions) ([]*GarbageCollection, *Response, error) {
-	path := fmt.Sprintf("%s/%s/garbage-collections", registryPath, registry)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(garbageCollectionsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-
-	return root.GarbageCollections, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateGarbageCollection updates the specified garbage collection for the
@@ -549,81 +351,33 @@ func (svc *RegistryServiceOp) ListGarbageCollections(ctx context.Context, regist
 // implicit "currently-active" garbage collection. Returns the updated garbage
 // collection.
 func (svc *RegistryServiceOp) UpdateGarbageCollection(ctx context.Context, registry, gcUUID string, request *UpdateGarbageCollectionRequest) (*GarbageCollection, *Response, error) {
-	path := fmt.Sprintf("%s/%s/garbage-collection/%s", registryPath, registry, gcUUID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, request)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(garbageCollectionRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.GarbageCollection, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetOptions returns options the user can use when creating or updating a
 // registry.
 func (svc *RegistryServiceOp) GetOptions(ctx context.Context) (*RegistryOptions, *Response, error) {
-	path := fmt.Sprintf("%s/options", registryPath)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(registryOptionsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Options, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetSubscription retrieves the user's subscription.
 func (svc *RegistryServiceOp) GetSubscription(ctx context.Context) (*RegistrySubscription, *Response, error) {
-	path := fmt.Sprintf("%s/subscription", registryPath)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(registrySubscriptionRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Subscription, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateSubscription updates the user's registry subscription.
 func (svc *RegistryServiceOp) UpdateSubscription(ctx context.Context, request *RegistrySubscriptionUpdateRequest) (*RegistrySubscription, *Response, error) {
-	path := fmt.Sprintf("%s/subscription", registryPath)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, request)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(registrySubscriptionRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Subscription, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ValidateName validates that a container registry name is available for use.
 func (svc *RegistryServiceOp) ValidateName(ctx context.Context, request *RegistryValidateNameRequest) (*Response, error) {
-	path := fmt.Sprintf("%s/validate-name", registryPath)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, request)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 const (
@@ -661,341 +415,112 @@ type RegistriesServiceOp struct {
 
 // List returns a list of the named Registries.
 func (svc *RegistriesServiceOp) List(ctx context.Context) ([]*Registry, *Response, error) {
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, registriesPath, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(registriesRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Registries, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get returns the details of a named Registry.
 func (svc *RegistriesServiceOp) Get(ctx context.Context, registry string) (*Registry, *Response, error) {
-	path := fmt.Sprintf("%s/%s", registriesPath, registry)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(registryRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Registry, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create creates a new registry.
 func (svc *RegistriesServiceOp) Create(ctx context.Context, create *RegistryCreateRequest) (*Registry, *Response, error) {
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, registriesPath, create)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(registryRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Registry, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete deletes a named Registry. There is no way to recover a Registry once it has
 // been destroyed.
 func (svc *RegistriesServiceOp) Delete(ctx context.Context, registry string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", registriesPath, registry)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DockerCredentials retrieves a Docker config file containing named Registry's credentials.
 func (svc *RegistriesServiceOp) DockerCredentials(ctx context.Context, registry string, request *RegistryDockerCredentialsRequest) (*DockerCredentials, *Response, error) {
-	path := fmt.Sprintf("%s/%s/%s", registriesPath, registry, "docker-credentials")
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	q := req.URL.Query()
-	q.Add("read_write", strconv.FormatBool(request.ReadWrite))
-	if request.ExpirySeconds != nil {
-		q.Add("expiry_seconds", strconv.Itoa(*request.ExpirySeconds))
-	}
-	req.URL.RawQuery = q.Encode()
-
-	var buf bytes.Buffer
-	resp, err := svc.client.Do(ctx, req, &buf)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	dc := &DockerCredentials{
-		DockerConfigJSON: buf.Bytes(),
-	}
-	return dc, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListRepositoriesV2 returns a list of repositories in V2 format
 func (svc *RegistriesServiceOp) ListRepositoriesV2(ctx context.Context, registry string, opts *TokenListOptions) ([]*RepositoryV2, *Response, error) {
-	path := fmt.Sprintf("%s/%s/repositoriesV2", registriesPath, registry)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(repositoriesV2Root)
-
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	resp.Links = root.Links
-	resp.Meta = root.Meta
-
-	return root.Repositories, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListRepositoryTags returns a list of tags in a repository
 func (svc *RegistriesServiceOp) ListRepositoryTags(ctx context.Context, registry, repository string, opts *ListOptions) ([]*RepositoryTag, *Response, error) {
-	path := fmt.Sprintf("%s/%s/repositories/%s/tags", registriesPath, registry, url.PathEscape(repository))
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(repositoryTagsRoot)
-
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Tags, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteTag deletes a tag from a repository
 func (svc *RegistriesServiceOp) DeleteTag(ctx context.Context, registry, repository, tag string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/repositories/%s/tags/%s", registriesPath, registry, url.PathEscape(repository), tag)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListRepositoryManifests returns a list of manifests in a repository
 func (svc *RegistriesServiceOp) ListRepositoryManifests(ctx context.Context, registry, repository string, opts *ListOptions) ([]*RepositoryManifest, *Response, error) {
-	path := fmt.Sprintf("%s/%s/repositories/%s/digests", registriesPath, registry, url.PathEscape(repository))
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(repositoryManifestsRoot)
-
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	resp.Links = root.Links
-	resp.Meta = root.Meta
-
-	return root.Manifests, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteManifest deletes a manifest from a repository
 func (svc *RegistriesServiceOp) DeleteManifest(ctx context.Context, registry, repository, digest string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/repositories/%s/digests/%s", registriesPath, registry, url.PathEscape(repository), digest)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // StartGarbageCollection starts a garbage collection process
 func (svc *RegistriesServiceOp) StartGarbageCollection(ctx context.Context, registry string, request ...*StartGarbageCollectionRequest) (*GarbageCollection, *Response, error) {
-	path := fmt.Sprintf("%s/%s/garbage-collection", registriesPath, registry)
-	var requestParams interface{}
-	if len(request) < 1 {
-		// default to only garbage collecting unreferenced blobs for backwards
-		// compatibility
-		requestParams = &StartGarbageCollectionRequest{
-			Type: GCTypeUnreferencedBlobsOnly,
-		}
-	} else {
-		requestParams = request[0]
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, requestParams)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(garbageCollectionRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.GarbageCollection, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
+
+// default to only garbage collecting unreferenced blobs for backwards
+// compatibility
 
 // GetGarbageCollection gets the active garbage collection
 func (svc *RegistriesServiceOp) GetGarbageCollection(ctx context.Context, registry string) (*GarbageCollection, *Response, error) {
-	path := fmt.Sprintf("%s/%s/garbage-collection", registriesPath, registry)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(garbageCollectionRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.GarbageCollection, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListGarbageCollections lists all garbage collections
 func (svc *RegistriesServiceOp) ListGarbageCollections(ctx context.Context, registry string, opts *ListOptions) ([]*GarbageCollection, *Response, error) {
-	path := fmt.Sprintf("%s/%s/garbage-collections", registriesPath, registry)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(garbageCollectionsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-
-	return root.GarbageCollections, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateGarbageCollection updates a garbage collection
 func (svc *RegistriesServiceOp) UpdateGarbageCollection(ctx context.Context, registry, gcUUID string, request *UpdateGarbageCollectionRequest) (*GarbageCollection, *Response, error) {
-	path := fmt.Sprintf("%s/%s/garbage-collection/%s", registriesPath, registry, gcUUID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, request)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(garbageCollectionRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.GarbageCollection, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetOptions gets registry options
 func (svc *RegistriesServiceOp) GetOptions(ctx context.Context) (*RegistryOptions, *Response, error) {
-	path := fmt.Sprintf("%s/options", registriesPath)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(registryOptionsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Options, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetSubscription gets subscription information
 func (svc *RegistriesServiceOp) GetSubscription(ctx context.Context) (*RegistrySubscription, *Response, error) {
-	path := fmt.Sprintf("%s/subscription", registriesPath)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(registrySubscriptionRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Subscription, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateSubscription updates subscription information
 func (svc *RegistriesServiceOp) UpdateSubscription(ctx context.Context, request *RegistrySubscriptionUpdateRequest) (*RegistrySubscription, *Response, error) {
-	path := fmt.Sprintf("%s/subscription", registriesPath)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, request)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(registrySubscriptionRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Subscription, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ValidateName validates a registry name
 func (svc *RegistriesServiceOp) ValidateName(ctx context.Context, request *RegistryValidateNameRequest) (*Response, error) {
-	path := fmt.Sprintf("%s/validate-name", registriesPath)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, request)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }

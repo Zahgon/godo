@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 const (
@@ -56,53 +54,14 @@ type Action struct {
 
 // List all actions
 func (s *ActionsServiceOp) List(ctx context.Context, opt *ListOptions) ([]Action, *Response, error) {
-	path := actionsBasePath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Actions, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an action by ID.
 func (s *ActionsServiceOp) Get(ctx context.Context, id int) (*Action, *Response, error) {
-	if id < 1 {
-		return nil, nil, NewArgError("id", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%d", actionsBasePath, id)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Event, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
-func (a Action) String() string {
-	return Stringify(a)
-}
+func (a Action) String() string { _ = "STUB: not implemented"; return "" }

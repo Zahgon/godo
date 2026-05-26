@@ -2,7 +2,6 @@ package godo
 
 import (
 	"context"
-	"net/http"
 )
 
 // SizesService is an interface for interfacing with the size
@@ -62,9 +61,7 @@ type VRAM struct {
 	Unit   string `json:"unit,omitempty"`
 }
 
-func (s Size) String() string {
-	return Stringify(s)
-}
+func (s Size) String() string { _ = "STUB: not implemented"; return "" }
 
 type sizesRoot struct {
 	Sizes []Size
@@ -74,28 +71,6 @@ type sizesRoot struct {
 
 // List all images
 func (s *SizesServiceOp) List(ctx context.Context, opt *ListOptions) ([]Size, *Response, error) {
-	path := "v2/sizes"
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(sizesRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Sizes, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

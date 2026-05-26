@@ -3,9 +3,6 @@ package godo
 import (
 	"context"
 	"encoding/json"
-	"fmt"
-	"net/http"
-	"strings"
 )
 
 const (
@@ -948,1056 +945,289 @@ type gradientAgentKBRoot struct {
 
 // ListAgents returns a list of Gradient AI Agents
 func (s *GradientAIServiceOp) ListAgents(ctx context.Context, opt *ListOptions) ([]*Agent, *Response, error) {
-	path, err := addOptions(gradientBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.Agents, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateAgent creates a new Gradient AI Agent by providing the AgentCreateRequest object
 func (s *GradientAIServiceOp) CreateAgent(ctx context.Context, create *AgentCreateRequest) (*Agent, *Response, error) {
-	path := gradientBasePath
-	if create.ProjectId == "" {
-		return nil, nil, fmt.Errorf("Project ID is required")
-	}
-	if create.Region == "" {
-		return nil, nil, fmt.Errorf("Region is required")
-	}
-	if create.Instruction == "" {
-		return nil, nil, fmt.Errorf("Instruction is required")
-	}
-	if create.ModelUuid == "" {
-		return nil, nil, fmt.Errorf("ModelUuid is required")
-	}
-	if create.Name == "" {
-		return nil, nil, fmt.Errorf("Name is required")
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, create)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Agent, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListAgentAPIKeys retrieves list of API Keys associated with the specified Gradient AI agent
 func (s *GradientAIServiceOp) ListAgentAPIKeys(ctx context.Context, agentId string, opt *ListOptions) ([]*ApiKeyInfo, *Response, error) {
-	path := fmt.Sprintf("%s/%s/api_keys", gradientBasePath, agentId)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(agentAPIKeysRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.ApiKeys, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateAgentAPIKey creates a new API key for the specified Gradient AI agent
 func (s *GradientAIServiceOp) CreateAgentAPIKey(ctx context.Context, agentId string, createRequest *AgentAPIKeyCreateRequest) (*ApiKeyInfo, *Response, error) {
-	path := fmt.Sprintf("%s/%s/api_keys", gradientBasePath, agentId)
-
-	createRequest.AgentUuid = agentId
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(agentAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.ApiKey, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateAgentAPIKey updates an existing API key for the specified Gradient AI agent
 func (s *GradientAIServiceOp) UpdateAgentAPIKey(ctx context.Context, agentId, apiKeyId string, updateRequest *AgentAPIKeyUpdateRequest) (*ApiKeyInfo, *Response, error) {
-	path := fmt.Sprintf("%s/%s/api_keys/%s", gradientBasePath, agentId, apiKeyId)
-
-	updateRequest.AgentUuid = agentId
-
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, updateRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(agentAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.ApiKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteAgentAPIKey deletes an existing API key for the specified Gradient AI agent
 func (s *GradientAIServiceOp) DeleteAgentAPIKey(ctx context.Context, agentId, apiKeyId string) (*ApiKeyInfo, *Response, error) {
-	path := fmt.Sprintf("%s/%s/api_keys/%s", gradientBasePath, agentId, apiKeyId)
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(agentAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.ApiKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // RegenerateAgentAPIKey regenerates an API key for the specified Gradient AI agent
 func (s *GradientAIServiceOp) RegenerateAgentAPIKey(ctx context.Context, agentId, apiKeyId string) (*ApiKeyInfo, *Response, error) {
-	path := fmt.Sprintf("%s/%s/api_keys/%s/regenerate", gradientBasePath, agentId, apiKeyId)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(agentAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.ApiKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetAgent returns the details of a Gradient AI Agent based on the Agent UUID
 func (s *GradientAIServiceOp) GetAgent(ctx context.Context, id string) (*Agent, *Response, error) {
-	path := fmt.Sprintf("%s/%s", gradientBasePath, id)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Agent, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateAgent function updates a Gradient AI Agent properties for the given UUID
 func (s *GradientAIServiceOp) UpdateAgent(ctx context.Context, id string, update *AgentUpdateRequest) (*Agent, *Response, error) {
-	path := fmt.Sprintf("%s/%s", gradientBasePath, id)
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Agent, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteAgent function deletes a Gradient AI Agent by its corresponding UUID
 func (s *GradientAIServiceOp) DeleteAgent(ctx context.Context, id string) (*Agent, *Response, error) {
-	path := fmt.Sprintf("%s/%s", gradientBasePath, id)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Agent, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateAgentVisibility function updates a Gradient AI Agent status by changing visibility to public or private.
 func (s *GradientAIServiceOp) UpdateAgentVisibility(ctx context.Context, id string, update *AgentVisibilityUpdateRequest) (*Agent, *Response, error) {
-	path := fmt.Sprintf("%s/%s/deployment_visibility", gradientBasePath, id)
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Agent, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List all knowledge bases
 func (s *GradientAIServiceOp) ListKnowledgeBases(ctx context.Context, opt *ListOptions) ([]KnowledgeBase, *Response, error) {
-
-	path := KnowledgeBasePath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(knowledgebasesRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.KnowledgeBases, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListIndexingJobs returns a list of all indexing jobs for knowledge bases
 func (s *GradientAIServiceOp) ListIndexingJobs(ctx context.Context, opt *ListOptions) (*IndexingJobsResponse, *Response, error) {
-	path := IndexingJobsPath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(indexingJobsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	result := &IndexingJobsResponse{
-		Jobs:  root.Jobs,
-		Links: root.Links,
-		Meta:  root.Meta,
-	}
-
-	return result, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListIndexingJobDataSources returns the data sources for a specific indexing job
 func (s *GradientAIServiceOp) ListIndexingJobDataSources(ctx context.Context, indexingJobUUID string) (*IndexingJobDataSourcesResponse, *Response, error) {
-	path := fmt.Sprintf(IndexingJobDataSourcesPath, indexingJobUUID)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	result := new(IndexingJobDataSourcesResponse)
-	resp, err := s.client.Do(ctx, req, result)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return result, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetIndexingJob retrieves the status of a specific indexing job for a knowledge base
 func (s *GradientAIServiceOp) GetIndexingJob(ctx context.Context, indexingJobUUID string) (*IndexingJobResponse, *Response, error) {
-	path := fmt.Sprintf(IndexingJobByIDPath, indexingJobUUID)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	result := new(IndexingJobResponse)
-	resp, err := s.client.Do(ctx, req, result)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return result, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CancelIndexingJob cancels a specific indexing job for a knowledge base
 func (s *GradientAIServiceOp) CancelIndexingJob(ctx context.Context, indexingJobUUID string) (*IndexingJobResponse, *Response, error) {
-	path := fmt.Sprintf(IndexingJobCancelPath, indexingJobUUID)
-
-	// Create the request payload
-	cancelRequest := &CancelIndexingJobRequest{
-		UUID: indexingJobUUID,
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, cancelRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	result := new(IndexingJobResponse)
-	resp, err := s.client.Do(ctx, req, result)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return result, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
+
+// Create the request payload
 
 // Create a knowledge base
 func (s *GradientAIServiceOp) CreateKnowledgeBase(ctx context.Context, knowledgeBaseCreate *KnowledgeBaseCreateRequest) (*KnowledgeBase, *Response, error) {
-
-	path := KnowledgeBasePath
-
-	if knowledgeBaseCreate.Name == "" {
-		return nil, nil, fmt.Errorf("name is required")
-	}
-	if strings.Contains(knowledgeBaseCreate.Name, " ") {
-		return nil, nil, fmt.Errorf("name cannot contain spaces")
-	}
-	if len(knowledgeBaseCreate.DataSources) == 0 {
-		return nil, nil, fmt.Errorf("at least one datasource is required")
-	}
-	// TODO: Remove this check when additional regions are supported.
-	if knowledgeBaseCreate.Region == "" {
-		knowledgeBaseCreate.Region = "tor1"
-	}
-	if knowledgeBaseCreate.Region != "tor1" {
-		return nil, nil, fmt.Errorf("currently only region 'tor1' is supported")
-	}
-
-	if knowledgeBaseCreate.EmbeddingModelUuid == "" {
-		return nil, nil, fmt.Errorf("EmbeddingModelUuid ID is required")
-	}
-	if knowledgeBaseCreate.ProjectID == "" {
-		return nil, nil, fmt.Errorf("Project ID is required")
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, knowledgeBaseCreate)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(knowledgebaseRoot)
-	resp, err := s.client.Do(ctx, req, root)
-
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.KnowledgeBase, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
+
+// TODO: Remove this check when additional regions are supported.
 
 // List Data Sources for a Knowledge Base
 func (s *GradientAIServiceOp) ListKnowledgeBaseDataSources(ctx context.Context, knowledgeBaseID string, opt *ListOptions) ([]KnowledgeBaseDataSource, *Response, error) {
-
-	path := fmt.Sprintf(KnowledgeBaseDataSourcesPath, knowledgeBaseID)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(KnowledgeBaseDataSourcesRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.KnowledgeBaseDatasources, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Add Data Source to a Knowledge Base
 func (s *GradientAIServiceOp) AddKnowledgeBaseDataSource(ctx context.Context, knowledgeBaseID string, addDataSource *AddKnowledgeBaseDataSourceRequest) (*KnowledgeBaseDataSource, *Response, error) {
-	path := fmt.Sprintf(KnowledgeBaseDataSourcesPath, knowledgeBaseID)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, addDataSource)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(SingleKnowledgeBaseDataSourceRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.KnowledgeBaseDatasource, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Deletes data source from a knowledge base
 func (s *GradientAIServiceOp) DeleteKnowledgeBaseDataSource(ctx context.Context, knowledgeBaseID string, dataSourceID string) (string, string, *Response, error) {
-
-	path := fmt.Sprintf(DeleteDataSourcePath, knowledgeBaseID, dataSourceID)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-
-	if err != nil {
-		return "", "", nil, err
-	}
-
-	root := new(DeleteDataSourceRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return "", "", resp, err
-
-	}
-	return root.KnowledgeBaseUuid, root.DataSourceUuid, resp, nil
+	_ = "STUB: not implemented"
+	return "", "", nil, nil
 }
 
 // Get information about a KnowledgeBase and its Database status
 // Database status can be "CREATING","ONLINE","POWEROFF","REBUILDING","REBALANCING","DECOMMISSIONED","FORKING","MIGRATING","RESIZING","RESTORING","POWERING_ON","UNHEALTHY"
 func (s *GradientAIServiceOp) GetKnowledgeBase(ctx context.Context, knowledgeBaseID string) (*KnowledgeBase, string, *Response, error) {
-	path := fmt.Sprintf(GetKnowledgeBaseByIDPath, knowledgeBaseID)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-
-	if err != nil {
-		return nil, "", nil, err
-	}
-	root := new(knowledgebaseRoot)
-	resp, err := s.client.Do(ctx, req, root)
-
-	if err != nil {
-		return nil, "", resp, err
-	}
-	return root.KnowledgeBase, root.DatabaseStatus, resp, nil
+	_ = "STUB: not implemented"
+	return nil, "", nil, nil
 }
 
 // Update a knowledge base
 func (s *GradientAIServiceOp) UpdateKnowledgeBase(ctx context.Context, knowledgeBaseID string, update *UpdateKnowledgeBaseRequest) (*KnowledgeBase, *Response, error) {
-	path := fmt.Sprintf(UpdateKnowledgeBaseByIDPath, knowledgeBaseID)
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(knowledgebaseRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.KnowledgeBase, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Deletes a knowledge base by its corresponding UUID and returns the UUID of the deleted knowledge base
 func (s *GradientAIServiceOp) DeleteKnowledgeBase(ctx context.Context, knowledgeBaseID string) (string, *Response, error) {
-
-	path := fmt.Sprintf(DeleteKnowledgeBaseByIDPath, knowledgeBaseID)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	fmt.Print(path)
-	if err != nil {
-		return "", nil, err
-	}
-	root := new(DeleteKnowledgeBaseRoot)
-	resp, err := s.client.Do(ctx, req, root)
-
-	if err != nil {
-		return "", resp, err
-	}
-	return root.KnowledgeBaseUuid, resp, nil
+	_ = "STUB: not implemented"
+	return "", nil, nil
 }
 
 // Attach a knowledge base to an agent
 func (s *GradientAIServiceOp) AttachKnowledgeBaseToAgent(ctx context.Context, agentID string, knowledgeBaseID string) (*Agent, *Response, error) {
-
-	path := fmt.Sprintf(AgentKnowledgeBasePath, agentID, knowledgeBaseID)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentKBRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Agent, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Detach a knowledge base from an agent
 func (s *GradientAIServiceOp) DetachKnowledgeBaseToAgent(ctx context.Context, agentID string, knowledgeBaseID string) (*Agent, *Response, error) {
-
-	path := fmt.Sprintf(AgentKnowledgeBasePath, agentID, knowledgeBaseID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(gradientAgentKBRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Agent, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // AddAgentRoute function adds a route between a parent and child agent.
 func (s *GradientAIServiceOp) AddAgentRoute(ctx context.Context, parentId string, childId string, route *AgentRouteCreateRequest) (*AgentRouteResponse, *Response, error) {
-	path := fmt.Sprintf(agentRouteBasePath, parentId, childId)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, route)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(AgentRouteResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateAgentRoute function updates a route between a parent and child agent.
 func (s *GradientAIServiceOp) UpdateAgentRoute(ctx context.Context, parentId string, childId string, route *AgentRouteUpdateRequest) (*AgentRouteResponse, *Response, error) {
-	path := fmt.Sprintf(agentRouteBasePath, parentId, childId)
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, route)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(AgentRouteResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteAgentRoute function deletes a route between a parent and child agent.
 func (s *GradientAIServiceOp) DeleteAgentRoute(ctx context.Context, parentId string, childId string) (*AgentRouteResponse, *Response, error) {
-	path := fmt.Sprintf(agentRouteBasePath, parentId, childId)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(AgentRouteResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListAgentVersions retrieves a list of versions for the specified GradientAI agent
 func (s *GradientAIServiceOp) ListAgentVersions(ctx context.Context, agentId string, opt *ListOptions) ([]*AgentVersion, *Response, error) {
-	path := fmt.Sprintf("%s/%s/versions", gradientBasePath, agentId)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(agentVersionsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.AgentVersions, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) RollbackAgentVersion(ctx context.Context, agentId string, versionId string) (string, *Response, error) {
-	path := fmt.Sprintf("%s/%s/versions", gradientBasePath, agentId)
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, RollbackVersionRequest{
-		AgentUuid:   agentId,
-		VersionHash: versionId,
-	})
-	if err != nil {
-		return "", nil, err
-	}
-
-	root := new(auditResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return "", resp, err
-	}
-
-	return root.VersionHash, resp, nil
+	_ = "STUB: not implemented"
+	return "", nil, nil
 }
 
 // ListAnthropicAPIKeys retrieves a list of Anthropic API Keys
 func (s *GradientAIServiceOp) ListAnthropicAPIKeys(ctx context.Context, opt *ListOptions) ([]*AnthropicApiKeyInfo, *Response, error) {
-	path := AnthropicAPIKeysPath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(anthropicAPIKeysRoot)
-	resp, err := s.client.Do(ctx, req, &root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.AnthropicApiKeys, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) CreateAnthropicAPIKey(ctx context.Context, anthropicAPIKeyCreate *AnthropicAPIKeyCreateRequest) (*AnthropicApiKeyInfo, *Response, error) {
-	path := AnthropicAPIKeysPath
-
-	if anthropicAPIKeyCreate.Name == "" {
-		return nil, nil, fmt.Errorf("Name is required")
-	}
-	if anthropicAPIKeyCreate.ApiKey == "" {
-		return nil, nil, fmt.Errorf("ApiKey is required")
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, anthropicAPIKeyCreate)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(anthropicAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.AnthropicApiKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) GetAnthropicAPIKey(ctx context.Context, anthropicApiKeyId string) (*AnthropicApiKeyInfo, *Response, error) {
-	path := AnthropicAPIKeysPath + "/" + anthropicApiKeyId
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(anthropicAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.AnthropicApiKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) UpdateAnthropicAPIKey(ctx context.Context, anthropicApiKeyId string, anthropicAPIKeyUpdate *AnthropicAPIKeyUpdateRequest) (*AnthropicApiKeyInfo, *Response, error) {
-	path := AnthropicAPIKeysPath + "/" + anthropicApiKeyId
-
-	if anthropicAPIKeyUpdate.ApiKeyUuid == "" {
-		anthropicAPIKeyUpdate.ApiKeyUuid = anthropicApiKeyId
-	}
-	if anthropicAPIKeyUpdate.ApiKeyUuid == "" {
-		return nil, nil, fmt.Errorf("ApiKeyUuid is required")
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, anthropicAPIKeyUpdate)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(anthropicAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.AnthropicApiKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) DeleteAnthropicAPIKey(ctx context.Context, anthropicApiKeyId string) (*AnthropicApiKeyInfo, *Response, error) {
-	path := AnthropicAPIKeysPath + "/" + anthropicApiKeyId
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(anthropicAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.AnthropicApiKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) ListAgentsByAnthropicAPIKey(ctx context.Context, anthropicApiKeyId string, opt *ListOptions) ([]*Agent, *Response, error) {
-	path := fmt.Sprintf("%s/%s/agents", AnthropicAPIKeysPath, anthropicApiKeyId)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.Agents, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) ListOpenAIAPIKeys(ctx context.Context, opt *ListOptions) ([]*OpenAiApiKey, *Response, error) {
-	path := OpenAIAPIKeysPath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(openaiAPIKeysRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.OpenAIApiKeys, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) CreateOpenAIAPIKey(ctx context.Context, openaiAPIKeyCreate *OpenAIAPIKeyCreateRequest) (*OpenAiApiKey, *Response, error) {
-	path := OpenAIAPIKeysPath
-
-	if openaiAPIKeyCreate.Name == "" {
-		return nil, nil, fmt.Errorf("Name is required")
-	}
-	if openaiAPIKeyCreate.ApiKey == "" {
-		return nil, nil, fmt.Errorf("ApiKey is required")
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, openaiAPIKeyCreate)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(openaiAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.OpenAIAPIKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) GetOpenAIAPIKey(ctx context.Context, openaiApiKeyId string) (*OpenAiApiKey, *Response, error) {
-	path := OpenAIAPIKeysPath + "/" + openaiApiKeyId
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(openaiAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.OpenAIAPIKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) UpdateOpenAIAPIKey(ctx context.Context, openaiApiKeyId string, openaiAPIKeyUpdate *OpenAIAPIKeyUpdateRequest) (*OpenAiApiKey, *Response, error) {
-	path := OpenAIAPIKeysPath + "/" + openaiApiKeyId
-
-	if openaiAPIKeyUpdate.ApiKeyUuid == "" {
-		openaiAPIKeyUpdate.ApiKeyUuid = openaiApiKeyId
-	}
-	if openaiAPIKeyUpdate.ApiKeyUuid == "" {
-		return nil, nil, fmt.Errorf("ApiKeyUuid is required")
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, openaiAPIKeyUpdate)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(openaiAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.OpenAIAPIKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) DeleteOpenAIAPIKey(ctx context.Context, openaiApiKeyId string) (*OpenAiApiKey, *Response, error) {
-	path := OpenAIAPIKeysPath + "/" + openaiApiKeyId
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(openaiAPIKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.OpenAIAPIKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *GradientAIServiceOp) ListAgentsByOpenAIAPIKey(ctx context.Context, openaiApiKeyId string, opt *ListOptions) ([]*Agent, *Response, error) {
-	path := fmt.Sprintf("%s/%s/agents", OpenAIAPIKeysPath, openaiApiKeyId)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.Agents, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Attaches a functionroute to an agent.
 func (g *GradientAIServiceOp) CreateFunctionRoute(ctx context.Context, id string, create *FunctionRouteCreateRequest) (*Agent, *Response, error) {
-	path := fmt.Sprintf(functionRouteBasePath, id)
-
-	if create.AgentUuid == "" {
-		return nil, nil, fmt.Errorf("AgentUuid is required")
-	}
-	if create.Description == "" {
-		return nil, nil, fmt.Errorf("Description is required")
-	}
-	if create.FaasName == "" {
-		return nil, nil, fmt.Errorf("FaasName is required")
-	}
-	if create.FaasNamespace == "" {
-		return nil, nil, fmt.Errorf("FaasNamespace is required")
-	}
-	if create.FunctionName == "" {
-		return nil, nil, fmt.Errorf("FunctionName is required")
-	}
-	if len(create.InputSchema.Parameters) == 0 {
-		return nil, nil, fmt.Errorf("InputSchema is required")
-	}
-
-	req, err := g.client.NewRequest(ctx, http.MethodPost, path, create)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentRoot)
-	resp, err := g.client.Do(ctx, req, root)
-
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Agent, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Deletes a functionroute to an agent.
 func (g *GradientAIServiceOp) DeleteFunctionRoute(ctx context.Context, agent_id string, function_id string) (*Agent, *Response, error) {
-	path := fmt.Sprintf(UpdateFunctionRoutePath, agent_id, function_id)
-	req, err := g.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentRoot)
-	resp, err := g.client.Do(ctx, req, root)
-
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Agent, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Updates a functionroute to an agent.
 func (g *GradientAIServiceOp) UpdateFunctionRoute(ctx context.Context, agent_id string, function_id string, update *FunctionRouteUpdateRequest) (*Agent, *Response, error) {
-	path := fmt.Sprintf(UpdateFunctionRoutePath, agent_id, function_id)
-	req, err := g.client.NewRequest(ctx, http.MethodPut, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientAgentRoot)
-	resp, err := g.client.Do(ctx, req, root)
-
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Agent, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListAvailableModels returns a list of available Gradient AI models
 func (g *GradientAIServiceOp) ListAvailableModels(ctx context.Context, opt *ListOptions) ([]*Model, *Response, error) {
-	path, err := addOptions(agentModelBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := g.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(gradientModelsRoot)
-	resp, err := g.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	return root.Models, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // MCPSearchModels searches available models by name and returns the list of matching UUIDs.
 func (g *GradientAIServiceOp) SearchModels(ctx context.Context, query string) ([]string, *Response, error) {
-	models, resp, err := g.ListAvailableModels(ctx, nil)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	var uuids []string
-	lowerQuery := strings.ToLower(query)
-	for _, model := range models {
-		if strings.Contains(strings.ToLower(model.Name), lowerQuery) {
-			uuids = append(uuids, model.Uuid)
-		}
-	}
-
-	return uuids, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // MCPSearchModelByUUID searches available models for a specific UUID and returns the model if it exists.
 func (g *GradientAIServiceOp) GetModelByUUID(ctx context.Context, uuid string) (*Model, *Response, error) {
-	models, resp, err := g.ListAvailableModels(ctx, nil)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	for _, model := range models {
-		if model.Uuid == uuid {
-			return model, resp, nil
-		}
-	}
-
-	return nil, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListDatacenterRegions returns a list of available datacenter regions for Gradient AI services
 func (g *GradientAIServiceOp) ListDatacenterRegions(ctx context.Context, servesInference, servesBatch *bool) ([]*DatacenterRegions, *Response, error) {
-	path := datacenterRegionsPath
-
-	var params []string
-	if servesInference != nil {
-		params = append(params, fmt.Sprintf("serves_inference=%t", *servesInference))
-	}
-	if servesBatch != nil {
-		params = append(params, fmt.Sprintf("serves_batch=%t", *servesBatch))
-	}
-	if len(params) > 0 {
-		path = path + "?" + strings.Join(params, "&")
-	}
-
-	req, err := g.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(datacenterRegionsRoot)
-	resp, err := g.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.DatacenterRegions, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CustomModel represents a user-imported model (from HuggingFace, Spaces, etc.).
@@ -2133,93 +1363,26 @@ type customModelRoot struct {
 
 // ListCustomModels returns the list of custom models for the team.
 func (s *GradientAIServiceOp) ListCustomModels(ctx context.Context, opt *CustomModelListOptions) (*CustomModelListResponse, *Response, error) {
-	path, err := addOptions(customModelsBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(CustomModelListResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetCustomModel retrieves a single custom model by UUID.
 func (s *GradientAIServiceOp) GetCustomModel(ctx context.Context, uuid string) (*CustomModel, *Response, error) {
-	if uuid == "" {
-		return nil, nil, fmt.Errorf("uuid is required")
-	}
-	path := fmt.Sprintf(customModelByIDPath, uuid)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(customModelRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Model, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ImportCustomModel imports a new custom model from a supported source (HuggingFace, Spaces, etc.).
 func (s *GradientAIServiceOp) ImportCustomModel(ctx context.Context, importRequest *CustomModelImportRequest) (*CustomModelImportResponse, *Response, error) {
-	if importRequest == nil {
-		return nil, nil, fmt.Errorf("import request is required")
-	}
-	if importRequest.Name == "" {
-		return nil, nil, fmt.Errorf("Name is required")
-	}
-	if importRequest.SourceType == "" {
-		return nil, nil, fmt.Errorf("SourceType is required")
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, customModelImportPath, importRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(CustomModelImportResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteCustomModel deletes the custom model with the given UUID.
 func (s *GradientAIServiceOp) DeleteCustomModel(ctx context.Context, uuid string) (*CustomModelDeleteResponse, *Response, error) {
-	if uuid == "" {
-		return nil, nil, fmt.Errorf("uuid is required")
-	}
-	path := fmt.Sprintf(customModelByIDPath, uuid)
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(CustomModelDeleteResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ModelEvaluationRunDeleteResponse is the response returned by DeleteModelEvaluationRun.
@@ -2266,43 +1429,15 @@ type ModelEvaluationPresetDeleteResponse struct{}
 // or cancelled). For runs still in progress, either wait for the run to finish or
 // cancel it, then retry the delete.
 func (s *GradientAIServiceOp) DeleteModelEvaluationRun(ctx context.Context, evalRunUUID string) (*ModelEvaluationRunDeleteResponse, *Response, error) {
-	if evalRunUUID == "" {
-		return nil, nil, fmt.Errorf("eval run uuid is required")
-	}
-	path := fmt.Sprintf(modelEvaluationRunByIDPath, evalRunUUID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(ModelEvaluationRunDeleteResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteModelEvaluationPreset deletes the saved model evaluation preset with
 // the given UUID.
 func (s *GradientAIServiceOp) DeleteModelEvaluationPreset(ctx context.Context, evalPresetUUID string) (*ModelEvaluationPresetDeleteResponse, *Response, error) {
-	if evalPresetUUID == "" {
-		return nil, nil, fmt.Errorf("eval preset uuid is required")
-	}
-	path := fmt.Sprintf(modelEvaluationPresetByIDPath, evalPresetUUID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(ModelEvaluationPresetDeleteResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CancelModelEvaluationRun cancels an in-progress model evaluation run. The run
@@ -2311,83 +1446,30 @@ func (s *GradientAIServiceOp) DeleteModelEvaluationPreset(ctx context.Context, e
 // summary's status is `cancelling` while the underlying workflow is being torn
 // down and transitions to `cancelled` once cluster-side teardown completes.
 func (s *GradientAIServiceOp) CancelModelEvaluationRun(ctx context.Context, evalRunUUID string) (*ModelEvaluationRunCancelResponse, *Response, error) {
-	if evalRunUUID == "" {
-		return nil, nil, fmt.Errorf("eval run uuid is required")
-	}
-	path := fmt.Sprintf(modelEvaluationRunCancelPath, evalRunUUID)
-
-	cancelRequest := &CancelModelEvaluationRunRequest{
-		EvalRunUUID: evalRunUUID,
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, cancelRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(ModelEvaluationRunCancelResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateCustomModelMetadata updates the metadata (description, tags, name) of an existing custom model.
 func (s *GradientAIServiceOp) UpdateCustomModelMetadata(ctx context.Context, uuid string, updateRequest *CustomModelMetadataUpdateRequest) (*CustomModel, *Response, error) {
-	if uuid == "" {
-		return nil, nil, fmt.Errorf("uuid is required")
-	}
-	if updateRequest == nil {
-		return nil, nil, fmt.Errorf("update request is required")
-	}
-	path := fmt.Sprintf(customModelMetadataPath, uuid)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(customModelRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Model, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
-func (a Agent) String() string {
-	return Stringify(a)
-}
+func (a Agent) String() string { _ = "STUB: not implemented"; return "" }
 
-func (m Model) String() string {
-	return Stringify(m)
-}
+func (m Model) String() string { _ = "STUB: not implemented"; return "" }
 
-func (a KnowledgeBase) String() string {
-	return Stringify(a)
-}
+func (a KnowledgeBase) String() string { _ = "STUB: not implemented"; return "" }
 
-func (a KnowledgeBaseDataSource) String() string {
-	return Stringify(a)
-}
+func (a KnowledgeBaseDataSource) String() string { _ = "STUB: not implemented"; return "" }
 
-func (a ApiKeyInfo) String() string {
-	return Stringify(a)
-}
+func (a ApiKeyInfo) String() string { _ = "STUB: not implemented"; return "" }
 
-func (a AgentRouteResponse) String() string {
-	return Stringify(a)
-}
+func (a AgentRouteResponse) String() string { _ = "STUB: not implemented"; return "" }
 
-func (a AgentVersion) String() string {
-	return Stringify(a)
-}
+func (a AgentVersion) String() string { _ = "STUB: not implemented"; return "" }
 
-func (a IndexingJobResponse) String() string {
-	return Stringify(a)
-}
+func (a IndexingJobResponse) String() string { _ = "STUB: not implemented"; return "" }
 
-func (a IndexingJobDataSourcesResponse) String() string {
-	return Stringify(a)
-}
+func (a IndexingJobDataSourcesResponse) String() string { _ = "STUB: not implemented"; return "" }

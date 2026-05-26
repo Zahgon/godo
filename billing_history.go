@@ -2,7 +2,6 @@ package godo
 
 import (
 	"context"
-	"net/http"
 	"time"
 )
 
@@ -40,33 +39,10 @@ type BillingHistoryEntry struct {
 	Type        string    `json:"type"`
 }
 
-func (b BillingHistory) String() string {
-	return Stringify(b)
-}
+func (b BillingHistory) String() string { _ = "STUB: not implemented"; return "" }
 
 // List the Billing History for a customer
 func (s *BillingHistoryServiceOp) List(ctx context.Context, opt *ListOptions) (*BillingHistory, *Response, error) {
-	path, err := addOptions(billingHistoryBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(BillingHistory)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

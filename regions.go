@@ -2,7 +2,6 @@ package godo
 
 import (
 	"context"
-	"net/http"
 )
 
 // RegionsService is an interface for interfacing with the regions
@@ -35,34 +34,10 @@ type regionsRoot struct {
 	Meta    *Meta  `json:"meta"`
 }
 
-func (r Region) String() string {
-	return Stringify(r)
-}
+func (r Region) String() string { _ = "STUB: not implemented"; return "" }
 
 // List all regions
 func (s *RegionsServiceOp) List(ctx context.Context, opt *ListOptions) ([]Region, *Response, error) {
-	path := "v2/regions"
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(regionsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Regions, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

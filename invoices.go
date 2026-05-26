@@ -1,10 +1,7 @@
 package godo
 
 import (
-	"bytes"
 	"context"
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -111,116 +108,34 @@ type InvoiceSummaryBreakdownItem struct {
 	Count  string `json:"count"`
 }
 
-func (i Invoice) String() string {
-	return Stringify(i)
-}
+func (i Invoice) String() string { _ = "STUB: not implemented"; return "" }
 
 // Get detailed invoice items for an Invoice
 func (s *InvoicesServiceOp) Get(ctx context.Context, invoiceUUID string, opt *ListOptions) (*Invoice, *Response, error) {
-	path := fmt.Sprintf("%s/%s", invoicesBasePath, invoiceUUID)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(Invoice)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List invoices for a customer
 func (s *InvoicesServiceOp) List(ctx context.Context, opt *ListOptions) (*InvoiceList, *Response, error) {
-	path := invoicesBasePath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(InvoiceList)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetSummary returns a summary of metadata and summarized usage for an Invoice
 func (s *InvoicesServiceOp) GetSummary(ctx context.Context, invoiceUUID string) (*InvoiceSummary, *Response, error) {
-	path := fmt.Sprintf("%s/%s/summary", invoicesBasePath, invoiceUUID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(InvoiceSummary)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetPDF returns the pdf for an Invoice
 func (s *InvoicesServiceOp) GetPDF(ctx context.Context, invoiceUUID string) ([]byte, *Response, error) {
-	path := fmt.Sprintf("%s/%s/pdf", invoicesBasePath, invoiceUUID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	var root bytes.Buffer
-	resp, err := s.client.Do(ctx, req, &root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Bytes(), resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetCSV returns the csv for an Invoice
 func (s *InvoicesServiceOp) GetCSV(ctx context.Context, invoiceUUID string) ([]byte, *Response, error) {
-	path := fmt.Sprintf("%s/%s/csv", invoicesBasePath, invoiceUUID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	var root bytes.Buffer
-	resp, err := s.client.Do(ctx, req, &root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Bytes(), resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

@@ -1,7 +1,6 @@
 package godo
 
 import (
-	"strconv"
 	"time"
 )
 
@@ -12,24 +11,11 @@ type Timestamp struct {
 	time.Time
 }
 
-func (t Timestamp) String() string {
-	return t.Time.String()
-}
+func (t Timestamp) String() string { _ = "STUB: not implemented"; return "" }
 
 // UnmarshalJSON implements the json.Unmarshaler interface.
 // Time is expected in RFC3339 or Unix format.
-func (t *Timestamp) UnmarshalJSON(data []byte) error {
-	str := string(data)
-	i, err := strconv.ParseInt(str, 10, 64)
-	if err == nil {
-		t.Time = time.Unix(i, 0)
-	} else {
-		t.Time, err = time.Parse(`"`+time.RFC3339+`"`, str)
-	}
-	return err
-}
+func (t *Timestamp) UnmarshalJSON(data []byte) error { _ = "STUB: not implemented"; return nil }
 
 // Equal reports whether t and u are equal based on time.Equal
-func (t Timestamp) Equal(u Timestamp) bool {
-	return t.Time.Equal(u.Time)
-}
+func (t Timestamp) Equal(u Timestamp) bool { _ = "STUB: not implemented"; return false }

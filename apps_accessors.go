@@ -14,4425 +14,2176 @@ import (
 )
 
 // GetActiveDeployment returns the ActiveDeployment field.
-func (a *App) GetActiveDeployment() *Deployment {
-	if a == nil {
-		return nil
-	}
-	return a.ActiveDeployment
-}
+func (a *App) GetActiveDeployment() *Deployment { _ = "STUB: not implemented"; return nil }
 
 // GetBuildConfig returns the BuildConfig field.
-func (a *App) GetBuildConfig() *AppBuildConfig {
-	if a == nil {
-		return nil
-	}
-	return a.BuildConfig
-}
+func (a *App) GetBuildConfig() *AppBuildConfig { _ = "STUB: not implemented"; return nil }
 
 // GetCreatedAt returns the CreatedAt field.
-func (a *App) GetCreatedAt() time.Time {
-	if a == nil {
-		return time.Time{}
-	}
-	return a.CreatedAt
-}
+func (a *App) GetCreatedAt() time.Time { _ = "STUB: not implemented"; return *new(time.Time) }
 
 // GetDedicatedIps returns the DedicatedIps field.
-func (a *App) GetDedicatedIps() []*AppDedicatedIp {
-	if a == nil {
-		return nil
-	}
-	return a.DedicatedIps
-}
+func (a *App) GetDedicatedIps() []*AppDedicatedIp { _ = "STUB: not implemented"; return nil }
 
 // GetDefaultIngress returns the DefaultIngress field.
-func (a *App) GetDefaultIngress() string {
-	if a == nil {
-		return ""
-	}
-	return a.DefaultIngress
-}
+func (a *App) GetDefaultIngress() string { _ = "STUB: not implemented"; return "" }
 
 // GetDomains returns the Domains field.
-func (a *App) GetDomains() []*AppDomain {
-	if a == nil {
-		return nil
-	}
-	return a.Domains
-}
+func (a *App) GetDomains() []*AppDomain { _ = "STUB: not implemented"; return nil }
 
 // GetID returns the ID field.
-func (a *App) GetID() string {
-	if a == nil {
-		return ""
-	}
-	return a.ID
-}
+func (a *App) GetID() string { _ = "STUB: not implemented"; return "" }
 
 // GetInProgressDeployment returns the InProgressDeployment field.
-func (a *App) GetInProgressDeployment() *Deployment {
-	if a == nil {
-		return nil
-	}
-	return a.InProgressDeployment
-}
+func (a *App) GetInProgressDeployment() *Deployment { _ = "STUB: not implemented"; return nil }
 
 // GetLastDeploymentActiveAt returns the LastDeploymentActiveAt field.
 func (a *App) GetLastDeploymentActiveAt() time.Time {
-	if a == nil {
-		return time.Time{}
-	}
-	return a.LastDeploymentActiveAt
+	_ = "STUB: not implemented"
+	return *new(time.Time)
 }
 
 // GetLastDeploymentCreatedAt returns the LastDeploymentCreatedAt field.
 func (a *App) GetLastDeploymentCreatedAt() time.Time {
-	if a == nil {
-		return time.Time{}
-	}
-	return a.LastDeploymentCreatedAt
+	_ = "STUB: not implemented"
+	return *new(time.Time)
 }
 
 // GetLiveDomain returns the LiveDomain field.
-func (a *App) GetLiveDomain() string {
-	if a == nil {
-		return ""
-	}
-	return a.LiveDomain
-}
+func (a *App) GetLiveDomain() string { _ = "STUB: not implemented"; return "" }
 
 // GetLiveURL returns the LiveURL field.
-func (a *App) GetLiveURL() string {
-	if a == nil {
-		return ""
-	}
-	return a.LiveURL
-}
+func (a *App) GetLiveURL() string { _ = "STUB: not implemented"; return "" }
 
 // GetLiveURLBase returns the LiveURLBase field.
-func (a *App) GetLiveURLBase() string {
-	if a == nil {
-		return ""
-	}
-	return a.LiveURLBase
-}
+func (a *App) GetLiveURLBase() string { _ = "STUB: not implemented"; return "" }
 
 // GetOwnerUUID returns the OwnerUUID field.
-func (a *App) GetOwnerUUID() string {
-	if a == nil {
-		return ""
-	}
-	return a.OwnerUUID
-}
+func (a *App) GetOwnerUUID() string { _ = "STUB: not implemented"; return "" }
 
 // GetPendingDeployment returns the PendingDeployment field.
-func (a *App) GetPendingDeployment() *Deployment {
-	if a == nil {
-		return nil
-	}
-	return a.PendingDeployment
-}
+func (a *App) GetPendingDeployment() *Deployment { _ = "STUB: not implemented"; return nil }
 
 // GetPinnedDeployment returns the PinnedDeployment field.
-func (a *App) GetPinnedDeployment() *Deployment {
-	if a == nil {
-		return nil
-	}
-	return a.PinnedDeployment
-}
+func (a *App) GetPinnedDeployment() *Deployment { _ = "STUB: not implemented"; return nil }
 
 // GetProjectID returns the ProjectID field.
-func (a *App) GetProjectID() string {
-	if a == nil {
-		return ""
-	}
-	return a.ProjectID
-}
+func (a *App) GetProjectID() string { _ = "STUB: not implemented"; return "" }
 
 // GetRegion returns the Region field.
-func (a *App) GetRegion() *AppRegion {
-	if a == nil {
-		return nil
-	}
-	return a.Region
-}
+func (a *App) GetRegion() *AppRegion { _ = "STUB: not implemented"; return nil }
 
 // GetSpec returns the Spec field.
-func (a *App) GetSpec() *AppSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Spec
-}
+func (a *App) GetSpec() *AppSpec { _ = "STUB: not implemented"; return nil }
 
 // GetTierSlug returns the TierSlug field.
-func (a *App) GetTierSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.TierSlug
-}
+func (a *App) GetTierSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetUpdatedAt returns the UpdatedAt field.
-func (a *App) GetUpdatedAt() time.Time {
-	if a == nil {
-		return time.Time{}
-	}
-	return a.UpdatedAt
-}
+func (a *App) GetUpdatedAt() time.Time { _ = "STUB: not implemented"; return *new(time.Time) }
 
 // GetVPC returns the VPC field.
-func (a *App) GetVPC() *AppVPC {
-	if a == nil {
-		return nil
-	}
-	return a.VPC
-}
+func (a *App) GetVPC() *AppVPC { _ = "STUB: not implemented"; return nil }
 
 // GetComponentName returns the ComponentName field.
-func (a *AppAlert) GetComponentName() string {
-	if a == nil {
-		return ""
-	}
-	return a.ComponentName
-}
+func (a *AppAlert) GetComponentName() string { _ = "STUB: not implemented"; return "" }
 
 // GetEmails returns the Emails field.
-func (a *AppAlert) GetEmails() []string {
-	if a == nil {
-		return nil
-	}
-	return a.Emails
-}
+func (a *AppAlert) GetEmails() []string { _ = "STUB: not implemented"; return nil }
 
 // GetID returns the ID field.
-func (a *AppAlert) GetID() string {
-	if a == nil {
-		return ""
-	}
-	return a.ID
-}
+func (a *AppAlert) GetID() string { _ = "STUB: not implemented"; return "" }
 
 // GetPhase returns the Phase field.
-func (a *AppAlert) GetPhase() AppAlertPhase {
-	if a == nil {
-		return ""
-	}
-	return a.Phase
-}
+func (a *AppAlert) GetPhase() AppAlertPhase { _ = "STUB: not implemented"; return *new(AppAlertPhase) }
 
 // GetProgress returns the Progress field.
-func (a *AppAlert) GetProgress() *AppAlertProgress {
-	if a == nil {
-		return nil
-	}
-	return a.Progress
-}
+func (a *AppAlert) GetProgress() *AppAlertProgress { _ = "STUB: not implemented"; return nil }
 
 // GetSlackWebhooks returns the SlackWebhooks field.
 func (a *AppAlert) GetSlackWebhooks() []*AppAlertSlackWebhook {
-	if a == nil {
-		return nil
-	}
-	return a.SlackWebhooks
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetSpec returns the Spec field.
-func (a *AppAlert) GetSpec() *AppAlertSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Spec
-}
+func (a *AppAlert) GetSpec() *AppAlertSpec { _ = "STUB: not implemented"; return nil }
 
 // GetSteps returns the Steps field.
 func (a *AppAlertProgress) GetSteps() []*AppAlertProgressStep {
-	if a == nil {
-		return nil
-	}
-	return a.Steps
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetEndedAt returns the EndedAt field.
 func (a *AppAlertProgressStep) GetEndedAt() time.Time {
-	if a == nil {
-		return time.Time{}
-	}
-	return a.EndedAt
+	_ = "STUB: not implemented"
+	return *new(time.Time)
 }
 
 // GetName returns the Name field.
-func (a *AppAlertProgressStep) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppAlertProgressStep) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetReason returns the Reason field.
 func (a *AppAlertProgressStep) GetReason() *AppAlertProgressStepReason {
-	if a == nil {
-		return nil
-	}
-	return a.Reason
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetStartedAt returns the StartedAt field.
 func (a *AppAlertProgressStep) GetStartedAt() time.Time {
-	if a == nil {
-		return time.Time{}
-	}
-	return a.StartedAt
+	_ = "STUB: not implemented"
+	return *new(time.Time)
 }
 
 // GetStatus returns the Status field.
 func (a *AppAlertProgressStep) GetStatus() AppAlertProgressStepStatus {
-	if a == nil {
-		return ""
-	}
-	return a.Status
+	_ = "STUB: not implemented"
+	return *new(AppAlertProgressStepStatus)
 }
 
 // GetSteps returns the Steps field.
 func (a *AppAlertProgressStep) GetSteps() []*AppAlertProgressStep {
-	if a == nil {
-		return nil
-	}
-	return a.Steps
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetCode returns the Code field.
-func (a *AppAlertProgressStepReason) GetCode() string {
-	if a == nil {
-		return ""
-	}
-	return a.Code
-}
+func (a *AppAlertProgressStepReason) GetCode() string { _ = "STUB: not implemented"; return "" }
 
 // GetMessage returns the Message field.
-func (a *AppAlertProgressStepReason) GetMessage() string {
-	if a == nil {
-		return ""
-	}
-	return a.Message
-}
+func (a *AppAlertProgressStepReason) GetMessage() string { _ = "STUB: not implemented"; return "" }
 
 // GetChannel returns the Channel field.
-func (a *AppAlertSlackWebhook) GetChannel() string {
-	if a == nil {
-		return ""
-	}
-	return a.Channel
-}
+func (a *AppAlertSlackWebhook) GetChannel() string { _ = "STUB: not implemented"; return "" }
 
 // GetURL returns the URL field.
-func (a *AppAlertSlackWebhook) GetURL() string {
-	if a == nil {
-		return ""
-	}
-	return a.URL
-}
+func (a *AppAlertSlackWebhook) GetURL() string { _ = "STUB: not implemented"; return "" }
 
 // GetDisabled returns the Disabled field.
-func (a *AppAlertSpec) GetDisabled() bool {
-	if a == nil {
-		return false
-	}
-	return a.Disabled
-}
+func (a *AppAlertSpec) GetDisabled() bool { _ = "STUB: not implemented"; return false }
 
 // GetOperator returns the Operator field.
 func (a *AppAlertSpec) GetOperator() AppAlertSpecOperator {
-	if a == nil {
-		return ""
-	}
-	return a.Operator
+	_ = "STUB: not implemented"
+	return *new(AppAlertSpecOperator)
 }
 
 // GetRule returns the Rule field.
 func (a *AppAlertSpec) GetRule() AppAlertSpecRule {
-	if a == nil {
-		return ""
-	}
-	return a.Rule
+	_ = "STUB: not implemented"
+	return *new(AppAlertSpecRule)
 }
 
 // GetValue returns the Value field.
-func (a *AppAlertSpec) GetValue() float32 {
-	if a == nil {
-		return 0
-	}
-	return a.Value
-}
+func (a *AppAlertSpec) GetValue() float32 { _ = "STUB: not implemented"; return 0 }
 
 // GetWindow returns the Window field.
 func (a *AppAlertSpec) GetWindow() AppAlertSpecWindow {
-	if a == nil {
-		return ""
-	}
-	return a.Window
+	_ = "STUB: not implemented"
+	return *new(AppAlertSpecWindow)
 }
 
 // GetMaxInstanceCount returns the MaxInstanceCount field.
-func (a *AppAutoscalingSpec) GetMaxInstanceCount() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.MaxInstanceCount
-}
+func (a *AppAutoscalingSpec) GetMaxInstanceCount() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetMetrics returns the Metrics field.
 func (a *AppAutoscalingSpec) GetMetrics() *AppAutoscalingSpecMetrics {
-	if a == nil {
-		return nil
-	}
-	return a.Metrics
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetMinInstanceCount returns the MinInstanceCount field.
-func (a *AppAutoscalingSpec) GetMinInstanceCount() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.MinInstanceCount
-}
+func (a *AppAutoscalingSpec) GetMinInstanceCount() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetPercent returns the Percent field.
-func (a *AppAutoscalingSpecMetricCPU) GetPercent() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.Percent
-}
+func (a *AppAutoscalingSpecMetricCPU) GetPercent() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetP95Milliseconds returns the P95Milliseconds field.
 func (a *AppAutoscalingSpecMetricRequestDuration) GetP95Milliseconds() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.P95Milliseconds
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // GetPerInstance returns the PerInstance field.
 func (a *AppAutoscalingSpecMetricRequestsPerSecond) GetPerInstance() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.PerInstance
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // GetCPU returns the CPU field.
 func (a *AppAutoscalingSpecMetrics) GetCPU() *AppAutoscalingSpecMetricCPU {
-	if a == nil {
-		return nil
-	}
-	return a.CPU
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetRequestDuration returns the RequestDuration field.
 func (a *AppAutoscalingSpecMetrics) GetRequestDuration() *AppAutoscalingSpecMetricRequestDuration {
-	if a == nil {
-		return nil
-	}
-	return a.RequestDuration
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetRequestsPerSecond returns the RequestsPerSecond field.
 func (a *AppAutoscalingSpecMetrics) GetRequestsPerSecond() *AppAutoscalingSpecMetricRequestsPerSecond {
-	if a == nil {
-		return nil
-	}
-	return a.RequestsPerSecond
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetCNBVersioning returns the CNBVersioning field.
 func (a *AppBuildConfig) GetCNBVersioning() *AppBuildConfigCNBVersioning {
-	if a == nil {
-		return nil
-	}
-	return a.CNBVersioning
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetBuildpacks returns the Buildpacks field.
 func (a *AppBuildConfigCNBVersioning) GetBuildpacks() []*Buildpack {
-	if a == nil {
-		return nil
-	}
-	return a.Buildpacks
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetStackID returns the StackID field.
-func (a *AppBuildConfigCNBVersioning) GetStackID() string {
-	if a == nil {
-		return ""
-	}
-	return a.StackID
-}
+func (a *AppBuildConfigCNBVersioning) GetStackID() string { _ = "STUB: not implemented"; return "" }
 
 // GetAllowCredentials returns the AllowCredentials field.
-func (a *AppCORSPolicy) GetAllowCredentials() bool {
-	if a == nil {
-		return false
-	}
-	return a.AllowCredentials
-}
+func (a *AppCORSPolicy) GetAllowCredentials() bool { _ = "STUB: not implemented"; return false }
 
 // GetAllowHeaders returns the AllowHeaders field.
-func (a *AppCORSPolicy) GetAllowHeaders() []string {
-	if a == nil {
-		return nil
-	}
-	return a.AllowHeaders
-}
+func (a *AppCORSPolicy) GetAllowHeaders() []string { _ = "STUB: not implemented"; return nil }
 
 // GetAllowMethods returns the AllowMethods field.
-func (a *AppCORSPolicy) GetAllowMethods() []string {
-	if a == nil {
-		return nil
-	}
-	return a.AllowMethods
-}
+func (a *AppCORSPolicy) GetAllowMethods() []string { _ = "STUB: not implemented"; return nil }
 
 // GetAllowOrigins returns the AllowOrigins field.
-func (a *AppCORSPolicy) GetAllowOrigins() []*AppStringMatch {
-	if a == nil {
-		return nil
-	}
-	return a.AllowOrigins
-}
+func (a *AppCORSPolicy) GetAllowOrigins() []*AppStringMatch { _ = "STUB: not implemented"; return nil }
 
 // GetExposeHeaders returns the ExposeHeaders field.
-func (a *AppCORSPolicy) GetExposeHeaders() []string {
-	if a == nil {
-		return nil
-	}
-	return a.ExposeHeaders
-}
+func (a *AppCORSPolicy) GetExposeHeaders() []string { _ = "STUB: not implemented"; return nil }
 
 // GetMaxAge returns the MaxAge field.
-func (a *AppCORSPolicy) GetMaxAge() string {
-	if a == nil {
-		return ""
-	}
-	return a.MaxAge
-}
+func (a *AppCORSPolicy) GetMaxAge() string { _ = "STUB: not implemented"; return "" }
 
 // GetProjectID returns the ProjectID field.
-func (a *AppCreateRequest) GetProjectID() string {
-	if a == nil {
-		return ""
-	}
-	return a.ProjectID
-}
+func (a *AppCreateRequest) GetProjectID() string { _ = "STUB: not implemented"; return "" }
 
 // GetSpec returns the Spec field.
-func (a *AppCreateRequest) GetSpec() *AppSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Spec
-}
+func (a *AppCreateRequest) GetSpec() *AppSpec { _ = "STUB: not implemented"; return nil }
 
 // GetClusterName returns the ClusterName field.
-func (a *AppDatabaseSpec) GetClusterName() string {
-	if a == nil {
-		return ""
-	}
-	return a.ClusterName
-}
+func (a *AppDatabaseSpec) GetClusterName() string { _ = "STUB: not implemented"; return "" }
 
 // GetDBName returns the DBName field.
-func (a *AppDatabaseSpec) GetDBName() string {
-	if a == nil {
-		return ""
-	}
-	return a.DBName
-}
+func (a *AppDatabaseSpec) GetDBName() string { _ = "STUB: not implemented"; return "" }
 
 // GetDBUser returns the DBUser field.
-func (a *AppDatabaseSpec) GetDBUser() string {
-	if a == nil {
-		return ""
-	}
-	return a.DBUser
-}
+func (a *AppDatabaseSpec) GetDBUser() string { _ = "STUB: not implemented"; return "" }
 
 // GetEngine returns the Engine field.
 func (a *AppDatabaseSpec) GetEngine() AppDatabaseSpecEngine {
-	if a == nil {
-		return ""
-	}
-	return a.Engine
+	_ = "STUB: not implemented"
+	return *new(AppDatabaseSpecEngine)
 }
 
 // GetName returns the Name field.
-func (a *AppDatabaseSpec) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppDatabaseSpec) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetNumNodes returns the NumNodes field.
-func (a *AppDatabaseSpec) GetNumNodes() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.NumNodes
-}
+func (a *AppDatabaseSpec) GetNumNodes() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetProduction returns the Production field.
-func (a *AppDatabaseSpec) GetProduction() bool {
-	if a == nil {
-		return false
-	}
-	return a.Production
-}
+func (a *AppDatabaseSpec) GetProduction() bool { _ = "STUB: not implemented"; return false }
 
 // GetSize returns the Size field.
-func (a *AppDatabaseSpec) GetSize() string {
-	if a == nil {
-		return ""
-	}
-	return a.Size
-}
+func (a *AppDatabaseSpec) GetSize() string { _ = "STUB: not implemented"; return "" }
 
 // GetVersion returns the Version field.
-func (a *AppDatabaseSpec) GetVersion() string {
-	if a == nil {
-		return ""
-	}
-	return a.Version
-}
+func (a *AppDatabaseSpec) GetVersion() string { _ = "STUB: not implemented"; return "" }
 
 // GetID returns the ID field.
-func (a *AppDedicatedIp) GetID() string {
-	if a == nil {
-		return ""
-	}
-	return a.ID
-}
+func (a *AppDedicatedIp) GetID() string { _ = "STUB: not implemented"; return "" }
 
 // GetIp returns the Ip field.
-func (a *AppDedicatedIp) GetIp() string {
-	if a == nil {
-		return ""
-	}
-	return a.Ip
-}
+func (a *AppDedicatedIp) GetIp() string { _ = "STUB: not implemented"; return "" }
 
 // GetStatus returns the Status field.
 func (a *AppDedicatedIp) GetStatus() AppDedicatedIpStatus {
-	if a == nil {
-		return ""
-	}
-	return a.Status
+	_ = "STUB: not implemented"
+	return *new(AppDedicatedIpStatus)
 }
 
 // GetCertificateExpiresAt returns the CertificateExpiresAt field.
 func (a *AppDomain) GetCertificateExpiresAt() time.Time {
-	if a == nil {
-		return time.Time{}
-	}
-	return a.CertificateExpiresAt
+	_ = "STUB: not implemented"
+	return *new(time.Time)
 }
 
 // GetID returns the ID field.
-func (a *AppDomain) GetID() string {
-	if a == nil {
-		return ""
-	}
-	return a.ID
-}
+func (a *AppDomain) GetID() string { _ = "STUB: not implemented"; return "" }
 
 // GetPhase returns the Phase field.
 func (a *AppDomain) GetPhase() AppDomainPhase {
-	if a == nil {
-		return ""
-	}
-	return a.Phase
+	_ = "STUB: not implemented"
+	return *new(AppDomainPhase)
 }
 
 // GetProgress returns the Progress field.
-func (a *AppDomain) GetProgress() *AppDomainProgress {
-	if a == nil {
-		return nil
-	}
-	return a.Progress
-}
+func (a *AppDomain) GetProgress() *AppDomainProgress { _ = "STUB: not implemented"; return nil }
 
 // GetRotateValidationRecords returns the RotateValidationRecords field.
-func (a *AppDomain) GetRotateValidationRecords() bool {
-	if a == nil {
-		return false
-	}
-	return a.RotateValidationRecords
-}
+func (a *AppDomain) GetRotateValidationRecords() bool { _ = "STUB: not implemented"; return false }
 
 // GetSpec returns the Spec field.
-func (a *AppDomain) GetSpec() *AppDomainSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Spec
-}
+func (a *AppDomain) GetSpec() *AppDomainSpec { _ = "STUB: not implemented"; return nil }
 
 // GetValidation returns the Validation field.
-func (a *AppDomain) GetValidation() *AppDomainValidation {
-	if a == nil {
-		return nil
-	}
-	return a.Validation
-}
+func (a *AppDomain) GetValidation() *AppDomainValidation { _ = "STUB: not implemented"; return nil }
 
 // GetValidations returns the Validations field.
-func (a *AppDomain) GetValidations() []*AppDomainValidation {
-	if a == nil {
-		return nil
-	}
-	return a.Validations
-}
+func (a *AppDomain) GetValidations() []*AppDomainValidation { _ = "STUB: not implemented"; return nil }
 
 // GetSteps returns the Steps field.
 func (a *AppDomainProgress) GetSteps() []*AppDomainProgressStep {
-	if a == nil {
-		return nil
-	}
-	return a.Steps
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetEndedAt returns the EndedAt field.
 func (a *AppDomainProgressStep) GetEndedAt() time.Time {
-	if a == nil {
-		return time.Time{}
-	}
-	return a.EndedAt
+	_ = "STUB: not implemented"
+	return *new(time.Time)
 }
 
 // GetName returns the Name field.
-func (a *AppDomainProgressStep) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppDomainProgressStep) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetReason returns the Reason field.
 func (a *AppDomainProgressStep) GetReason() *AppDomainProgressStepReason {
-	if a == nil {
-		return nil
-	}
-	return a.Reason
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetStartedAt returns the StartedAt field.
 func (a *AppDomainProgressStep) GetStartedAt() time.Time {
-	if a == nil {
-		return time.Time{}
-	}
-	return a.StartedAt
+	_ = "STUB: not implemented"
+	return *new(time.Time)
 }
 
 // GetStatus returns the Status field.
 func (a *AppDomainProgressStep) GetStatus() AppDomainProgressStepStatus {
-	if a == nil {
-		return ""
-	}
-	return a.Status
+	_ = "STUB: not implemented"
+	return *new(AppDomainProgressStepStatus)
 }
 
 // GetSteps returns the Steps field.
 func (a *AppDomainProgressStep) GetSteps() []*AppDomainProgressStep {
-	if a == nil {
-		return nil
-	}
-	return a.Steps
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetCode returns the Code field.
-func (a *AppDomainProgressStepReason) GetCode() string {
-	if a == nil {
-		return ""
-	}
-	return a.Code
-}
+func (a *AppDomainProgressStepReason) GetCode() string { _ = "STUB: not implemented"; return "" }
 
 // GetMessage returns the Message field.
-func (a *AppDomainProgressStepReason) GetMessage() string {
-	if a == nil {
-		return ""
-	}
-	return a.Message
-}
+func (a *AppDomainProgressStepReason) GetMessage() string { _ = "STUB: not implemented"; return "" }
 
 // GetCertificate returns the Certificate field.
-func (a *AppDomainSpec) GetCertificate() string {
-	if a == nil {
-		return ""
-	}
-	return a.Certificate
-}
+func (a *AppDomainSpec) GetCertificate() string { _ = "STUB: not implemented"; return "" }
 
 // GetDomain returns the Domain field.
-func (a *AppDomainSpec) GetDomain() string {
-	if a == nil {
-		return ""
-	}
-	return a.Domain
-}
+func (a *AppDomainSpec) GetDomain() string { _ = "STUB: not implemented"; return "" }
 
 // GetMinimumTLSVersion returns the MinimumTLSVersion field.
-func (a *AppDomainSpec) GetMinimumTLSVersion() string {
-	if a == nil {
-		return ""
-	}
-	return a.MinimumTLSVersion
-}
+func (a *AppDomainSpec) GetMinimumTLSVersion() string { _ = "STUB: not implemented"; return "" }
 
 // GetType returns the Type field.
 func (a *AppDomainSpec) GetType() AppDomainSpecType {
-	if a == nil {
-		return ""
-	}
-	return a.Type
+	_ = "STUB: not implemented"
+	return *new(AppDomainSpecType)
 }
 
 // GetWildcard returns the Wildcard field.
-func (a *AppDomainSpec) GetWildcard() bool {
-	if a == nil {
-		return false
-	}
-	return a.Wildcard
-}
+func (a *AppDomainSpec) GetWildcard() bool { _ = "STUB: not implemented"; return false }
 
 // GetZone returns the Zone field.
-func (a *AppDomainSpec) GetZone() string {
-	if a == nil {
-		return ""
-	}
-	return a.Zone
-}
+func (a *AppDomainSpec) GetZone() string { _ = "STUB: not implemented"; return "" }
 
 // GetTXTName returns the TXTName field.
-func (a *AppDomainValidation) GetTXTName() string {
-	if a == nil {
-		return ""
-	}
-	return a.TXTName
-}
+func (a *AppDomainValidation) GetTXTName() string { _ = "STUB: not implemented"; return "" }
 
 // GetTXTValue returns the TXTValue field.
-func (a *AppDomainValidation) GetTXTValue() string {
-	if a == nil {
-		return ""
-	}
-	return a.TXTValue
-}
+func (a *AppDomainValidation) GetTXTValue() string { _ = "STUB: not implemented"; return "" }
 
 // GetType returns the Type field.
 func (a *AppEgressSpec) GetType() AppEgressSpecType {
-	if a == nil {
-		return ""
-	}
-	return a.Type
+	_ = "STUB: not implemented"
+	return *new(AppEgressSpecType)
 }
 
 // GetAlerts returns the Alerts field.
-func (a *AppFunctionsSpec) GetAlerts() []*AppAlertSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Alerts
-}
+func (a *AppFunctionsSpec) GetAlerts() []*AppAlertSpec { _ = "STUB: not implemented"; return nil }
 
 // GetBitbucket returns the Bitbucket field.
 func (a *AppFunctionsSpec) GetBitbucket() *BitbucketSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Bitbucket
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetCORS returns the CORS field.
-func (a *AppFunctionsSpec) GetCORS() *AppCORSPolicy {
-	if a == nil {
-		return nil
-	}
-	return a.CORS
-}
+func (a *AppFunctionsSpec) GetCORS() *AppCORSPolicy { _ = "STUB: not implemented"; return nil }
 
 // GetEnvs returns the Envs field.
 func (a *AppFunctionsSpec) GetEnvs() []*AppVariableDefinition {
-	if a == nil {
-		return nil
-	}
-	return a.Envs
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetGit returns the Git field.
-func (a *AppFunctionsSpec) GetGit() *GitSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Git
-}
+func (a *AppFunctionsSpec) GetGit() *GitSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitHub returns the GitHub field.
-func (a *AppFunctionsSpec) GetGitHub() *GitHubSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.GitHub
-}
+func (a *AppFunctionsSpec) GetGitHub() *GitHubSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitLab returns the GitLab field.
-func (a *AppFunctionsSpec) GetGitLab() *GitLabSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.GitLab
-}
+func (a *AppFunctionsSpec) GetGitLab() *GitLabSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetLogDestinations returns the LogDestinations field.
 func (a *AppFunctionsSpec) GetLogDestinations() []*AppLogDestinationSpec {
-	if a == nil {
-		return nil
-	}
-	return a.LogDestinations
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetName returns the Name field.
-func (a *AppFunctionsSpec) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppFunctionsSpec) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetRoutes returns the Routes field.
-func (a *AppFunctionsSpec) GetRoutes() []*AppRouteSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Routes
-}
+func (a *AppFunctionsSpec) GetRoutes() []*AppRouteSpec { _ = "STUB: not implemented"; return nil }
 
 // GetSourceDir returns the SourceDir field.
-func (a *AppFunctionsSpec) GetSourceDir() string {
-	if a == nil {
-		return ""
-	}
-	return a.SourceDir
-}
+func (a *AppFunctionsSpec) GetSourceDir() string { _ = "STUB: not implemented"; return "" }
 
 // GetComponents returns the Components field.
-func (a *AppHealth) GetComponents() []*ComponentHealth {
-	if a == nil {
-		return nil
-	}
-	return a.Components
-}
+func (a *AppHealth) GetComponents() []*ComponentHealth { _ = "STUB: not implemented"; return nil }
 
 // GetFunctionsComponents returns the FunctionsComponents field.
 func (a *AppHealth) GetFunctionsComponents() []*FunctionsComponentHealth {
-	if a == nil {
-		return nil
-	}
-	return a.FunctionsComponents
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetLoadBalancer returns the LoadBalancer field.
 func (a *AppIngressSpec) GetLoadBalancer() AppIngressSpecLoadBalancer {
-	if a == nil {
-		return ""
-	}
-	return a.LoadBalancer
+	_ = "STUB: not implemented"
+	return *new(AppIngressSpecLoadBalancer)
 }
 
 // GetLoadBalancerSize returns the LoadBalancerSize field.
-func (a *AppIngressSpec) GetLoadBalancerSize() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.LoadBalancerSize
-}
+func (a *AppIngressSpec) GetLoadBalancerSize() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetRules returns the Rules field.
-func (a *AppIngressSpec) GetRules() []*AppIngressSpecRule {
-	if a == nil {
-		return nil
-	}
-	return a.Rules
-}
+func (a *AppIngressSpec) GetRules() []*AppIngressSpecRule { _ = "STUB: not implemented"; return nil }
 
 // GetComponent returns the Component field.
 func (a *AppIngressSpecRule) GetComponent() *AppIngressSpecRuleRoutingComponent {
-	if a == nil {
-		return nil
-	}
-	return a.Component
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetCORS returns the CORS field.
-func (a *AppIngressSpecRule) GetCORS() *AppCORSPolicy {
-	if a == nil {
-		return nil
-	}
-	return a.CORS
-}
+func (a *AppIngressSpecRule) GetCORS() *AppCORSPolicy { _ = "STUB: not implemented"; return nil }
 
 // GetMatch returns the Match field.
 func (a *AppIngressSpecRule) GetMatch() *AppIngressSpecRuleMatch {
-	if a == nil {
-		return nil
-	}
-	return a.Match
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetRedirect returns the Redirect field.
 func (a *AppIngressSpecRule) GetRedirect() *AppIngressSpecRuleRoutingRedirect {
-	if a == nil {
-		return nil
-	}
-	return a.Redirect
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetAuthority returns the Authority field.
 func (a *AppIngressSpecRuleMatch) GetAuthority() *AppIngressSpecRuleStringMatch {
-	if a == nil {
-		return nil
-	}
-	return a.Authority
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetPath returns the Path field.
 func (a *AppIngressSpecRuleMatch) GetPath() *AppIngressSpecRuleStringMatch {
-	if a == nil {
-		return nil
-	}
-	return a.Path
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetName returns the Name field.
-func (a *AppIngressSpecRuleRoutingComponent) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppIngressSpecRuleRoutingComponent) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetPreservePathPrefix returns the PreservePathPrefix field.
 func (a *AppIngressSpecRuleRoutingComponent) GetPreservePathPrefix() bool {
-	if a == nil {
-		return false
-	}
-	return a.PreservePathPrefix
+	_ = "STUB: not implemented"
+	return false
 }
 
 // GetRewrite returns the Rewrite field.
 func (a *AppIngressSpecRuleRoutingComponent) GetRewrite() string {
-	if a == nil {
-		return ""
-	}
-	return a.Rewrite
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetAuthority returns the Authority field.
 func (a *AppIngressSpecRuleRoutingRedirect) GetAuthority() string {
-	if a == nil {
-		return ""
-	}
-	return a.Authority
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetPort returns the Port field.
-func (a *AppIngressSpecRuleRoutingRedirect) GetPort() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.Port
-}
+func (a *AppIngressSpecRuleRoutingRedirect) GetPort() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetRedirectCode returns the RedirectCode field.
 func (a *AppIngressSpecRuleRoutingRedirect) GetRedirectCode() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.RedirectCode
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // GetScheme returns the Scheme field.
 func (a *AppIngressSpecRuleRoutingRedirect) GetScheme() string {
-	if a == nil {
-		return ""
-	}
-	return a.Scheme
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetUri returns the Uri field.
-func (a *AppIngressSpecRuleRoutingRedirect) GetUri() string {
-	if a == nil {
-		return ""
-	}
-	return a.Uri
-}
+func (a *AppIngressSpecRuleRoutingRedirect) GetUri() string { _ = "STUB: not implemented"; return "" }
 
 // GetExact returns the Exact field.
-func (a *AppIngressSpecRuleStringMatch) GetExact() string {
-	if a == nil || a.Exact == nil {
-		return ""
-	}
-	return *a.Exact
-}
+func (a *AppIngressSpecRuleStringMatch) GetExact() string { _ = "STUB: not implemented"; return "" }
 
 // GetPrefix returns the Prefix field.
-func (a *AppIngressSpecRuleStringMatch) GetPrefix() string {
-	if a == nil || a.Prefix == nil {
-		return ""
-	}
-	return *a.Prefix
-}
+func (a *AppIngressSpecRuleStringMatch) GetPrefix() string { _ = "STUB: not implemented"; return "" }
 
 // GetComponentName returns the ComponentName field.
-func (a *AppInstance) GetComponentName() string {
-	if a == nil {
-		return ""
-	}
-	return a.ComponentName
-}
+func (a *AppInstance) GetComponentName() string { _ = "STUB: not implemented"; return "" }
 
 // GetComponentType returns the ComponentType field.
 func (a *AppInstance) GetComponentType() AppInstanceComponentType {
-	if a == nil {
-		return ""
-	}
-	return a.ComponentType
+	_ = "STUB: not implemented"
+	return *new(AppInstanceComponentType)
 }
 
 // GetInstanceAlias returns the InstanceAlias field.
-func (a *AppInstance) GetInstanceAlias() string {
-	if a == nil {
-		return ""
-	}
-	return a.InstanceAlias
-}
+func (a *AppInstance) GetInstanceAlias() string { _ = "STUB: not implemented"; return "" }
 
 // GetInstanceName returns the InstanceName field.
-func (a *AppInstance) GetInstanceName() string {
-	if a == nil {
-		return ""
-	}
-	return a.InstanceName
-}
+func (a *AppInstance) GetInstanceName() string { _ = "STUB: not implemented"; return "" }
 
 // GetBandwidthAllowanceGib returns the BandwidthAllowanceGib field.
-func (a *AppInstanceSize) GetBandwidthAllowanceGib() string {
-	if a == nil {
-		return ""
-	}
-	return a.BandwidthAllowanceGib
-}
+func (a *AppInstanceSize) GetBandwidthAllowanceGib() string { _ = "STUB: not implemented"; return "" }
 
 // GetCPUs returns the CPUs field.
-func (a *AppInstanceSize) GetCPUs() string {
-	if a == nil {
-		return ""
-	}
-	return a.CPUs
-}
+func (a *AppInstanceSize) GetCPUs() string { _ = "STUB: not implemented"; return "" }
 
 // GetCPUType returns the CPUType field.
 func (a *AppInstanceSize) GetCPUType() AppInstanceSizeCPUType {
-	if a == nil {
-		return ""
-	}
-	return a.CPUType
+	_ = "STUB: not implemented"
+	return *new(AppInstanceSizeCPUType)
 }
 
 // GetDeprecationIntent returns the DeprecationIntent field.
-func (a *AppInstanceSize) GetDeprecationIntent() bool {
-	if a == nil {
-		return false
-	}
-	return a.DeprecationIntent
-}
+func (a *AppInstanceSize) GetDeprecationIntent() bool { _ = "STUB: not implemented"; return false }
 
 // GetFeaturePreview returns the FeaturePreview field.
-func (a *AppInstanceSize) GetFeaturePreview() bool {
-	if a == nil {
-		return false
-	}
-	return a.FeaturePreview
-}
+func (a *AppInstanceSize) GetFeaturePreview() bool { _ = "STUB: not implemented"; return false }
 
 // GetMemoryBytes returns the MemoryBytes field.
-func (a *AppInstanceSize) GetMemoryBytes() string {
-	if a == nil {
-		return ""
-	}
-	return a.MemoryBytes
-}
+func (a *AppInstanceSize) GetMemoryBytes() string { _ = "STUB: not implemented"; return "" }
 
 // GetName returns the Name field.
-func (a *AppInstanceSize) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppInstanceSize) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetScalable returns the Scalable field.
-func (a *AppInstanceSize) GetScalable() bool {
-	if a == nil {
-		return false
-	}
-	return a.Scalable
-}
+func (a *AppInstanceSize) GetScalable() bool { _ = "STUB: not implemented"; return false }
 
 // GetSingleInstanceOnly returns the SingleInstanceOnly field.
-func (a *AppInstanceSize) GetSingleInstanceOnly() bool {
-	if a == nil {
-		return false
-	}
-	return a.SingleInstanceOnly
-}
+func (a *AppInstanceSize) GetSingleInstanceOnly() bool { _ = "STUB: not implemented"; return false }
 
 // GetSlug returns the Slug field.
-func (a *AppInstanceSize) GetSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.Slug
-}
+func (a *AppInstanceSize) GetSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetTierDowngradeTo returns the TierDowngradeTo field.
-func (a *AppInstanceSize) GetTierDowngradeTo() string {
-	if a == nil {
-		return ""
-	}
-	return a.TierDowngradeTo
-}
+func (a *AppInstanceSize) GetTierDowngradeTo() string { _ = "STUB: not implemented"; return "" }
 
 // GetTierSlug returns the TierSlug field.
-func (a *AppInstanceSize) GetTierSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.TierSlug
-}
+func (a *AppInstanceSize) GetTierSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetTierUpgradeTo returns the TierUpgradeTo field.
-func (a *AppInstanceSize) GetTierUpgradeTo() string {
-	if a == nil {
-		return ""
-	}
-	return a.TierUpgradeTo
-}
+func (a *AppInstanceSize) GetTierUpgradeTo() string { _ = "STUB: not implemented"; return "" }
 
 // GetUSDPerMonth returns the USDPerMonth field.
-func (a *AppInstanceSize) GetUSDPerMonth() string {
-	if a == nil {
-		return ""
-	}
-	return a.USDPerMonth
-}
+func (a *AppInstanceSize) GetUSDPerMonth() string { _ = "STUB: not implemented"; return "" }
 
 // GetUSDPerSecond returns the USDPerSecond field.
-func (a *AppInstanceSize) GetUSDPerSecond() string {
-	if a == nil {
-		return ""
-	}
-	return a.USDPerSecond
-}
+func (a *AppInstanceSize) GetUSDPerSecond() string { _ = "STUB: not implemented"; return "" }
 
 // GetAlerts returns the Alerts field.
-func (a *AppJobSpec) GetAlerts() []*AppAlertSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Alerts
-}
+func (a *AppJobSpec) GetAlerts() []*AppAlertSpec { _ = "STUB: not implemented"; return nil }
 
 // GetBitbucket returns the Bitbucket field.
-func (a *AppJobSpec) GetBitbucket() *BitbucketSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Bitbucket
-}
+func (a *AppJobSpec) GetBitbucket() *BitbucketSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetBuildCommand returns the BuildCommand field.
-func (a *AppJobSpec) GetBuildCommand() string {
-	if a == nil {
-		return ""
-	}
-	return a.BuildCommand
-}
+func (a *AppJobSpec) GetBuildCommand() string { _ = "STUB: not implemented"; return "" }
 
 // GetDockerfilePath returns the DockerfilePath field.
-func (a *AppJobSpec) GetDockerfilePath() string {
-	if a == nil {
-		return ""
-	}
-	return a.DockerfilePath
-}
+func (a *AppJobSpec) GetDockerfilePath() string { _ = "STUB: not implemented"; return "" }
 
 // GetEnvironmentSlug returns the EnvironmentSlug field.
-func (a *AppJobSpec) GetEnvironmentSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.EnvironmentSlug
-}
+func (a *AppJobSpec) GetEnvironmentSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetEnvs returns the Envs field.
-func (a *AppJobSpec) GetEnvs() []*AppVariableDefinition {
-	if a == nil {
-		return nil
-	}
-	return a.Envs
-}
+func (a *AppJobSpec) GetEnvs() []*AppVariableDefinition { _ = "STUB: not implemented"; return nil }
 
 // GetGit returns the Git field.
-func (a *AppJobSpec) GetGit() *GitSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Git
-}
+func (a *AppJobSpec) GetGit() *GitSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitHub returns the GitHub field.
-func (a *AppJobSpec) GetGitHub() *GitHubSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.GitHub
-}
+func (a *AppJobSpec) GetGitHub() *GitHubSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitLab returns the GitLab field.
-func (a *AppJobSpec) GetGitLab() *GitLabSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.GitLab
-}
+func (a *AppJobSpec) GetGitLab() *GitLabSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetImage returns the Image field.
-func (a *AppJobSpec) GetImage() *ImageSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Image
-}
+func (a *AppJobSpec) GetImage() *ImageSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetInstanceCount returns the InstanceCount field.
-func (a *AppJobSpec) GetInstanceCount() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.InstanceCount
-}
+func (a *AppJobSpec) GetInstanceCount() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetInstanceSizeSlug returns the InstanceSizeSlug field.
-func (a *AppJobSpec) GetInstanceSizeSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.InstanceSizeSlug
-}
+func (a *AppJobSpec) GetInstanceSizeSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetKind returns the Kind field.
 func (a *AppJobSpec) GetKind() AppJobSpecKind {
-	if a == nil {
-		return ""
-	}
-	return a.Kind
+	_ = "STUB: not implemented"
+	return *new(AppJobSpecKind)
 }
 
 // GetLogDestinations returns the LogDestinations field.
 func (a *AppJobSpec) GetLogDestinations() []*AppLogDestinationSpec {
-	if a == nil {
-		return nil
-	}
-	return a.LogDestinations
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetName returns the Name field.
-func (a *AppJobSpec) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppJobSpec) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetRunCommand returns the RunCommand field.
-func (a *AppJobSpec) GetRunCommand() string {
-	if a == nil {
-		return ""
-	}
-	return a.RunCommand
-}
+func (a *AppJobSpec) GetRunCommand() string { _ = "STUB: not implemented"; return "" }
 
 // GetSchedule returns the Schedule field.
-func (a *AppJobSpec) GetSchedule() *AppJobSpecSchedule {
-	if a == nil {
-		return nil
-	}
-	return a.Schedule
-}
+func (a *AppJobSpec) GetSchedule() *AppJobSpecSchedule { _ = "STUB: not implemented"; return nil }
 
 // GetSourceDir returns the SourceDir field.
-func (a *AppJobSpec) GetSourceDir() string {
-	if a == nil {
-		return ""
-	}
-	return a.SourceDir
-}
+func (a *AppJobSpec) GetSourceDir() string { _ = "STUB: not implemented"; return "" }
 
 // GetTermination returns the Termination field.
-func (a *AppJobSpec) GetTermination() *AppJobSpecTermination {
-	if a == nil {
-		return nil
-	}
-	return a.Termination
-}
+func (a *AppJobSpec) GetTermination() *AppJobSpecTermination { _ = "STUB: not implemented"; return nil }
 
 // GetTimeout returns the Timeout field.
-func (a *AppJobSpec) GetTimeout() string {
-	if a == nil {
-		return ""
-	}
-	return a.Timeout
-}
+func (a *AppJobSpec) GetTimeout() string { _ = "STUB: not implemented"; return "" }
 
 // GetCron returns the Cron field.
-func (a *AppJobSpecSchedule) GetCron() string {
-	if a == nil {
-		return ""
-	}
-	return a.Cron
-}
+func (a *AppJobSpecSchedule) GetCron() string { _ = "STUB: not implemented"; return "" }
 
 // GetTimeZone returns the TimeZone field.
-func (a *AppJobSpecSchedule) GetTimeZone() string {
-	if a == nil {
-		return ""
-	}
-	return a.TimeZone
-}
+func (a *AppJobSpecSchedule) GetTimeZone() string { _ = "STUB: not implemented"; return "" }
 
 // GetGracePeriodSeconds returns the GracePeriodSeconds field.
-func (a *AppJobSpecTermination) GetGracePeriodSeconds() int32 {
-	if a == nil {
-		return 0
-	}
-	return a.GracePeriodSeconds
-}
+func (a *AppJobSpecTermination) GetGracePeriodSeconds() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetDatadog returns the Datadog field.
 func (a *AppLogDestinationSpec) GetDatadog() *AppLogDestinationSpecDataDog {
-	if a == nil {
-		return nil
-	}
-	return a.Datadog
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetEndpoint returns the Endpoint field.
-func (a *AppLogDestinationSpec) GetEndpoint() string {
-	if a == nil {
-		return ""
-	}
-	return a.Endpoint
-}
+func (a *AppLogDestinationSpec) GetEndpoint() string { _ = "STUB: not implemented"; return "" }
 
 // GetHeaders returns the Headers field.
 func (a *AppLogDestinationSpec) GetHeaders() []*AppLogDestinationSpecHeader {
-	if a == nil {
-		return nil
-	}
-	return a.Headers
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetLogtail returns the Logtail field.
 func (a *AppLogDestinationSpec) GetLogtail() *AppLogDestinationSpecLogtail {
-	if a == nil {
-		return nil
-	}
-	return a.Logtail
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetName returns the Name field.
-func (a *AppLogDestinationSpec) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppLogDestinationSpec) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetOpenSearch returns the OpenSearch field.
 func (a *AppLogDestinationSpec) GetOpenSearch() *AppLogDestinationSpecOpenSearch {
-	if a == nil {
-		return nil
-	}
-	return a.OpenSearch
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetPapertrail returns the Papertrail field.
 func (a *AppLogDestinationSpec) GetPapertrail() *AppLogDestinationSpecPapertrail {
-	if a == nil {
-		return nil
-	}
-	return a.Papertrail
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetTLSInsecure returns the TLSInsecure field.
-func (a *AppLogDestinationSpec) GetTLSInsecure() bool {
-	if a == nil {
-		return false
-	}
-	return a.TLSInsecure
-}
+func (a *AppLogDestinationSpec) GetTLSInsecure() bool { _ = "STUB: not implemented"; return false }
 
 // GetApiKey returns the ApiKey field.
-func (a *AppLogDestinationSpecDataDog) GetApiKey() string {
-	if a == nil {
-		return ""
-	}
-	return a.ApiKey
-}
+func (a *AppLogDestinationSpecDataDog) GetApiKey() string { _ = "STUB: not implemented"; return "" }
 
 // GetEndpoint returns the Endpoint field.
-func (a *AppLogDestinationSpecDataDog) GetEndpoint() string {
-	if a == nil {
-		return ""
-	}
-	return a.Endpoint
-}
+func (a *AppLogDestinationSpecDataDog) GetEndpoint() string { _ = "STUB: not implemented"; return "" }
 
 // GetKey returns the Key field.
-func (a *AppLogDestinationSpecHeader) GetKey() string {
-	if a == nil {
-		return ""
-	}
-	return a.Key
-}
+func (a *AppLogDestinationSpecHeader) GetKey() string { _ = "STUB: not implemented"; return "" }
 
 // GetValue returns the Value field.
-func (a *AppLogDestinationSpecHeader) GetValue() string {
-	if a == nil {
-		return ""
-	}
-	return a.Value
-}
+func (a *AppLogDestinationSpecHeader) GetValue() string { _ = "STUB: not implemented"; return "" }
 
 // GetToken returns the Token field.
-func (a *AppLogDestinationSpecLogtail) GetToken() string {
-	if a == nil {
-		return ""
-	}
-	return a.Token
-}
+func (a *AppLogDestinationSpecLogtail) GetToken() string { _ = "STUB: not implemented"; return "" }
 
 // GetBasicAuth returns the BasicAuth field.
 func (a *AppLogDestinationSpecOpenSearch) GetBasicAuth() *OpenSearchBasicAuth {
-	if a == nil {
-		return nil
-	}
-	return a.BasicAuth
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetClusterName returns the ClusterName field.
 func (a *AppLogDestinationSpecOpenSearch) GetClusterName() string {
-	if a == nil {
-		return ""
-	}
-	return a.ClusterName
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetEndpoint returns the Endpoint field.
 func (a *AppLogDestinationSpecOpenSearch) GetEndpoint() string {
-	if a == nil {
-		return ""
-	}
-	return a.Endpoint
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetIndexName returns the IndexName field.
 func (a *AppLogDestinationSpecOpenSearch) GetIndexName() string {
-	if a == nil {
-		return ""
-	}
-	return a.IndexName
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetEndpoint returns the Endpoint field.
 func (a *AppLogDestinationSpecPapertrail) GetEndpoint() string {
-	if a == nil {
-		return ""
-	}
-	return a.Endpoint
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetArchive returns the Archive field.
-func (a *AppMaintenanceSpec) GetArchive() bool {
-	if a == nil {
-		return false
-	}
-	return a.Archive
-}
+func (a *AppMaintenanceSpec) GetArchive() bool { _ = "STUB: not implemented"; return false }
 
 // GetEnabled returns the Enabled field.
-func (a *AppMaintenanceSpec) GetEnabled() bool {
-	if a == nil {
-		return false
-	}
-	return a.Enabled
-}
+func (a *AppMaintenanceSpec) GetEnabled() bool { _ = "STUB: not implemented"; return false }
 
 // GetOfflinePageURL returns the OfflinePageURL field.
-func (a *AppMaintenanceSpec) GetOfflinePageURL() string {
-	if a == nil {
-		return ""
-	}
-	return a.OfflinePageURL
-}
+func (a *AppMaintenanceSpec) GetOfflinePageURL() string { _ = "STUB: not implemented"; return "" }
 
 // GetAppID returns the AppID field.
-func (a *AppProposeRequest) GetAppID() string {
-	if a == nil {
-		return ""
-	}
-	return a.AppID
-}
+func (a *AppProposeRequest) GetAppID() string { _ = "STUB: not implemented"; return "" }
 
 // GetSpec returns the Spec field.
-func (a *AppProposeRequest) GetSpec() *AppSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Spec
-}
+func (a *AppProposeRequest) GetSpec() *AppSpec { _ = "STUB: not implemented"; return nil }
 
 // GetAppCost returns the AppCost field.
-func (a *AppProposeResponse) GetAppCost() float32 {
-	if a == nil {
-		return 0
-	}
-	return a.AppCost
-}
+func (a *AppProposeResponse) GetAppCost() float32 { _ = "STUB: not implemented"; return 0 }
 
 // GetAppIsStarter returns the AppIsStarter field.
-func (a *AppProposeResponse) GetAppIsStarter() bool {
-	if a == nil {
-		return false
-	}
-	return a.AppIsStarter
-}
+func (a *AppProposeResponse) GetAppIsStarter() bool { _ = "STUB: not implemented"; return false }
 
 // GetAppIsStatic returns the AppIsStatic field.
-func (a *AppProposeResponse) GetAppIsStatic() bool {
-	if a == nil {
-		return false
-	}
-	return a.AppIsStatic
-}
+func (a *AppProposeResponse) GetAppIsStatic() bool { _ = "STUB: not implemented"; return false }
 
 // GetAppNameAvailable returns the AppNameAvailable field.
-func (a *AppProposeResponse) GetAppNameAvailable() bool {
-	if a == nil {
-		return false
-	}
-	return a.AppNameAvailable
-}
+func (a *AppProposeResponse) GetAppNameAvailable() bool { _ = "STUB: not implemented"; return false }
 
 // GetAppNameSuggestion returns the AppNameSuggestion field.
-func (a *AppProposeResponse) GetAppNameSuggestion() string {
-	if a == nil {
-		return ""
-	}
-	return a.AppNameSuggestion
-}
+func (a *AppProposeResponse) GetAppNameSuggestion() string { _ = "STUB: not implemented"; return "" }
 
 // GetAppTierDowngradeCost returns the AppTierDowngradeCost field.
-func (a *AppProposeResponse) GetAppTierDowngradeCost() float32 {
-	if a == nil {
-		return 0
-	}
-	return a.AppTierDowngradeCost
-}
+func (a *AppProposeResponse) GetAppTierDowngradeCost() float32 { _ = "STUB: not implemented"; return 0 }
 
 // GetAppTierUpgradeCost returns the AppTierUpgradeCost field.
-func (a *AppProposeResponse) GetAppTierUpgradeCost() float32 {
-	if a == nil {
-		return 0
-	}
-	return a.AppTierUpgradeCost
-}
+func (a *AppProposeResponse) GetAppTierUpgradeCost() float32 { _ = "STUB: not implemented"; return 0 }
 
 // GetExistingStarterApps returns the ExistingStarterApps field.
-func (a *AppProposeResponse) GetExistingStarterApps() string {
-	if a == nil {
-		return ""
-	}
-	return a.ExistingStarterApps
-}
+func (a *AppProposeResponse) GetExistingStarterApps() string { _ = "STUB: not implemented"; return "" }
 
 // GetExistingStaticApps returns the ExistingStaticApps field.
-func (a *AppProposeResponse) GetExistingStaticApps() string {
-	if a == nil {
-		return ""
-	}
-	return a.ExistingStaticApps
-}
+func (a *AppProposeResponse) GetExistingStaticApps() string { _ = "STUB: not implemented"; return "" }
 
 // GetMaxFreeStarterApps returns the MaxFreeStarterApps field.
-func (a *AppProposeResponse) GetMaxFreeStarterApps() string {
-	if a == nil {
-		return ""
-	}
-	return a.MaxFreeStarterApps
-}
+func (a *AppProposeResponse) GetMaxFreeStarterApps() string { _ = "STUB: not implemented"; return "" }
 
 // GetMaxFreeStaticApps returns the MaxFreeStaticApps field.
-func (a *AppProposeResponse) GetMaxFreeStaticApps() string {
-	if a == nil {
-		return ""
-	}
-	return a.MaxFreeStaticApps
-}
+func (a *AppProposeResponse) GetMaxFreeStaticApps() string { _ = "STUB: not implemented"; return "" }
 
 // GetSpec returns the Spec field.
-func (a *AppProposeResponse) GetSpec() *AppSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Spec
-}
+func (a *AppProposeResponse) GetSpec() *AppSpec { _ = "STUB: not implemented"; return nil }
 
 // GetContinent returns the Continent field.
-func (a *AppRegion) GetContinent() string {
-	if a == nil {
-		return ""
-	}
-	return a.Continent
-}
+func (a *AppRegion) GetContinent() string { _ = "STUB: not implemented"; return "" }
 
 // GetDataCenters returns the DataCenters field.
-func (a *AppRegion) GetDataCenters() []string {
-	if a == nil {
-		return nil
-	}
-	return a.DataCenters
-}
+func (a *AppRegion) GetDataCenters() []string { _ = "STUB: not implemented"; return nil }
 
 // GetDefault returns the Default field.
-func (a *AppRegion) GetDefault() bool {
-	if a == nil {
-		return false
-	}
-	return a.Default
-}
+func (a *AppRegion) GetDefault() bool { _ = "STUB: not implemented"; return false }
 
 // GetDisabled returns the Disabled field.
-func (a *AppRegion) GetDisabled() bool {
-	if a == nil {
-		return false
-	}
-	return a.Disabled
-}
+func (a *AppRegion) GetDisabled() bool { _ = "STUB: not implemented"; return false }
 
 // GetFlag returns the Flag field.
-func (a *AppRegion) GetFlag() string {
-	if a == nil {
-		return ""
-	}
-	return a.Flag
-}
+func (a *AppRegion) GetFlag() string { _ = "STUB: not implemented"; return "" }
 
 // GetLabel returns the Label field.
-func (a *AppRegion) GetLabel() string {
-	if a == nil {
-		return ""
-	}
-	return a.Label
-}
+func (a *AppRegion) GetLabel() string { _ = "STUB: not implemented"; return "" }
 
 // GetReason returns the Reason field.
-func (a *AppRegion) GetReason() string {
-	if a == nil {
-		return ""
-	}
-	return a.Reason
-}
+func (a *AppRegion) GetReason() string { _ = "STUB: not implemented"; return "" }
 
 // GetSlug returns the Slug field.
-func (a *AppRegion) GetSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.Slug
-}
+func (a *AppRegion) GetSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetPath returns the Path field.
-func (a *AppRouteSpec) GetPath() string {
-	if a == nil {
-		return ""
-	}
-	return a.Path
-}
+func (a *AppRouteSpec) GetPath() string { _ = "STUB: not implemented"; return "" }
 
 // GetPreservePathPrefix returns the PreservePathPrefix field.
-func (a *AppRouteSpec) GetPreservePathPrefix() bool {
-	if a == nil {
-		return false
-	}
-	return a.PreservePathPrefix
-}
+func (a *AppRouteSpec) GetPreservePathPrefix() bool { _ = "STUB: not implemented"; return false }
 
 // GetAlerts returns the Alerts field.
-func (a *AppServiceSpec) GetAlerts() []*AppAlertSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Alerts
-}
+func (a *AppServiceSpec) GetAlerts() []*AppAlertSpec { _ = "STUB: not implemented"; return nil }
 
 // GetAutoscaling returns the Autoscaling field.
 func (a *AppServiceSpec) GetAutoscaling() *AppAutoscalingSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Autoscaling
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetBitbucket returns the Bitbucket field.
-func (a *AppServiceSpec) GetBitbucket() *BitbucketSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Bitbucket
-}
+func (a *AppServiceSpec) GetBitbucket() *BitbucketSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetBuildCommand returns the BuildCommand field.
-func (a *AppServiceSpec) GetBuildCommand() string {
-	if a == nil {
-		return ""
-	}
-	return a.BuildCommand
-}
+func (a *AppServiceSpec) GetBuildCommand() string { _ = "STUB: not implemented"; return "" }
 
 // GetCORS returns the CORS field.
-func (a *AppServiceSpec) GetCORS() *AppCORSPolicy {
-	if a == nil {
-		return nil
-	}
-	return a.CORS
-}
+func (a *AppServiceSpec) GetCORS() *AppCORSPolicy { _ = "STUB: not implemented"; return nil }
 
 // GetDockerfilePath returns the DockerfilePath field.
-func (a *AppServiceSpec) GetDockerfilePath() string {
-	if a == nil {
-		return ""
-	}
-	return a.DockerfilePath
-}
+func (a *AppServiceSpec) GetDockerfilePath() string { _ = "STUB: not implemented"; return "" }
 
 // GetEnvironmentSlug returns the EnvironmentSlug field.
-func (a *AppServiceSpec) GetEnvironmentSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.EnvironmentSlug
-}
+func (a *AppServiceSpec) GetEnvironmentSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetEnvs returns the Envs field.
-func (a *AppServiceSpec) GetEnvs() []*AppVariableDefinition {
-	if a == nil {
-		return nil
-	}
-	return a.Envs
-}
+func (a *AppServiceSpec) GetEnvs() []*AppVariableDefinition { _ = "STUB: not implemented"; return nil }
 
 // GetGit returns the Git field.
-func (a *AppServiceSpec) GetGit() *GitSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Git
-}
+func (a *AppServiceSpec) GetGit() *GitSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitHub returns the GitHub field.
-func (a *AppServiceSpec) GetGitHub() *GitHubSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.GitHub
-}
+func (a *AppServiceSpec) GetGitHub() *GitHubSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitLab returns the GitLab field.
-func (a *AppServiceSpec) GetGitLab() *GitLabSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.GitLab
-}
+func (a *AppServiceSpec) GetGitLab() *GitLabSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetHealthCheck returns the HealthCheck field.
 func (a *AppServiceSpec) GetHealthCheck() *AppServiceSpecHealthCheck {
-	if a == nil {
-		return nil
-	}
-	return a.HealthCheck
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetHTTPPort returns the HTTPPort field.
-func (a *AppServiceSpec) GetHTTPPort() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.HTTPPort
-}
+func (a *AppServiceSpec) GetHTTPPort() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetImage returns the Image field.
-func (a *AppServiceSpec) GetImage() *ImageSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Image
-}
+func (a *AppServiceSpec) GetImage() *ImageSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetInactivitySleep returns the InactivitySleep field.
 func (a *AppServiceSpec) GetInactivitySleep() *AppServiceSpecInactivitySleep {
-	if a == nil {
-		return nil
-	}
-	return a.InactivitySleep
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetInstanceCount returns the InstanceCount field.
-func (a *AppServiceSpec) GetInstanceCount() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.InstanceCount
-}
+func (a *AppServiceSpec) GetInstanceCount() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetInstanceSizeSlug returns the InstanceSizeSlug field.
-func (a *AppServiceSpec) GetInstanceSizeSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.InstanceSizeSlug
-}
+func (a *AppServiceSpec) GetInstanceSizeSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetInternalPorts returns the InternalPorts field.
-func (a *AppServiceSpec) GetInternalPorts() []int64 {
-	if a == nil {
-		return nil
-	}
-	return a.InternalPorts
-}
+func (a *AppServiceSpec) GetInternalPorts() []int64 { _ = "STUB: not implemented"; return nil }
 
 // GetLivenessHealthCheck returns the LivenessHealthCheck field.
 func (a *AppServiceSpec) GetLivenessHealthCheck() *HealthCheckSpec {
-	if a == nil {
-		return nil
-	}
-	return a.LivenessHealthCheck
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetLogDestinations returns the LogDestinations field.
 func (a *AppServiceSpec) GetLogDestinations() []*AppLogDestinationSpec {
-	if a == nil {
-		return nil
-	}
-	return a.LogDestinations
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetName returns the Name field.
-func (a *AppServiceSpec) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppServiceSpec) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetProtocol returns the Protocol field.
 func (a *AppServiceSpec) GetProtocol() ServingProtocol {
-	if a == nil {
-		return ""
-	}
-	return a.Protocol
+	_ = "STUB: not implemented"
+	return *new(ServingProtocol)
 }
 
 // GetRoutes returns the Routes field.
-func (a *AppServiceSpec) GetRoutes() []*AppRouteSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Routes
-}
+func (a *AppServiceSpec) GetRoutes() []*AppRouteSpec { _ = "STUB: not implemented"; return nil }
 
 // GetRunCommand returns the RunCommand field.
-func (a *AppServiceSpec) GetRunCommand() string {
-	if a == nil {
-		return ""
-	}
-	return a.RunCommand
-}
+func (a *AppServiceSpec) GetRunCommand() string { _ = "STUB: not implemented"; return "" }
 
 // GetSourceDir returns the SourceDir field.
-func (a *AppServiceSpec) GetSourceDir() string {
-	if a == nil {
-		return ""
-	}
-	return a.SourceDir
-}
+func (a *AppServiceSpec) GetSourceDir() string { _ = "STUB: not implemented"; return "" }
 
 // GetTermination returns the Termination field.
 func (a *AppServiceSpec) GetTermination() *AppServiceSpecTermination {
-	if a == nil {
-		return nil
-	}
-	return a.Termination
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetFailureThreshold returns the FailureThreshold field.
 func (a *AppServiceSpecHealthCheck) GetFailureThreshold() int32 {
-	if a == nil {
-		return 0
-	}
-	return a.FailureThreshold
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // GetHTTPPath returns the HTTPPath field.
-func (a *AppServiceSpecHealthCheck) GetHTTPPath() string {
-	if a == nil {
-		return ""
-	}
-	return a.HTTPPath
-}
+func (a *AppServiceSpecHealthCheck) GetHTTPPath() string { _ = "STUB: not implemented"; return "" }
 
 // GetInitialDelaySeconds returns the InitialDelaySeconds field.
 func (a *AppServiceSpecHealthCheck) GetInitialDelaySeconds() int32 {
-	if a == nil {
-		return 0
-	}
-	return a.InitialDelaySeconds
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // GetPath returns the Path field.
-func (a *AppServiceSpecHealthCheck) GetPath() string {
-	if a == nil {
-		return ""
-	}
-	return a.Path
-}
+func (a *AppServiceSpecHealthCheck) GetPath() string { _ = "STUB: not implemented"; return "" }
 
 // GetPeriodSeconds returns the PeriodSeconds field.
-func (a *AppServiceSpecHealthCheck) GetPeriodSeconds() int32 {
-	if a == nil {
-		return 0
-	}
-	return a.PeriodSeconds
-}
+func (a *AppServiceSpecHealthCheck) GetPeriodSeconds() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetPort returns the Port field.
-func (a *AppServiceSpecHealthCheck) GetPort() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.Port
-}
+func (a *AppServiceSpecHealthCheck) GetPort() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetSuccessThreshold returns the SuccessThreshold field.
 func (a *AppServiceSpecHealthCheck) GetSuccessThreshold() int32 {
-	if a == nil {
-		return 0
-	}
-	return a.SuccessThreshold
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // GetTimeoutSeconds returns the TimeoutSeconds field.
-func (a *AppServiceSpecHealthCheck) GetTimeoutSeconds() int32 {
-	if a == nil {
-		return 0
-	}
-	return a.TimeoutSeconds
-}
+func (a *AppServiceSpecHealthCheck) GetTimeoutSeconds() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetAfterSeconds returns the AfterSeconds field.
 func (a *AppServiceSpecInactivitySleep) GetAfterSeconds() int32 {
-	if a == nil {
-		return 0
-	}
-	return a.AfterSeconds
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // GetLoadingPage returns the LoadingPage field.
 func (a *AppServiceSpecInactivitySleep) GetLoadingPage() *InactivitySleepLoadingPage {
-	if a == nil {
-		return nil
-	}
-	return a.LoadingPage
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetDrainSeconds returns the DrainSeconds field.
-func (a *AppServiceSpecTermination) GetDrainSeconds() int32 {
-	if a == nil {
-		return 0
-	}
-	return a.DrainSeconds
-}
+func (a *AppServiceSpecTermination) GetDrainSeconds() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetGracePeriodSeconds returns the GracePeriodSeconds field.
 func (a *AppServiceSpecTermination) GetGracePeriodSeconds() int32 {
-	if a == nil {
-		return 0
-	}
-	return a.GracePeriodSeconds
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // GetAlerts returns the Alerts field.
-func (a *AppSpec) GetAlerts() []*AppAlertSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Alerts
-}
+func (a *AppSpec) GetAlerts() []*AppAlertSpec { _ = "STUB: not implemented"; return nil }
 
 // GetDatabases returns the Databases field.
-func (a *AppSpec) GetDatabases() []*AppDatabaseSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Databases
-}
+func (a *AppSpec) GetDatabases() []*AppDatabaseSpec { _ = "STUB: not implemented"; return nil }
 
 // GetDisableEdgeCache returns the DisableEdgeCache field.
-func (a *AppSpec) GetDisableEdgeCache() bool {
-	if a == nil {
-		return false
-	}
-	return a.DisableEdgeCache
-}
+func (a *AppSpec) GetDisableEdgeCache() bool { _ = "STUB: not implemented"; return false }
 
 // GetDisableEmailObfuscation returns the DisableEmailObfuscation field.
-func (a *AppSpec) GetDisableEmailObfuscation() bool {
-	if a == nil {
-		return false
-	}
-	return a.DisableEmailObfuscation
-}
+func (a *AppSpec) GetDisableEmailObfuscation() bool { _ = "STUB: not implemented"; return false }
 
 // GetDomains returns the Domains field.
-func (a *AppSpec) GetDomains() []*AppDomainSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Domains
-}
+func (a *AppSpec) GetDomains() []*AppDomainSpec { _ = "STUB: not implemented"; return nil }
 
 // GetEgress returns the Egress field.
-func (a *AppSpec) GetEgress() *AppEgressSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Egress
-}
+func (a *AppSpec) GetEgress() *AppEgressSpec { _ = "STUB: not implemented"; return nil }
 
 // GetEnhancedThreatControlEnabled returns the EnhancedThreatControlEnabled field.
-func (a *AppSpec) GetEnhancedThreatControlEnabled() bool {
-	if a == nil {
-		return false
-	}
-	return a.EnhancedThreatControlEnabled
-}
+func (a *AppSpec) GetEnhancedThreatControlEnabled() bool { _ = "STUB: not implemented"; return false }
 
 // GetEnvs returns the Envs field.
-func (a *AppSpec) GetEnvs() []*AppVariableDefinition {
-	if a == nil {
-		return nil
-	}
-	return a.Envs
-}
+func (a *AppSpec) GetEnvs() []*AppVariableDefinition { _ = "STUB: not implemented"; return nil }
 
 // GetFeatures returns the Features field.
-func (a *AppSpec) GetFeatures() []string {
-	if a == nil {
-		return nil
-	}
-	return a.Features
-}
+func (a *AppSpec) GetFeatures() []string { _ = "STUB: not implemented"; return nil }
 
 // GetFunctions returns the Functions field.
-func (a *AppSpec) GetFunctions() []*AppFunctionsSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Functions
-}
+func (a *AppSpec) GetFunctions() []*AppFunctionsSpec { _ = "STUB: not implemented"; return nil }
 
 // GetIngress returns the Ingress field.
-func (a *AppSpec) GetIngress() *AppIngressSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Ingress
-}
+func (a *AppSpec) GetIngress() *AppIngressSpec { _ = "STUB: not implemented"; return nil }
 
 // GetJobs returns the Jobs field.
-func (a *AppSpec) GetJobs() []*AppJobSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Jobs
-}
+func (a *AppSpec) GetJobs() []*AppJobSpec { _ = "STUB: not implemented"; return nil }
 
 // GetMaintenance returns the Maintenance field.
-func (a *AppSpec) GetMaintenance() *AppMaintenanceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Maintenance
-}
+func (a *AppSpec) GetMaintenance() *AppMaintenanceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetName returns the Name field.
-func (a *AppSpec) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppSpec) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetRegion returns the Region field.
-func (a *AppSpec) GetRegion() string {
-	if a == nil {
-		return ""
-	}
-	return a.Region
-}
+func (a *AppSpec) GetRegion() string { _ = "STUB: not implemented"; return "" }
 
 // GetServices returns the Services field.
-func (a *AppSpec) GetServices() []*AppServiceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Services
-}
+func (a *AppSpec) GetServices() []*AppServiceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetStaticSites returns the StaticSites field.
-func (a *AppSpec) GetStaticSites() []*AppStaticSiteSpec {
-	if a == nil {
-		return nil
-	}
-	return a.StaticSites
-}
+func (a *AppSpec) GetStaticSites() []*AppStaticSiteSpec { _ = "STUB: not implemented"; return nil }
 
 // GetVpc returns the Vpc field.
-func (a *AppSpec) GetVpc() *AppVpcSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Vpc
-}
+func (a *AppSpec) GetVpc() *AppVpcSpec { _ = "STUB: not implemented"; return nil }
 
 // GetWorkers returns the Workers field.
-func (a *AppSpec) GetWorkers() []*AppWorkerSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Workers
-}
+func (a *AppSpec) GetWorkers() []*AppWorkerSpec { _ = "STUB: not implemented"; return nil }
 
 // GetBitbucket returns the Bitbucket field.
 func (a *AppStaticSiteSpec) GetBitbucket() *BitbucketSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Bitbucket
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetBuildCommand returns the BuildCommand field.
-func (a *AppStaticSiteSpec) GetBuildCommand() string {
-	if a == nil {
-		return ""
-	}
-	return a.BuildCommand
-}
+func (a *AppStaticSiteSpec) GetBuildCommand() string { _ = "STUB: not implemented"; return "" }
 
 // GetCatchallDocument returns the CatchallDocument field.
-func (a *AppStaticSiteSpec) GetCatchallDocument() string {
-	if a == nil {
-		return ""
-	}
-	return a.CatchallDocument
-}
+func (a *AppStaticSiteSpec) GetCatchallDocument() string { _ = "STUB: not implemented"; return "" }
 
 // GetCORS returns the CORS field.
-func (a *AppStaticSiteSpec) GetCORS() *AppCORSPolicy {
-	if a == nil {
-		return nil
-	}
-	return a.CORS
-}
+func (a *AppStaticSiteSpec) GetCORS() *AppCORSPolicy { _ = "STUB: not implemented"; return nil }
 
 // GetDockerfilePath returns the DockerfilePath field.
-func (a *AppStaticSiteSpec) GetDockerfilePath() string {
-	if a == nil {
-		return ""
-	}
-	return a.DockerfilePath
-}
+func (a *AppStaticSiteSpec) GetDockerfilePath() string { _ = "STUB: not implemented"; return "" }
 
 // GetEnvironmentSlug returns the EnvironmentSlug field.
-func (a *AppStaticSiteSpec) GetEnvironmentSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.EnvironmentSlug
-}
+func (a *AppStaticSiteSpec) GetEnvironmentSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetEnvs returns the Envs field.
 func (a *AppStaticSiteSpec) GetEnvs() []*AppVariableDefinition {
-	if a == nil {
-		return nil
-	}
-	return a.Envs
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetErrorDocument returns the ErrorDocument field.
-func (a *AppStaticSiteSpec) GetErrorDocument() string {
-	if a == nil {
-		return ""
-	}
-	return a.ErrorDocument
-}
+func (a *AppStaticSiteSpec) GetErrorDocument() string { _ = "STUB: not implemented"; return "" }
 
 // GetGit returns the Git field.
-func (a *AppStaticSiteSpec) GetGit() *GitSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Git
-}
+func (a *AppStaticSiteSpec) GetGit() *GitSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitHub returns the GitHub field.
-func (a *AppStaticSiteSpec) GetGitHub() *GitHubSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.GitHub
-}
+func (a *AppStaticSiteSpec) GetGitHub() *GitHubSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitLab returns the GitLab field.
-func (a *AppStaticSiteSpec) GetGitLab() *GitLabSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.GitLab
-}
+func (a *AppStaticSiteSpec) GetGitLab() *GitLabSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetIndexDocument returns the IndexDocument field.
-func (a *AppStaticSiteSpec) GetIndexDocument() string {
-	if a == nil {
-		return ""
-	}
-	return a.IndexDocument
-}
+func (a *AppStaticSiteSpec) GetIndexDocument() string { _ = "STUB: not implemented"; return "" }
 
 // GetName returns the Name field.
-func (a *AppStaticSiteSpec) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppStaticSiteSpec) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetOutputDir returns the OutputDir field.
-func (a *AppStaticSiteSpec) GetOutputDir() string {
-	if a == nil {
-		return ""
-	}
-	return a.OutputDir
-}
+func (a *AppStaticSiteSpec) GetOutputDir() string { _ = "STUB: not implemented"; return "" }
 
 // GetRoutes returns the Routes field.
-func (a *AppStaticSiteSpec) GetRoutes() []*AppRouteSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Routes
-}
+func (a *AppStaticSiteSpec) GetRoutes() []*AppRouteSpec { _ = "STUB: not implemented"; return nil }
 
 // GetSourceDir returns the SourceDir field.
-func (a *AppStaticSiteSpec) GetSourceDir() string {
-	if a == nil {
-		return ""
-	}
-	return a.SourceDir
-}
+func (a *AppStaticSiteSpec) GetSourceDir() string { _ = "STUB: not implemented"; return "" }
 
 // GetExact returns the Exact field.
-func (a *AppStringMatch) GetExact() string {
-	if a == nil {
-		return ""
-	}
-	return a.Exact
-}
+func (a *AppStringMatch) GetExact() string { _ = "STUB: not implemented"; return "" }
 
 // GetPrefix returns the Prefix field.
-func (a *AppStringMatch) GetPrefix() string {
-	if a == nil {
-		return ""
-	}
-	return a.Prefix
-}
+func (a *AppStringMatch) GetPrefix() string { _ = "STUB: not implemented"; return "" }
 
 // GetRegex returns the Regex field.
-func (a *AppStringMatch) GetRegex() string {
-	if a == nil {
-		return ""
-	}
-	return a.Regex
-}
+func (a *AppStringMatch) GetRegex() string { _ = "STUB: not implemented"; return "" }
 
 // GetBuildSeconds returns the BuildSeconds field.
-func (a *AppTier) GetBuildSeconds() string {
-	if a == nil {
-		return ""
-	}
-	return a.BuildSeconds
-}
+func (a *AppTier) GetBuildSeconds() string { _ = "STUB: not implemented"; return "" }
 
 // GetEgressBandwidthBytes returns the EgressBandwidthBytes field.
-func (a *AppTier) GetEgressBandwidthBytes() string {
-	if a == nil {
-		return ""
-	}
-	return a.EgressBandwidthBytes
-}
+func (a *AppTier) GetEgressBandwidthBytes() string { _ = "STUB: not implemented"; return "" }
 
 // GetName returns the Name field.
-func (a *AppTier) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppTier) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetSlug returns the Slug field.
-func (a *AppTier) GetSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.Slug
-}
+func (a *AppTier) GetSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetKey returns the Key field.
-func (a *AppVariableDefinition) GetKey() string {
-	if a == nil {
-		return ""
-	}
-	return a.Key
-}
+func (a *AppVariableDefinition) GetKey() string { _ = "STUB: not implemented"; return "" }
 
 // GetScope returns the Scope field.
 func (a *AppVariableDefinition) GetScope() AppVariableScope {
-	if a == nil {
-		return ""
-	}
-	return a.Scope
+	_ = "STUB: not implemented"
+	return *new(AppVariableScope)
 }
 
 // GetType returns the Type field.
 func (a *AppVariableDefinition) GetType() AppVariableType {
-	if a == nil {
-		return ""
-	}
-	return a.Type
+	_ = "STUB: not implemented"
+	return *new(AppVariableType)
 }
 
 // GetValue returns the Value field.
-func (a *AppVariableDefinition) GetValue() string {
-	if a == nil {
-		return ""
-	}
-	return a.Value
-}
+func (a *AppVariableDefinition) GetValue() string { _ = "STUB: not implemented"; return "" }
 
 // GetEgressIPs returns the EgressIPs field.
-func (a *AppVPC) GetEgressIPs() []*AppVPCEgressIP {
-	if a == nil {
-		return nil
-	}
-	return a.EgressIPs
-}
+func (a *AppVPC) GetEgressIPs() []*AppVPCEgressIP { _ = "STUB: not implemented"; return nil }
 
 // GetID returns the ID field.
-func (a *AppVPC) GetID() string {
-	if a == nil {
-		return ""
-	}
-	return a.ID
-}
+func (a *AppVPC) GetID() string { _ = "STUB: not implemented"; return "" }
 
 // GetIP returns the IP field.
-func (a *AppVPCEgressIP) GetIP() string {
-	if a == nil {
-		return ""
-	}
-	return a.IP
-}
+func (a *AppVPCEgressIP) GetIP() string { _ = "STUB: not implemented"; return "" }
 
 // GetID returns the ID field.
-func (a *AppVpcSpec) GetID() string {
-	if a == nil {
-		return ""
-	}
-	return a.ID
-}
+func (a *AppVpcSpec) GetID() string { _ = "STUB: not implemented"; return "" }
 
 // GetAlerts returns the Alerts field.
-func (a *AppWorkerSpec) GetAlerts() []*AppAlertSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Alerts
-}
+func (a *AppWorkerSpec) GetAlerts() []*AppAlertSpec { _ = "STUB: not implemented"; return nil }
 
 // GetAutoscaling returns the Autoscaling field.
-func (a *AppWorkerSpec) GetAutoscaling() *AppAutoscalingSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Autoscaling
-}
+func (a *AppWorkerSpec) GetAutoscaling() *AppAutoscalingSpec { _ = "STUB: not implemented"; return nil }
 
 // GetBitbucket returns the Bitbucket field.
-func (a *AppWorkerSpec) GetBitbucket() *BitbucketSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Bitbucket
-}
+func (a *AppWorkerSpec) GetBitbucket() *BitbucketSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetBuildCommand returns the BuildCommand field.
-func (a *AppWorkerSpec) GetBuildCommand() string {
-	if a == nil {
-		return ""
-	}
-	return a.BuildCommand
-}
+func (a *AppWorkerSpec) GetBuildCommand() string { _ = "STUB: not implemented"; return "" }
 
 // GetDockerfilePath returns the DockerfilePath field.
-func (a *AppWorkerSpec) GetDockerfilePath() string {
-	if a == nil {
-		return ""
-	}
-	return a.DockerfilePath
-}
+func (a *AppWorkerSpec) GetDockerfilePath() string { _ = "STUB: not implemented"; return "" }
 
 // GetEnvironmentSlug returns the EnvironmentSlug field.
-func (a *AppWorkerSpec) GetEnvironmentSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.EnvironmentSlug
-}
+func (a *AppWorkerSpec) GetEnvironmentSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetEnvs returns the Envs field.
-func (a *AppWorkerSpec) GetEnvs() []*AppVariableDefinition {
-	if a == nil {
-		return nil
-	}
-	return a.Envs
-}
+func (a *AppWorkerSpec) GetEnvs() []*AppVariableDefinition { _ = "STUB: not implemented"; return nil }
 
 // GetGit returns the Git field.
-func (a *AppWorkerSpec) GetGit() *GitSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Git
-}
+func (a *AppWorkerSpec) GetGit() *GitSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitHub returns the GitHub field.
-func (a *AppWorkerSpec) GetGitHub() *GitHubSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.GitHub
-}
+func (a *AppWorkerSpec) GetGitHub() *GitHubSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitLab returns the GitLab field.
-func (a *AppWorkerSpec) GetGitLab() *GitLabSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.GitLab
-}
+func (a *AppWorkerSpec) GetGitLab() *GitLabSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetImage returns the Image field.
-func (a *AppWorkerSpec) GetImage() *ImageSourceSpec {
-	if a == nil {
-		return nil
-	}
-	return a.Image
-}
+func (a *AppWorkerSpec) GetImage() *ImageSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetInstanceCount returns the InstanceCount field.
-func (a *AppWorkerSpec) GetInstanceCount() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.InstanceCount
-}
+func (a *AppWorkerSpec) GetInstanceCount() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetInstanceSizeSlug returns the InstanceSizeSlug field.
-func (a *AppWorkerSpec) GetInstanceSizeSlug() string {
-	if a == nil {
-		return ""
-	}
-	return a.InstanceSizeSlug
-}
+func (a *AppWorkerSpec) GetInstanceSizeSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetLivenessHealthCheck returns the LivenessHealthCheck field.
 func (a *AppWorkerSpec) GetLivenessHealthCheck() *HealthCheckSpec {
-	if a == nil {
-		return nil
-	}
-	return a.LivenessHealthCheck
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetLogDestinations returns the LogDestinations field.
 func (a *AppWorkerSpec) GetLogDestinations() []*AppLogDestinationSpec {
-	if a == nil {
-		return nil
-	}
-	return a.LogDestinations
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetName returns the Name field.
-func (a *AppWorkerSpec) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
-}
+func (a *AppWorkerSpec) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetRunCommand returns the RunCommand field.
-func (a *AppWorkerSpec) GetRunCommand() string {
-	if a == nil {
-		return ""
-	}
-	return a.RunCommand
-}
+func (a *AppWorkerSpec) GetRunCommand() string { _ = "STUB: not implemented"; return "" }
 
 // GetSourceDir returns the SourceDir field.
-func (a *AppWorkerSpec) GetSourceDir() string {
-	if a == nil {
-		return ""
-	}
-	return a.SourceDir
-}
+func (a *AppWorkerSpec) GetSourceDir() string { _ = "STUB: not implemented"; return "" }
 
 // GetTermination returns the Termination field.
 func (a *AppWorkerSpec) GetTermination() *AppWorkerSpecTermination {
-	if a == nil {
-		return nil
-	}
-	return a.Termination
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetGracePeriodSeconds returns the GracePeriodSeconds field.
 func (a *AppWorkerSpecTermination) GetGracePeriodSeconds() int32 {
-	if a == nil {
-		return 0
-	}
-	return a.GracePeriodSeconds
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // GetFrom returns the From field.
-func (a *AutoscalerActionScaleChange) GetFrom() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.From
-}
+func (a *AutoscalerActionScaleChange) GetFrom() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetTo returns the To field.
-func (a *AutoscalerActionScaleChange) GetTo() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.To
-}
+func (a *AutoscalerActionScaleChange) GetTo() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetTriggeringMetric returns the TriggeringMetric field.
 func (a *AutoscalerActionScaleChange) GetTriggeringMetric() string {
-	if a == nil {
-		return ""
-	}
-	return a.TriggeringMetric
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetFrom returns the From field.
-func (a *AutoscalingEventComponentScaleChange) GetFrom() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.From
-}
+func (a *AutoscalingEventComponentScaleChange) GetFrom() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetTo returns the To field.
-func (a *AutoscalingEventComponentScaleChange) GetTo() int64 {
-	if a == nil {
-		return 0
-	}
-	return a.To
-}
+func (a *AutoscalingEventComponentScaleChange) GetTo() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetTriggeringMetric returns the TriggeringMetric field.
 func (a *AutoscalingEventComponentScaleChange) GetTriggeringMetric() string {
-	if a == nil {
-		return ""
-	}
-	return a.TriggeringMetric
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetBranch returns the Branch field.
-func (b *BitbucketSourceSpec) GetBranch() string {
-	if b == nil {
-		return ""
-	}
-	return b.Branch
-}
+func (b *BitbucketSourceSpec) GetBranch() string { _ = "STUB: not implemented"; return "" }
 
 // GetDeployOnPush returns the DeployOnPush field.
-func (b *BitbucketSourceSpec) GetDeployOnPush() bool {
-	if b == nil {
-		return false
-	}
-	return b.DeployOnPush
-}
+func (b *BitbucketSourceSpec) GetDeployOnPush() bool { _ = "STUB: not implemented"; return false }
 
 // GetRepo returns the Repo field.
-func (b *BitbucketSourceSpec) GetRepo() string {
-	if b == nil {
-		return ""
-	}
-	return b.Repo
-}
+func (b *BitbucketSourceSpec) GetRepo() string { _ = "STUB: not implemented"; return "" }
 
 // GetDescription returns the Description field.
-func (b *Buildpack) GetDescription() []string {
-	if b == nil {
-		return nil
-	}
-	return b.Description
-}
+func (b *Buildpack) GetDescription() []string { _ = "STUB: not implemented"; return nil }
 
 // GetDocsLink returns the DocsLink field.
-func (b *Buildpack) GetDocsLink() string {
-	if b == nil {
-		return ""
-	}
-	return b.DocsLink
-}
+func (b *Buildpack) GetDocsLink() string { _ = "STUB: not implemented"; return "" }
 
 // GetID returns the ID field.
-func (b *Buildpack) GetID() string {
-	if b == nil {
-		return ""
-	}
-	return b.ID
-}
+func (b *Buildpack) GetID() string { _ = "STUB: not implemented"; return "" }
 
 // GetLatest returns the Latest field.
-func (b *Buildpack) GetLatest() bool {
-	if b == nil {
-		return false
-	}
-	return b.Latest
-}
+func (b *Buildpack) GetLatest() bool { _ = "STUB: not implemented"; return false }
 
 // GetMajorVersion returns the MajorVersion field.
-func (b *Buildpack) GetMajorVersion() int32 {
-	if b == nil {
-		return 0
-	}
-	return b.MajorVersion
-}
+func (b *Buildpack) GetMajorVersion() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetName returns the Name field.
-func (b *Buildpack) GetName() string {
-	if b == nil {
-		return ""
-	}
-	return b.Name
-}
+func (b *Buildpack) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetVersion returns the Version field.
-func (b *Buildpack) GetVersion() string {
-	if b == nil {
-		return ""
-	}
-	return b.Version
-}
+func (b *Buildpack) GetVersion() string { _ = "STUB: not implemented"; return "" }
 
 // GetCPUUsagePercent returns the CPUUsagePercent field.
-func (c *ComponentHealth) GetCPUUsagePercent() float64 {
-	if c == nil {
-		return 0
-	}
-	return c.CPUUsagePercent
-}
+func (c *ComponentHealth) GetCPUUsagePercent() float64 { _ = "STUB: not implemented"; return 0 }
 
 // GetMemoryUsagePercent returns the MemoryUsagePercent field.
-func (c *ComponentHealth) GetMemoryUsagePercent() float64 {
-	if c == nil {
-		return 0
-	}
-	return c.MemoryUsagePercent
-}
+func (c *ComponentHealth) GetMemoryUsagePercent() float64 { _ = "STUB: not implemented"; return 0 }
 
 // GetName returns the Name field.
-func (c *ComponentHealth) GetName() string {
-	if c == nil {
-		return ""
-	}
-	return c.Name
-}
+func (c *ComponentHealth) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetReplicasDesired returns the ReplicasDesired field.
-func (c *ComponentHealth) GetReplicasDesired() int64 {
-	if c == nil {
-		return 0
-	}
-	return c.ReplicasDesired
-}
+func (c *ComponentHealth) GetReplicasDesired() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetReplicasReady returns the ReplicasReady field.
-func (c *ComponentHealth) GetReplicasReady() int64 {
-	if c == nil {
-		return 0
-	}
-	return c.ReplicasReady
-}
+func (c *ComponentHealth) GetReplicasReady() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetState returns the State field.
 func (c *ComponentHealth) GetState() ComponentHealthStatus {
-	if c == nil {
-		return ""
-	}
-	return c.State
+	_ = "STUB: not implemented"
+	return *new(ComponentHealthStatus)
 }
 
 // GetCause returns the Cause field.
-func (d *Deployment) GetCause() string {
-	if d == nil {
-		return ""
-	}
-	return d.Cause
-}
+func (d *Deployment) GetCause() string { _ = "STUB: not implemented"; return "" }
 
 // GetCauseDetails returns the CauseDetails field.
 func (d *Deployment) GetCauseDetails() *DeploymentCauseDetails {
-	if d == nil {
-		return nil
-	}
-	return d.CauseDetails
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetClonedFrom returns the ClonedFrom field.
-func (d *Deployment) GetClonedFrom() string {
-	if d == nil {
-		return ""
-	}
-	return d.ClonedFrom
-}
+func (d *Deployment) GetClonedFrom() string { _ = "STUB: not implemented"; return "" }
 
 // GetCreatedAt returns the CreatedAt field.
-func (d *Deployment) GetCreatedAt() time.Time {
-	if d == nil {
-		return time.Time{}
-	}
-	return d.CreatedAt
-}
+func (d *Deployment) GetCreatedAt() time.Time { _ = "STUB: not implemented"; return *new(time.Time) }
 
 // GetFunctions returns the Functions field.
-func (d *Deployment) GetFunctions() []*DeploymentFunctions {
-	if d == nil {
-		return nil
-	}
-	return d.Functions
-}
+func (d *Deployment) GetFunctions() []*DeploymentFunctions { _ = "STUB: not implemented"; return nil }
 
 // GetID returns the ID field.
-func (d *Deployment) GetID() string {
-	if d == nil {
-		return ""
-	}
-	return d.ID
-}
+func (d *Deployment) GetID() string { _ = "STUB: not implemented"; return "" }
 
 // GetJobs returns the Jobs field.
-func (d *Deployment) GetJobs() []*DeploymentJob {
-	if d == nil {
-		return nil
-	}
-	return d.Jobs
-}
+func (d *Deployment) GetJobs() []*DeploymentJob { _ = "STUB: not implemented"; return nil }
 
 // GetLoadBalancerID returns the LoadBalancerID field.
-func (d *Deployment) GetLoadBalancerID() string {
-	if d == nil {
-		return ""
-	}
-	return d.LoadBalancerID
-}
+func (d *Deployment) GetLoadBalancerID() string { _ = "STUB: not implemented"; return "" }
 
 // GetPhase returns the Phase field.
 func (d *Deployment) GetPhase() DeploymentPhase {
-	if d == nil {
-		return ""
-	}
-	return d.Phase
+	_ = "STUB: not implemented"
+	return *new(DeploymentPhase)
 }
 
 // GetPhaseLastUpdatedAt returns the PhaseLastUpdatedAt field.
 func (d *Deployment) GetPhaseLastUpdatedAt() time.Time {
-	if d == nil {
-		return time.Time{}
-	}
-	return d.PhaseLastUpdatedAt
+	_ = "STUB: not implemented"
+	return *new(time.Time)
 }
 
 // GetPreviousDeploymentID returns the PreviousDeploymentID field.
-func (d *Deployment) GetPreviousDeploymentID() string {
-	if d == nil {
-		return ""
-	}
-	return d.PreviousDeploymentID
-}
+func (d *Deployment) GetPreviousDeploymentID() string { _ = "STUB: not implemented"; return "" }
 
 // GetProgress returns the Progress field.
-func (d *Deployment) GetProgress() *DeploymentProgress {
-	if d == nil {
-		return nil
-	}
-	return d.Progress
-}
+func (d *Deployment) GetProgress() *DeploymentProgress { _ = "STUB: not implemented"; return nil }
 
 // GetServices returns the Services field.
-func (d *Deployment) GetServices() []*DeploymentService {
-	if d == nil {
-		return nil
-	}
-	return d.Services
-}
+func (d *Deployment) GetServices() []*DeploymentService { _ = "STUB: not implemented"; return nil }
 
 // GetSpec returns the Spec field.
-func (d *Deployment) GetSpec() *AppSpec {
-	if d == nil {
-		return nil
-	}
-	return d.Spec
-}
+func (d *Deployment) GetSpec() *AppSpec { _ = "STUB: not implemented"; return nil }
 
 // GetStaticSites returns the StaticSites field.
 func (d *Deployment) GetStaticSites() []*DeploymentStaticSite {
-	if d == nil {
-		return nil
-	}
-	return d.StaticSites
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetTierSlug returns the TierSlug field.
-func (d *Deployment) GetTierSlug() string {
-	if d == nil {
-		return ""
-	}
-	return d.TierSlug
-}
+func (d *Deployment) GetTierSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetTiming returns the Timing field.
-func (d *Deployment) GetTiming() *DeploymentTiming {
-	if d == nil {
-		return nil
-	}
-	return d.Timing
-}
+func (d *Deployment) GetTiming() *DeploymentTiming { _ = "STUB: not implemented"; return nil }
 
 // GetUpdatedAt returns the UpdatedAt field.
-func (d *Deployment) GetUpdatedAt() time.Time {
-	if d == nil {
-		return time.Time{}
-	}
-	return d.UpdatedAt
-}
+func (d *Deployment) GetUpdatedAt() time.Time { _ = "STUB: not implemented"; return *new(time.Time) }
 
 // GetWorkers returns the Workers field.
-func (d *Deployment) GetWorkers() []*DeploymentWorker {
-	if d == nil {
-		return nil
-	}
-	return d.Workers
-}
+func (d *Deployment) GetWorkers() []*DeploymentWorker { _ = "STUB: not implemented"; return nil }
 
 // GetAutoscaler returns the Autoscaler field.
 func (d *DeploymentCauseDetails) GetAutoscaler() *DeploymentCauseDetailsAutoscalerAction {
-	if d == nil {
-		return nil
-	}
-	return d.Autoscaler
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetDigitalOceanUserAction returns the DigitalOceanUserAction field.
 func (d *DeploymentCauseDetails) GetDigitalOceanUserAction() *DeploymentCauseDetailsDigitalOceanUserAction {
-	if d == nil {
-		return nil
-	}
-	return d.DigitalOceanUserAction
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetDOCRPush returns the DOCRPush field.
 func (d *DeploymentCauseDetails) GetDOCRPush() *DeploymentCauseDetailsDOCRPush {
-	if d == nil {
-		return nil
-	}
-	return d.DOCRPush
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetGitPush returns the GitPush field.
 func (d *DeploymentCauseDetails) GetGitPush() *DeploymentCauseDetailsGitPush {
-	if d == nil {
-		return nil
-	}
-	return d.GitPush
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetInternal returns the Internal field.
-func (d *DeploymentCauseDetails) GetInternal() bool {
-	if d == nil {
-		return false
-	}
-	return d.Internal
-}
+func (d *DeploymentCauseDetails) GetInternal() bool { _ = "STUB: not implemented"; return false }
 
 // GetType returns the Type field.
 func (d *DeploymentCauseDetails) GetType() DeploymentCauseDetailsType {
-	if d == nil {
-		return ""
-	}
-	return d.Type
+	_ = "STUB: not implemented"
+	return *new(DeploymentCauseDetailsType)
 }
 
 // GetAutoscaled returns the Autoscaled field.
 func (d *DeploymentCauseDetailsAutoscalerAction) GetAutoscaled() bool {
-	if d == nil {
-		return false
-	}
-	return d.Autoscaled
+	_ = "STUB: not implemented"
+	return false
 }
 
 // GetScaledComponents returns the ScaledComponents map if it's non-nil, an empty map otherwise.
 func (d *DeploymentCauseDetailsAutoscalerAction) GetScaledComponents() map[string]AutoscalerActionScaleChange {
-	if d == nil || d.ScaledComponents == nil {
-		return map[string]AutoscalerActionScaleChange{}
-	}
-	return d.ScaledComponents
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetEmail returns the Email field.
 func (d *DeploymentCauseDetailsDigitalOceanUser) GetEmail() string {
-	if d == nil {
-		return ""
-	}
-	return d.Email
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetFullName returns the FullName field.
 func (d *DeploymentCauseDetailsDigitalOceanUser) GetFullName() string {
-	if d == nil {
-		return ""
-	}
-	return d.FullName
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetUUID returns the UUID field.
 func (d *DeploymentCauseDetailsDigitalOceanUser) GetUUID() string {
-	if d == nil {
-		return ""
-	}
-	return d.UUID
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetName returns the Name field.
 func (d *DeploymentCauseDetailsDigitalOceanUserAction) GetName() DeploymentCauseDetailsDigitalOceanUserActionName {
-	if d == nil {
-		return ""
-	}
-	return d.Name
+	_ = "STUB: not implemented"
+	return *new(DeploymentCauseDetailsDigitalOceanUserActionName)
 }
 
 // GetUser returns the User field.
 func (d *DeploymentCauseDetailsDigitalOceanUserAction) GetUser() *DeploymentCauseDetailsDigitalOceanUser {
-	if d == nil {
-		return nil
-	}
-	return d.User
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetImageDigest returns the ImageDigest field.
 func (d *DeploymentCauseDetailsDOCRPush) GetImageDigest() string {
-	if d == nil {
-		return ""
-	}
-	return d.ImageDigest
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetRegistry returns the Registry field.
-func (d *DeploymentCauseDetailsDOCRPush) GetRegistry() string {
-	if d == nil {
-		return ""
-	}
-	return d.Registry
-}
+func (d *DeploymentCauseDetailsDOCRPush) GetRegistry() string { _ = "STUB: not implemented"; return "" }
 
 // GetRepository returns the Repository field.
 func (d *DeploymentCauseDetailsDOCRPush) GetRepository() string {
-	if d == nil {
-		return ""
-	}
-	return d.Repository
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetTag returns the Tag field.
-func (d *DeploymentCauseDetailsDOCRPush) GetTag() string {
-	if d == nil {
-		return ""
-	}
-	return d.Tag
-}
+func (d *DeploymentCauseDetailsDOCRPush) GetTag() string { _ = "STUB: not implemented"; return "" }
 
 // GetBitbucket returns the Bitbucket field.
 func (d *DeploymentCauseDetailsGitPush) GetBitbucket() *BitbucketSourceSpec {
-	if d == nil {
-		return nil
-	}
-	return d.Bitbucket
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetCommitAuthor returns the CommitAuthor field.
 func (d *DeploymentCauseDetailsGitPush) GetCommitAuthor() string {
-	if d == nil {
-		return ""
-	}
-	return d.CommitAuthor
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetCommitMessage returns the CommitMessage field.
 func (d *DeploymentCauseDetailsGitPush) GetCommitMessage() string {
-	if d == nil {
-		return ""
-	}
-	return d.CommitMessage
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetCommitSHA returns the CommitSHA field.
-func (d *DeploymentCauseDetailsGitPush) GetCommitSHA() string {
-	if d == nil {
-		return ""
-	}
-	return d.CommitSHA
-}
+func (d *DeploymentCauseDetailsGitPush) GetCommitSHA() string { _ = "STUB: not implemented"; return "" }
 
 // GetGitHub returns the GitHub field.
 func (d *DeploymentCauseDetailsGitPush) GetGitHub() *GitHubSourceSpec {
-	if d == nil {
-		return nil
-	}
-	return d.GitHub
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetGitLab returns the GitLab field.
 func (d *DeploymentCauseDetailsGitPush) GetGitLab() *GitLabSourceSpec {
-	if d == nil {
-		return nil
-	}
-	return d.GitLab
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetUsername returns the Username field.
-func (d *DeploymentCauseDetailsGitPush) GetUsername() string {
-	if d == nil {
-		return ""
-	}
-	return d.Username
-}
+func (d *DeploymentCauseDetailsGitPush) GetUsername() string { _ = "STUB: not implemented"; return "" }
 
 // GetName returns the Name field.
-func (d *DeploymentFunctions) GetName() string {
-	if d == nil {
-		return ""
-	}
-	return d.Name
-}
+func (d *DeploymentFunctions) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetNamespace returns the Namespace field.
-func (d *DeploymentFunctions) GetNamespace() string {
-	if d == nil {
-		return ""
-	}
-	return d.Namespace
-}
+func (d *DeploymentFunctions) GetNamespace() string { _ = "STUB: not implemented"; return "" }
 
 // GetSourceCommitHash returns the SourceCommitHash field.
-func (d *DeploymentFunctions) GetSourceCommitHash() string {
-	if d == nil {
-		return ""
-	}
-	return d.SourceCommitHash
-}
+func (d *DeploymentFunctions) GetSourceCommitHash() string { _ = "STUB: not implemented"; return "" }
 
 // GetBuildpacks returns the Buildpacks field.
-func (d *DeploymentJob) GetBuildpacks() []*Buildpack {
-	if d == nil {
-		return nil
-	}
-	return d.Buildpacks
-}
+func (d *DeploymentJob) GetBuildpacks() []*Buildpack { _ = "STUB: not implemented"; return nil }
 
 // GetName returns the Name field.
-func (d *DeploymentJob) GetName() string {
-	if d == nil {
-		return ""
-	}
-	return d.Name
-}
+func (d *DeploymentJob) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetSourceCommitHash returns the SourceCommitHash field.
-func (d *DeploymentJob) GetSourceCommitHash() string {
-	if d == nil {
-		return ""
-	}
-	return d.SourceCommitHash
-}
+func (d *DeploymentJob) GetSourceCommitHash() string { _ = "STUB: not implemented"; return "" }
 
 // GetErrorSteps returns the ErrorSteps field.
-func (d *DeploymentProgress) GetErrorSteps() int32 {
-	if d == nil {
-		return 0
-	}
-	return d.ErrorSteps
-}
+func (d *DeploymentProgress) GetErrorSteps() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetPendingSteps returns the PendingSteps field.
-func (d *DeploymentProgress) GetPendingSteps() int32 {
-	if d == nil {
-		return 0
-	}
-	return d.PendingSteps
-}
+func (d *DeploymentProgress) GetPendingSteps() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetRunningSteps returns the RunningSteps field.
-func (d *DeploymentProgress) GetRunningSteps() int32 {
-	if d == nil {
-		return 0
-	}
-	return d.RunningSteps
-}
+func (d *DeploymentProgress) GetRunningSteps() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetSteps returns the Steps field.
 func (d *DeploymentProgress) GetSteps() []*DeploymentProgressStep {
-	if d == nil {
-		return nil
-	}
-	return d.Steps
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetSuccessSteps returns the SuccessSteps field.
-func (d *DeploymentProgress) GetSuccessSteps() int32 {
-	if d == nil {
-		return 0
-	}
-	return d.SuccessSteps
-}
+func (d *DeploymentProgress) GetSuccessSteps() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetSummarySteps returns the SummarySteps field.
 func (d *DeploymentProgress) GetSummarySteps() []*DeploymentProgressStep {
-	if d == nil {
-		return nil
-	}
-	return d.SummarySteps
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetTotalSteps returns the TotalSteps field.
-func (d *DeploymentProgress) GetTotalSteps() int32 {
-	if d == nil {
-		return 0
-	}
-	return d.TotalSteps
-}
+func (d *DeploymentProgress) GetTotalSteps() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetComponentName returns the ComponentName field.
-func (d *DeploymentProgressStep) GetComponentName() string {
-	if d == nil {
-		return ""
-	}
-	return d.ComponentName
-}
+func (d *DeploymentProgressStep) GetComponentName() string { _ = "STUB: not implemented"; return "" }
 
 // GetEndedAt returns the EndedAt field.
 func (d *DeploymentProgressStep) GetEndedAt() time.Time {
-	if d == nil {
-		return time.Time{}
-	}
-	return d.EndedAt
+	_ = "STUB: not implemented"
+	return *new(time.Time)
 }
 
 // GetMessageBase returns the MessageBase field.
-func (d *DeploymentProgressStep) GetMessageBase() string {
-	if d == nil {
-		return ""
-	}
-	return d.MessageBase
-}
+func (d *DeploymentProgressStep) GetMessageBase() string { _ = "STUB: not implemented"; return "" }
 
 // GetName returns the Name field.
-func (d *DeploymentProgressStep) GetName() string {
-	if d == nil {
-		return ""
-	}
-	return d.Name
-}
+func (d *DeploymentProgressStep) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetReason returns the Reason field.
 func (d *DeploymentProgressStep) GetReason() *DeploymentProgressStepReason {
-	if d == nil {
-		return nil
-	}
-	return d.Reason
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetStartedAt returns the StartedAt field.
 func (d *DeploymentProgressStep) GetStartedAt() time.Time {
-	if d == nil {
-		return time.Time{}
-	}
-	return d.StartedAt
+	_ = "STUB: not implemented"
+	return *new(time.Time)
 }
 
 // GetStatus returns the Status field.
 func (d *DeploymentProgressStep) GetStatus() DeploymentProgressStepStatus {
-	if d == nil {
-		return ""
-	}
-	return d.Status
+	_ = "STUB: not implemented"
+	return *new(DeploymentProgressStepStatus)
 }
 
 // GetSteps returns the Steps field.
 func (d *DeploymentProgressStep) GetSteps() []*DeploymentProgressStep {
-	if d == nil {
-		return nil
-	}
-	return d.Steps
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetCode returns the Code field.
-func (d *DeploymentProgressStepReason) GetCode() string {
-	if d == nil {
-		return ""
-	}
-	return d.Code
-}
+func (d *DeploymentProgressStepReason) GetCode() string { _ = "STUB: not implemented"; return "" }
 
 // GetMessage returns the Message field.
-func (d *DeploymentProgressStepReason) GetMessage() string {
-	if d == nil {
-		return ""
-	}
-	return d.Message
-}
+func (d *DeploymentProgressStepReason) GetMessage() string { _ = "STUB: not implemented"; return "" }
 
 // GetBuildpacks returns the Buildpacks field.
-func (d *DeploymentService) GetBuildpacks() []*Buildpack {
-	if d == nil {
-		return nil
-	}
-	return d.Buildpacks
-}
+func (d *DeploymentService) GetBuildpacks() []*Buildpack { _ = "STUB: not implemented"; return nil }
 
 // GetName returns the Name field.
-func (d *DeploymentService) GetName() string {
-	if d == nil {
-		return ""
-	}
-	return d.Name
-}
+func (d *DeploymentService) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetSourceCommitHash returns the SourceCommitHash field.
-func (d *DeploymentService) GetSourceCommitHash() string {
-	if d == nil {
-		return ""
-	}
-	return d.SourceCommitHash
-}
+func (d *DeploymentService) GetSourceCommitHash() string { _ = "STUB: not implemented"; return "" }
 
 // GetBuildpacks returns the Buildpacks field.
-func (d *DeploymentStaticSite) GetBuildpacks() []*Buildpack {
-	if d == nil {
-		return nil
-	}
-	return d.Buildpacks
-}
+func (d *DeploymentStaticSite) GetBuildpacks() []*Buildpack { _ = "STUB: not implemented"; return nil }
 
 // GetName returns the Name field.
-func (d *DeploymentStaticSite) GetName() string {
-	if d == nil {
-		return ""
-	}
-	return d.Name
-}
+func (d *DeploymentStaticSite) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetSourceCommitHash returns the SourceCommitHash field.
-func (d *DeploymentStaticSite) GetSourceCommitHash() string {
-	if d == nil {
-		return ""
-	}
-	return d.SourceCommitHash
-}
+func (d *DeploymentStaticSite) GetSourceCommitHash() string { _ = "STUB: not implemented"; return "" }
 
 // GetBuildBillable returns the BuildBillable field.
-func (d *DeploymentTiming) GetBuildBillable() string {
-	if d == nil {
-		return ""
-	}
-	return d.BuildBillable
-}
+func (d *DeploymentTiming) GetBuildBillable() string { _ = "STUB: not implemented"; return "" }
 
 // GetBuildTotal returns the BuildTotal field.
-func (d *DeploymentTiming) GetBuildTotal() string {
-	if d == nil {
-		return ""
-	}
-	return d.BuildTotal
-}
+func (d *DeploymentTiming) GetBuildTotal() string { _ = "STUB: not implemented"; return "" }
 
 // GetComponents returns the Components field.
 func (d *DeploymentTiming) GetComponents() []*DeploymentTimingComponent {
-	if d == nil {
-		return nil
-	}
-	return d.Components
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetDatabaseProvision returns the DatabaseProvision field.
-func (d *DeploymentTiming) GetDatabaseProvision() string {
-	if d == nil {
-		return ""
-	}
-	return d.DatabaseProvision
-}
+func (d *DeploymentTiming) GetDatabaseProvision() string { _ = "STUB: not implemented"; return "" }
 
 // GetDeploying returns the Deploying field.
-func (d *DeploymentTiming) GetDeploying() string {
-	if d == nil {
-		return ""
-	}
-	return d.Deploying
-}
+func (d *DeploymentTiming) GetDeploying() string { _ = "STUB: not implemented"; return "" }
 
 // GetPending returns the Pending field.
-func (d *DeploymentTiming) GetPending() string {
-	if d == nil {
-		return ""
-	}
-	return d.Pending
-}
+func (d *DeploymentTiming) GetPending() string { _ = "STUB: not implemented"; return "" }
 
 // GetBuildBillable returns the BuildBillable field.
-func (d *DeploymentTimingComponent) GetBuildBillable() string {
-	if d == nil {
-		return ""
-	}
-	return d.BuildBillable
-}
+func (d *DeploymentTimingComponent) GetBuildBillable() string { _ = "STUB: not implemented"; return "" }
 
 // GetName returns the Name field.
-func (d *DeploymentTimingComponent) GetName() string {
-	if d == nil {
-		return ""
-	}
-	return d.Name
-}
+func (d *DeploymentTimingComponent) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetBuildpacks returns the Buildpacks field.
-func (d *DeploymentWorker) GetBuildpacks() []*Buildpack {
-	if d == nil {
-		return nil
-	}
-	return d.Buildpacks
-}
+func (d *DeploymentWorker) GetBuildpacks() []*Buildpack { _ = "STUB: not implemented"; return nil }
 
 // GetName returns the Name field.
-func (d *DeploymentWorker) GetName() string {
-	if d == nil {
-		return ""
-	}
-	return d.Name
-}
+func (d *DeploymentWorker) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetSourceCommitHash returns the SourceCommitHash field.
-func (d *DeploymentWorker) GetSourceCommitHash() string {
-	if d == nil {
-		return ""
-	}
-	return d.SourceCommitHash
-}
+func (d *DeploymentWorker) GetSourceCommitHash() string { _ = "STUB: not implemented"; return "" }
 
 // GetSpec returns the Spec field.
-func (d *DeployTemplate) GetSpec() *AppSpec {
-	if d == nil {
-		return nil
-	}
-	return d.Spec
-}
+func (d *DeployTemplate) GetSpec() *AppSpec { _ = "STUB: not implemented"; return nil }
 
 // GetBitbucket returns the Bitbucket field.
-func (d *DetectRequest) GetBitbucket() *BitbucketSourceSpec {
-	if d == nil {
-		return nil
-	}
-	return d.Bitbucket
-}
+func (d *DetectRequest) GetBitbucket() *BitbucketSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetCommitSHA returns the CommitSHA field.
-func (d *DetectRequest) GetCommitSHA() string {
-	if d == nil {
-		return ""
-	}
-	return d.CommitSHA
-}
+func (d *DetectRequest) GetCommitSHA() string { _ = "STUB: not implemented"; return "" }
 
 // GetGit returns the Git field.
-func (d *DetectRequest) GetGit() *GitSourceSpec {
-	if d == nil {
-		return nil
-	}
-	return d.Git
-}
+func (d *DetectRequest) GetGit() *GitSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitHub returns the GitHub field.
-func (d *DetectRequest) GetGitHub() *GitHubSourceSpec {
-	if d == nil {
-		return nil
-	}
-	return d.GitHub
-}
+func (d *DetectRequest) GetGitHub() *GitHubSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetGitLab returns the GitLab field.
-func (d *DetectRequest) GetGitLab() *GitLabSourceSpec {
-	if d == nil {
-		return nil
-	}
-	return d.GitLab
-}
+func (d *DetectRequest) GetGitLab() *GitLabSourceSpec { _ = "STUB: not implemented"; return nil }
 
 // GetSourceDir returns the SourceDir field.
-func (d *DetectRequest) GetSourceDir() string {
-	if d == nil {
-		return ""
-	}
-	return d.SourceDir
-}
+func (d *DetectRequest) GetSourceDir() string { _ = "STUB: not implemented"; return "" }
 
 // GetComponents returns the Components field.
 func (d *DetectResponse) GetComponents() []*DetectResponseComponent {
-	if d == nil {
-		return nil
-	}
-	return d.Components
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetPending returns the Pending field.
-func (d *DetectResponse) GetPending() bool {
-	if d == nil {
-		return false
-	}
-	return d.Pending
-}
+func (d *DetectResponse) GetPending() bool { _ = "STUB: not implemented"; return false }
 
 // GetTemplate returns the Template field.
-func (d *DetectResponse) GetTemplate() *DeployTemplate {
-	if d == nil {
-		return nil
-	}
-	return d.Template
-}
+func (d *DetectResponse) GetTemplate() *DeployTemplate { _ = "STUB: not implemented"; return nil }
 
 // GetTemplateError returns the TemplateError field.
-func (d *DetectResponse) GetTemplateError() string {
-	if d == nil {
-		return ""
-	}
-	return d.TemplateError
-}
+func (d *DetectResponse) GetTemplateError() string { _ = "STUB: not implemented"; return "" }
 
 // GetTemplateFound returns the TemplateFound field.
-func (d *DetectResponse) GetTemplateFound() bool {
-	if d == nil {
-		return false
-	}
-	return d.TemplateFound
-}
+func (d *DetectResponse) GetTemplateFound() bool { _ = "STUB: not implemented"; return false }
 
 // GetTemplateValid returns the TemplateValid field.
-func (d *DetectResponse) GetTemplateValid() bool {
-	if d == nil {
-		return false
-	}
-	return d.TemplateValid
-}
+func (d *DetectResponse) GetTemplateValid() bool { _ = "STUB: not implemented"; return false }
 
 // GetBuildCommand returns the BuildCommand field.
-func (d *DetectResponseComponent) GetBuildCommand() string {
-	if d == nil {
-		return ""
-	}
-	return d.BuildCommand
-}
+func (d *DetectResponseComponent) GetBuildCommand() string { _ = "STUB: not implemented"; return "" }
 
 // GetBuildpacks returns the Buildpacks field.
 func (d *DetectResponseComponent) GetBuildpacks() []*Buildpack {
-	if d == nil {
-		return nil
-	}
-	return d.Buildpacks
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetDockerfiles returns the Dockerfiles field.
-func (d *DetectResponseComponent) GetDockerfiles() []string {
-	if d == nil {
-		return nil
-	}
-	return d.Dockerfiles
-}
+func (d *DetectResponseComponent) GetDockerfiles() []string { _ = "STUB: not implemented"; return nil }
 
 // GetEnvironmentSlug returns the EnvironmentSlug field.
-func (d *DetectResponseComponent) GetEnvironmentSlug() string {
-	if d == nil {
-		return ""
-	}
-	return d.EnvironmentSlug
-}
+func (d *DetectResponseComponent) GetEnvironmentSlug() string { _ = "STUB: not implemented"; return "" }
 
 // GetEnvVars returns the EnvVars field.
 func (d *DetectResponseComponent) GetEnvVars() []*AppVariableDefinition {
-	if d == nil {
-		return nil
-	}
-	return d.EnvVars
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetHTTPPorts returns the HTTPPorts field.
-func (d *DetectResponseComponent) GetHTTPPorts() []int64 {
-	if d == nil {
-		return nil
-	}
-	return d.HTTPPorts
-}
+func (d *DetectResponseComponent) GetHTTPPorts() []int64 { _ = "STUB: not implemented"; return nil }
 
 // GetRunCommand returns the RunCommand field.
-func (d *DetectResponseComponent) GetRunCommand() string {
-	if d == nil {
-		return ""
-	}
-	return d.RunCommand
-}
+func (d *DetectResponseComponent) GetRunCommand() string { _ = "STUB: not implemented"; return "" }
 
 // GetServerlessPackages returns the ServerlessPackages field.
 func (d *DetectResponseComponent) GetServerlessPackages() []*DetectResponseServerlessPackage {
-	if d == nil {
-		return nil
-	}
-	return d.ServerlessPackages
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetSourceDir returns the SourceDir field.
-func (d *DetectResponseComponent) GetSourceDir() string {
-	if d == nil {
-		return ""
-	}
-	return d.SourceDir
-}
+func (d *DetectResponseComponent) GetSourceDir() string { _ = "STUB: not implemented"; return "" }
 
 // GetStrategy returns the Strategy field.
 func (d *DetectResponseComponent) GetStrategy() DetectResponseType {
-	if d == nil {
-		return ""
-	}
-	return d.Strategy
+	_ = "STUB: not implemented"
+	return *new(DetectResponseType)
 }
 
 // GetTypes returns the Types field.
-func (d *DetectResponseComponent) GetTypes() []string {
-	if d == nil {
-		return nil
-	}
-	return d.Types
-}
+func (d *DetectResponseComponent) GetTypes() []string { _ = "STUB: not implemented"; return nil }
 
 // GetLimits returns the Limits field.
 func (d *DetectResponseServerlessFunction) GetLimits() *DetectResponseServerlessFunctionLimits {
-	if d == nil {
-		return nil
-	}
-	return d.Limits
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetName returns the Name field.
-func (d *DetectResponseServerlessFunction) GetName() string {
-	if d == nil {
-		return ""
-	}
-	return d.Name
-}
+func (d *DetectResponseServerlessFunction) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetPackage returns the Package field.
 func (d *DetectResponseServerlessFunction) GetPackage() string {
-	if d == nil {
-		return ""
-	}
-	return d.Package
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetRuntime returns the Runtime field.
 func (d *DetectResponseServerlessFunction) GetRuntime() string {
-	if d == nil {
-		return ""
-	}
-	return d.Runtime
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetLogs returns the Logs field.
 func (d *DetectResponseServerlessFunctionLimits) GetLogs() string {
-	if d == nil {
-		return ""
-	}
-	return d.Logs
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetMemory returns the Memory field.
 func (d *DetectResponseServerlessFunctionLimits) GetMemory() string {
-	if d == nil {
-		return ""
-	}
-	return d.Memory
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetTimeout returns the Timeout field.
 func (d *DetectResponseServerlessFunctionLimits) GetTimeout() string {
-	if d == nil {
-		return ""
-	}
-	return d.Timeout
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetFunctions returns the Functions field.
 func (d *DetectResponseServerlessPackage) GetFunctions() []*DetectResponseServerlessFunction {
-	if d == nil {
-		return nil
-	}
-	return d.Functions
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetName returns the Name field.
-func (d *DetectResponseServerlessPackage) GetName() string {
-	if d == nil {
-		return ""
-	}
-	return d.Name
-}
+func (d *DetectResponseServerlessPackage) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetAutoscaling returns the Autoscaling field.
-func (e *Event) GetAutoscaling() *EventAutoscalingEvent {
-	if e == nil {
-		return nil
-	}
-	return e.Autoscaling
-}
+func (e *Event) GetAutoscaling() *EventAutoscalingEvent { _ = "STUB: not implemented"; return nil }
 
 // GetCreatedAt returns the CreatedAt field.
-func (e *Event) GetCreatedAt() time.Time {
-	if e == nil {
-		return time.Time{}
-	}
-	return e.CreatedAt
-}
+func (e *Event) GetCreatedAt() time.Time { _ = "STUB: not implemented"; return *new(time.Time) }
 
 // GetDeployment returns the Deployment field.
-func (e *Event) GetDeployment() *Deployment {
-	if e == nil {
-		return nil
-	}
-	return e.Deployment
-}
+func (e *Event) GetDeployment() *Deployment { _ = "STUB: not implemented"; return nil }
 
 // GetDeploymentID returns the DeploymentID field.
-func (e *Event) GetDeploymentID() string {
-	if e == nil {
-		return ""
-	}
-	return e.DeploymentID
-}
+func (e *Event) GetDeploymentID() string { _ = "STUB: not implemented"; return "" }
 
 // GetID returns the ID field.
-func (e *Event) GetID() string {
-	if e == nil {
-		return ""
-	}
-	return e.ID
-}
+func (e *Event) GetID() string { _ = "STUB: not implemented"; return "" }
 
 // GetType returns the Type field.
-func (e *Event) GetType() EventType {
-	if e == nil {
-		return ""
-	}
-	return e.Type
-}
+func (e *Event) GetType() EventType { _ = "STUB: not implemented"; return *new(EventType) }
 
 // GetComponents returns the Components field.
 func (e *EventAutoscalingEvent) GetComponents() map[string]AutoscalingEventComponentScaleChange {
-	if e == nil {
-		return nil
-	}
-	return e.Components
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetPhase returns the Phase field.
 func (e *EventAutoscalingEvent) GetPhase() EventAutoscalingEventPhase {
-	if e == nil {
-		return ""
-	}
-	return e.Phase
+	_ = "STUB: not implemented"
+	return *new(EventAutoscalingEventPhase)
 }
 
 // GetFunctionsComponentHealthMetrics returns the FunctionsComponentHealthMetrics field.
 func (f *FunctionsComponentHealth) GetFunctionsComponentHealthMetrics() []*FunctionsComponentHealthMetrics {
-	if f == nil {
-		return nil
-	}
-	return f.FunctionsComponentHealthMetrics
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetName returns the Name field.
-func (f *FunctionsComponentHealth) GetName() string {
-	if f == nil {
-		return ""
-	}
-	return f.Name
-}
+func (f *FunctionsComponentHealth) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // GetMetricLabel returns the MetricLabel field.
 func (f *FunctionsComponentHealthMetrics) GetMetricLabel() string {
-	if f == nil {
-		return ""
-	}
-	return f.MetricLabel
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetMetricValue returns the MetricValue field.
 func (f *FunctionsComponentHealthMetrics) GetMetricValue() float64 {
-	if f == nil {
-		return 0
-	}
-	return f.MetricValue
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // GetTimeWindow returns the TimeWindow field.
 func (f *FunctionsComponentHealthMetrics) GetTimeWindow() string {
-	if f == nil {
-		return ""
-	}
-	return f.TimeWindow
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetConnectionDetails returns the ConnectionDetails field.
 func (g *GetAppDatabaseConnectionDetailsResponse) GetConnectionDetails() []*GetDatabaseConnectionDetailsResponse {
-	if g == nil {
-		return nil
-	}
-	return g.ConnectionDetails
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetAppHealth returns the AppHealth field.
-func (g *GetAppHealthResponse) GetAppHealth() *AppHealth {
-	if g == nil {
-		return nil
-	}
-	return g.AppHealth
-}
+func (g *GetAppHealthResponse) GetAppHealth() *AppHealth { _ = "STUB: not implemented"; return nil }
 
 // GetInstances returns the Instances field.
 func (g *GetAppInstancesResponse) GetInstances() []*AppInstance {
-	if g == nil {
-		return nil
-	}
-	return g.Instances
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetComponentName returns the ComponentName field.
 func (g *GetDatabaseConnectionDetailsResponse) GetComponentName() string {
-	if g == nil {
-		return ""
-	}
-	return g.ComponentName
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetDatabaseName returns the DatabaseName field.
 func (g *GetDatabaseConnectionDetailsResponse) GetDatabaseName() string {
-	if g == nil {
-		return ""
-	}
-	return g.DatabaseName
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetDatabaseURL returns the DatabaseURL field.
 func (g *GetDatabaseConnectionDetailsResponse) GetDatabaseURL() string {
-	if g == nil {
-		return ""
-	}
-	return g.DatabaseURL
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetHost returns the Host field.
 func (g *GetDatabaseConnectionDetailsResponse) GetHost() string {
-	if g == nil {
-		return ""
-	}
-	return g.Host
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetPassword returns the Password field.
 func (g *GetDatabaseConnectionDetailsResponse) GetPassword() string {
-	if g == nil {
-		return ""
-	}
-	return g.Password
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetPools returns the Pools field.
 func (g *GetDatabaseConnectionDetailsResponse) GetPools() []*GetDatabaseConnectionDetailsResponsePool {
-	if g == nil {
-		return nil
-	}
-	return g.Pools
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetPort returns the Port field.
-func (g *GetDatabaseConnectionDetailsResponse) GetPort() int64 {
-	if g == nil {
-		return 0
-	}
-	return g.Port
-}
+func (g *GetDatabaseConnectionDetailsResponse) GetPort() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetSslMode returns the SslMode field.
 func (g *GetDatabaseConnectionDetailsResponse) GetSslMode() string {
-	if g == nil {
-		return ""
-	}
-	return g.SslMode
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetUsername returns the Username field.
 func (g *GetDatabaseConnectionDetailsResponse) GetUsername() string {
-	if g == nil {
-		return ""
-	}
-	return g.Username
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetDatabaseName returns the DatabaseName field.
 func (g *GetDatabaseConnectionDetailsResponsePool) GetDatabaseName() string {
-	if g == nil {
-		return ""
-	}
-	return g.DatabaseName
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetDatabaseURL returns the DatabaseURL field.
 func (g *GetDatabaseConnectionDetailsResponsePool) GetDatabaseURL() string {
-	if g == nil {
-		return ""
-	}
-	return g.DatabaseURL
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetHost returns the Host field.
 func (g *GetDatabaseConnectionDetailsResponsePool) GetHost() string {
-	if g == nil {
-		return ""
-	}
-	return g.Host
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetPassword returns the Password field.
 func (g *GetDatabaseConnectionDetailsResponsePool) GetPassword() string {
-	if g == nil {
-		return ""
-	}
-	return g.Password
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetPoolName returns the PoolName field.
 func (g *GetDatabaseConnectionDetailsResponsePool) GetPoolName() string {
-	if g == nil {
-		return ""
-	}
-	return g.PoolName
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetPort returns the Port field.
 func (g *GetDatabaseConnectionDetailsResponsePool) GetPort() int64 {
-	if g == nil {
-		return 0
-	}
-	return g.Port
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // GetSslMode returns the SslMode field.
 func (g *GetDatabaseConnectionDetailsResponsePool) GetSslMode() string {
-	if g == nil {
-		return ""
-	}
-	return g.SslMode
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetUsername returns the Username field.
 func (g *GetDatabaseConnectionDetailsResponsePool) GetUsername() string {
-	if g == nil {
-		return ""
-	}
-	return g.Username
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetIsEnabled returns the IsEnabled field.
 func (g *GetDatabaseTrustedSourceResponse) GetIsEnabled() bool {
-	if g == nil {
-		return false
-	}
-	return g.IsEnabled
+	_ = "STUB: not implemented"
+	return false
 }
 
 // GetJobInvocation returns the JobInvocation field.
 func (g *GetJobInvocationResponse) GetJobInvocation() *JobInvocation {
-	if g == nil {
-		return nil
-	}
-	return g.JobInvocation
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetBranch returns the Branch field.
-func (g *GitHubSourceSpec) GetBranch() string {
-	if g == nil {
-		return ""
-	}
-	return g.Branch
-}
+func (g *GitHubSourceSpec) GetBranch() string { _ = "STUB: not implemented"; return "" }
 
 // GetDeployOnPush returns the DeployOnPush field.
-func (g *GitHubSourceSpec) GetDeployOnPush() bool {
-	if g == nil {
-		return false
-	}
-	return g.DeployOnPush
-}
+func (g *GitHubSourceSpec) GetDeployOnPush() bool { _ = "STUB: not implemented"; return false }
 
 // GetRepo returns the Repo field.
-func (g *GitHubSourceSpec) GetRepo() string {
-	if g == nil {
-		return ""
-	}
-	return g.Repo
-}
+func (g *GitHubSourceSpec) GetRepo() string { _ = "STUB: not implemented"; return "" }
 
 // GetBranch returns the Branch field.
-func (g *GitLabSourceSpec) GetBranch() string {
-	if g == nil {
-		return ""
-	}
-	return g.Branch
-}
+func (g *GitLabSourceSpec) GetBranch() string { _ = "STUB: not implemented"; return "" }
 
 // GetDeployOnPush returns the DeployOnPush field.
-func (g *GitLabSourceSpec) GetDeployOnPush() bool {
-	if g == nil {
-		return false
-	}
-	return g.DeployOnPush
-}
+func (g *GitLabSourceSpec) GetDeployOnPush() bool { _ = "STUB: not implemented"; return false }
 
 // GetRepo returns the Repo field.
-func (g *GitLabSourceSpec) GetRepo() string {
-	if g == nil {
-		return ""
-	}
-	return g.Repo
-}
+func (g *GitLabSourceSpec) GetRepo() string { _ = "STUB: not implemented"; return "" }
 
 // GetBranch returns the Branch field.
-func (g *GitSourceSpec) GetBranch() string {
-	if g == nil {
-		return ""
-	}
-	return g.Branch
-}
+func (g *GitSourceSpec) GetBranch() string { _ = "STUB: not implemented"; return "" }
 
 // GetRepoCloneURL returns the RepoCloneURL field.
-func (g *GitSourceSpec) GetRepoCloneURL() string {
-	if g == nil {
-		return ""
-	}
-	return g.RepoCloneURL
-}
+func (g *GitSourceSpec) GetRepoCloneURL() string { _ = "STUB: not implemented"; return "" }
 
 // GetFailureThreshold returns the FailureThreshold field.
-func (h *HealthCheckSpec) GetFailureThreshold() int32 {
-	if h == nil {
-		return 0
-	}
-	return h.FailureThreshold
-}
+func (h *HealthCheckSpec) GetFailureThreshold() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetHTTPPath returns the HTTPPath field.
-func (h *HealthCheckSpec) GetHTTPPath() string {
-	if h == nil {
-		return ""
-	}
-	return h.HTTPPath
-}
+func (h *HealthCheckSpec) GetHTTPPath() string { _ = "STUB: not implemented"; return "" }
 
 // GetInitialDelaySeconds returns the InitialDelaySeconds field.
-func (h *HealthCheckSpec) GetInitialDelaySeconds() int32 {
-	if h == nil {
-		return 0
-	}
-	return h.InitialDelaySeconds
-}
+func (h *HealthCheckSpec) GetInitialDelaySeconds() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetPeriodSeconds returns the PeriodSeconds field.
-func (h *HealthCheckSpec) GetPeriodSeconds() int32 {
-	if h == nil {
-		return 0
-	}
-	return h.PeriodSeconds
-}
+func (h *HealthCheckSpec) GetPeriodSeconds() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetPort returns the Port field.
-func (h *HealthCheckSpec) GetPort() int64 {
-	if h == nil {
-		return 0
-	}
-	return h.Port
-}
+func (h *HealthCheckSpec) GetPort() int64 { _ = "STUB: not implemented"; return 0 }
 
 // GetSuccessThreshold returns the SuccessThreshold field.
-func (h *HealthCheckSpec) GetSuccessThreshold() int32 {
-	if h == nil {
-		return 0
-	}
-	return h.SuccessThreshold
-}
+func (h *HealthCheckSpec) GetSuccessThreshold() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetTimeoutSeconds returns the TimeoutSeconds field.
-func (h *HealthCheckSpec) GetTimeoutSeconds() int32 {
-	if h == nil {
-		return 0
-	}
-	return h.TimeoutSeconds
-}
+func (h *HealthCheckSpec) GetTimeoutSeconds() int32 { _ = "STUB: not implemented"; return 0 }
 
 // GetDeployOnPush returns the DeployOnPush field.
 func (i *ImageSourceSpec) GetDeployOnPush() *ImageSourceSpecDeployOnPush {
-	if i == nil {
-		return nil
-	}
-	return i.DeployOnPush
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetDigest returns the Digest field.
-func (i *ImageSourceSpec) GetDigest() string {
-	if i == nil {
-		return ""
-	}
-	return i.Digest
-}
+func (i *ImageSourceSpec) GetDigest() string { _ = "STUB: not implemented"; return "" }
 
 // GetRegistry returns the Registry field.
-func (i *ImageSourceSpec) GetRegistry() string {
-	if i == nil {
-		return ""
-	}
-	return i.Registry
-}
+func (i *ImageSourceSpec) GetRegistry() string { _ = "STUB: not implemented"; return "" }
 
 // GetRegistryCredentials returns the RegistryCredentials field.
-func (i *ImageSourceSpec) GetRegistryCredentials() string {
-	if i == nil {
-		return ""
-	}
-	return i.RegistryCredentials
-}
+func (i *ImageSourceSpec) GetRegistryCredentials() string { _ = "STUB: not implemented"; return "" }
 
 // GetRegistryType returns the RegistryType field.
 func (i *ImageSourceSpec) GetRegistryType() ImageSourceSpecRegistryType {
-	if i == nil {
-		return ""
-	}
-	return i.RegistryType
+	_ = "STUB: not implemented"
+	return *new(ImageSourceSpecRegistryType)
 }
 
 // GetRepository returns the Repository field.
-func (i *ImageSourceSpec) GetRepository() string {
-	if i == nil {
-		return ""
-	}
-	return i.Repository
-}
+func (i *ImageSourceSpec) GetRepository() string { _ = "STUB: not implemented"; return "" }
 
 // GetTag returns the Tag field.
-func (i *ImageSourceSpec) GetTag() string {
-	if i == nil {
-		return ""
-	}
-	return i.Tag
-}
+func (i *ImageSourceSpec) GetTag() string { _ = "STUB: not implemented"; return "" }
 
 // GetEnabled returns the Enabled field.
-func (i *ImageSourceSpecDeployOnPush) GetEnabled() bool {
-	if i == nil {
-		return false
-	}
-	return i.Enabled
-}
+func (i *ImageSourceSpecDeployOnPush) GetEnabled() bool { _ = "STUB: not implemented"; return false }
 
 // GetCustomURL returns the CustomURL field.
-func (i *InactivitySleepLoadingPage) GetCustomURL() string {
-	if i == nil {
-		return ""
-	}
-	return i.CustomURL
-}
+func (i *InactivitySleepLoadingPage) GetCustomURL() string { _ = "STUB: not implemented"; return "" }
 
 // GetEnabled returns the Enabled field.
-func (i *InactivitySleepLoadingPage) GetEnabled() bool {
-	if i == nil {
-		return false
-	}
-	return i.Enabled
-}
+func (i *InactivitySleepLoadingPage) GetEnabled() bool { _ = "STUB: not implemented"; return false }
 
 // GetCompletedAt returns the CompletedAt field.
 func (j *JobInvocation) GetCompletedAt() time.Time {
-	if j == nil {
-		return time.Time{}
-	}
-	return j.CompletedAt
+	_ = "STUB: not implemented"
+	return *new(time.Time)
 }
 
 // GetCreatedAt returns the CreatedAt field.
-func (j *JobInvocation) GetCreatedAt() time.Time {
-	if j == nil {
-		return time.Time{}
-	}
-	return j.CreatedAt
-}
+func (j *JobInvocation) GetCreatedAt() time.Time { _ = "STUB: not implemented"; return *new(time.Time) }
 
 // GetDeploymentID returns the DeploymentID field.
-func (j *JobInvocation) GetDeploymentID() string {
-	if j == nil {
-		return ""
-	}
-	return j.DeploymentID
-}
+func (j *JobInvocation) GetDeploymentID() string { _ = "STUB: not implemented"; return "" }
 
 // GetID returns the ID field.
-func (j *JobInvocation) GetID() string {
-	if j == nil {
-		return ""
-	}
-	return j.ID
-}
+func (j *JobInvocation) GetID() string { _ = "STUB: not implemented"; return "" }
 
 // GetJobName returns the JobName field.
-func (j *JobInvocation) GetJobName() string {
-	if j == nil {
-		return ""
-	}
-	return j.JobName
-}
+func (j *JobInvocation) GetJobName() string { _ = "STUB: not implemented"; return "" }
 
 // GetPhase returns the Phase field.
 func (j *JobInvocation) GetPhase() JobInvocationPhase {
-	if j == nil {
-		return ""
-	}
-	return j.Phase
+	_ = "STUB: not implemented"
+	return *new(JobInvocationPhase)
 }
 
 // GetStartedAt returns the StartedAt field.
-func (j *JobInvocation) GetStartedAt() time.Time {
-	if j == nil {
-		return time.Time{}
-	}
-	return j.StartedAt
-}
+func (j *JobInvocation) GetStartedAt() time.Time { _ = "STUB: not implemented"; return *new(time.Time) }
 
 // GetTrigger returns the Trigger field.
-func (j *JobInvocation) GetTrigger() *JobInvocationTrigger {
-	if j == nil {
-		return nil
-	}
-	return j.Trigger
-}
+func (j *JobInvocation) GetTrigger() *JobInvocationTrigger { _ = "STUB: not implemented"; return nil }
 
 // GetManual returns the Manual field.
 func (j *JobInvocationTrigger) GetManual() *TriggerMetadataManual {
-	if j == nil {
-		return nil
-	}
-	return j.Manual
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetScheduled returns the Scheduled field.
 func (j *JobInvocationTrigger) GetScheduled() *TriggerMetadataScheduled {
-	if j == nil {
-		return nil
-	}
-	return j.Scheduled
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetType returns the Type field.
 func (j *JobInvocationTrigger) GetType() JobInvocationTriggerType {
-	if j == nil {
-		return ""
-	}
-	return j.Type
+	_ = "STUB: not implemented"
+	return *new(JobInvocationTriggerType)
 }
 
 // GetBuildpacks returns the Buildpacks field.
 func (l *ListBuildpacksResponse) GetBuildpacks() []*Buildpack {
-	if l == nil {
-		return nil
-	}
-	return l.Buildpacks
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetPassword returns the Password field.
-func (o *OpenSearchBasicAuth) GetPassword() string {
-	if o == nil {
-		return ""
-	}
-	return o.Password
-}
+func (o *OpenSearchBasicAuth) GetPassword() string { _ = "STUB: not implemented"; return "" }
 
 // GetUser returns the User field.
-func (o *OpenSearchBasicAuth) GetUser() string {
-	if o == nil {
-		return ""
-	}
-	return o.User
-}
+func (o *OpenSearchBasicAuth) GetUser() string { _ = "STUB: not implemented"; return "" }
 
 // GetAppID returns the AppID field.
-func (r *ResetDatabasePasswordRequest) GetAppID() string {
-	if r == nil {
-		return ""
-	}
-	return r.AppID
-}
+func (r *ResetDatabasePasswordRequest) GetAppID() string { _ = "STUB: not implemented"; return "" }
 
 // GetComponentName returns the ComponentName field.
 func (r *ResetDatabasePasswordRequest) GetComponentName() string {
-	if r == nil {
-		return ""
-	}
-	return r.ComponentName
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetDeployment returns the Deployment field.
 func (r *ResetDatabasePasswordResponse) GetDeployment() *Deployment {
-	if r == nil {
-		return nil
-	}
-	return r.Deployment
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetAppID returns the AppID field.
 func (t *ToggleDatabaseTrustedSourceRequest) GetAppID() string {
-	if t == nil {
-		return ""
-	}
-	return t.AppID
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetComponentName returns the ComponentName field.
 func (t *ToggleDatabaseTrustedSourceRequest) GetComponentName() string {
-	if t == nil {
-		return ""
-	}
-	return t.ComponentName
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetEnable returns the Enable field.
 func (t *ToggleDatabaseTrustedSourceRequest) GetEnable() bool {
-	if t == nil {
-		return false
-	}
-	return t.Enable
+	_ = "STUB: not implemented"
+	return false
 }
 
 // GetIsEnabled returns the IsEnabled field.
 func (t *ToggleDatabaseTrustedSourceResponse) GetIsEnabled() bool {
-	if t == nil {
-		return false
-	}
-	return t.IsEnabled
+	_ = "STUB: not implemented"
+	return false
 }
 
 // GetUser returns the User field.
 func (t *TriggerMetadataManual) GetUser() *DeploymentCauseDetailsDigitalOceanUser {
-	if t == nil {
-		return nil
-	}
-	return t.User
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetSchedule returns the Schedule field.
 func (t *TriggerMetadataScheduled) GetSchedule() *AppJobSpecSchedule {
-	if t == nil {
-		return nil
-	}
-	return t.Schedule
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetAffectedComponents returns the AffectedComponents field.
 func (u *UpgradeBuildpackResponse) GetAffectedComponents() []string {
-	if u == nil {
-		return nil
-	}
-	return u.AffectedComponents
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetDeployment returns the Deployment field.
 func (u *UpgradeBuildpackResponse) GetDeployment() *Deployment {
-	if u == nil {
-		return nil
-	}
-	return u.Deployment
+	_ = "STUB: not implemented"
+	return nil
 }

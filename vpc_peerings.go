@@ -2,7 +2,6 @@ package godo
 
 import (
 	"context"
-	"net/http"
 	"time"
 )
 
@@ -58,142 +57,48 @@ type VPCPeeringCreateRequestByVPCID struct {
 
 // CreateVPCPeering creates a new Virtual Private Cloud Peering.
 func (v *VPCsServiceOp) CreateVPCPeering(ctx context.Context, create *VPCPeeringCreateRequest) (*VPCPeering, *Response, error) {
-	path := vpcPeeringsPath
-	req, err := v.client.NewRequest(ctx, http.MethodPost, path, create)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcPeeringRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.VPCPeering, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetVPCPeering retrieves a Virtual Private Cloud Peering.
 func (v *VPCsServiceOp) GetVPCPeering(ctx context.Context, id string) (*VPCPeering, *Response, error) {
-	path := vpcPeeringsPath + "/" + id
-	req, err := v.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcPeeringRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.VPCPeering, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListVPCPeerings lists all Virtual Private Cloud Peerings.
 func (v *VPCsServiceOp) ListVPCPeerings(ctx context.Context, opt *ListOptions) ([]*VPCPeering, *Response, error) {
-	path, err := addOptions(vpcPeeringsPath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := v.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcPeeringsRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.VPCPeerings, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateVPCPeering updates a Virtual Private Cloud Peering.
 func (v *VPCsServiceOp) UpdateVPCPeering(ctx context.Context, id string, update *VPCPeeringUpdateRequest) (*VPCPeering, *Response, error) {
-	path := vpcPeeringsPath + "/" + id
-	req, err := v.client.NewRequest(ctx, http.MethodPatch, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcPeeringRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.VPCPeering, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteVPCPeering deletes a Virtual Private Cloud Peering.
 func (v *VPCsServiceOp) DeleteVPCPeering(ctx context.Context, id string) (*Response, error) {
-	path := vpcPeeringsPath + "/" + id
-	req, err := v.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := v.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // CreateVPCPeeringByVPCID creates a new Virtual Private Cloud Peering for requested VPC ID.
 func (v *VPCsServiceOp) CreateVPCPeeringByVPCID(ctx context.Context, id string, create *VPCPeeringCreateRequestByVPCID) (*VPCPeering, *Response, error) {
-	path := vpcsBasePath + "/" + id + "/peerings"
-	req, err := v.client.NewRequest(ctx, http.MethodPost, path, create)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcPeeringRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.VPCPeering, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListVPCPeeringsByVPCID lists all Virtual Private Cloud Peerings for requested VPC ID.
 func (v *VPCsServiceOp) ListVPCPeeringsByVPCID(ctx context.Context, id string, opt *ListOptions) ([]*VPCPeering, *Response, error) {
-	path, err := addOptions(vpcsBasePath+"/"+id+"/peerings", opt)
-	req, err := v.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcPeeringsRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.VPCPeerings, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateVPCPeeringByVPCID updates a Virtual Private Cloud Peering for requested VPC ID.
 func (v *VPCsServiceOp) UpdateVPCPeeringByVPCID(ctx context.Context, vpcID, peerID string, update *VPCPeeringUpdateRequest) (*VPCPeering, *Response, error) {
-	path := vpcsBasePath + "/" + vpcID + "/peerings" + "/" + peerID
-	req, err := v.client.NewRequest(ctx, http.MethodPatch, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcPeeringRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.VPCPeering, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

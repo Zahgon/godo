@@ -13,48 +13,21 @@
 
 package metrics
 
-import (
-	"encoding/json"
-	"fmt"
-	"math"
-	"strconv"
-	"strings"
-)
-
 // A SampleValue is a representation of a value for a given sample at a given time.
 type SampleValue float64
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (v *SampleValue) UnmarshalJSON(b []byte) error {
-	if len(b) < 2 || b[0] != '"' || b[len(b)-1] != '"' {
-		return fmt.Errorf("sample value must be a quoted string")
-	}
-	f, err := strconv.ParseFloat(string(b[1:len(b)-1]), 64)
-	if err != nil {
-		return err
-	}
-	*v = SampleValue(f)
-	return nil
-}
+func (v *SampleValue) UnmarshalJSON(b []byte) error { _ = "STUB: not implemented"; return nil }
 
 // MarshalJSON implements json.Marshaler.
-func (v SampleValue) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.String())
-}
+func (v SampleValue) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
-func (v SampleValue) String() string {
-	return strconv.FormatFloat(float64(v), 'f', -1, 64)
-}
+func (v SampleValue) String() string { _ = "STUB: not implemented"; return "" }
 
 // Equal returns true if the value of v and o is equal or if both are NaN. Note
 // that v==o is false if both are NaN. If you want the conventional float
 // behavior, use == to compare two SampleValues.
-func (v SampleValue) Equal(o SampleValue) bool {
-	if v == o {
-		return true
-	}
-	return math.IsNaN(float64(v)) && math.IsNaN(float64(o))
-}
+func (v SampleValue) Equal(o SampleValue) bool { _ = "STUB: not implemented"; return false }
 
 // SamplePair pairs a SampleValue with a Timestamp.
 type SamplePair struct {
@@ -62,28 +35,13 @@ type SamplePair struct {
 	Value     SampleValue
 }
 
-func (s SamplePair) String() string {
-	return fmt.Sprintf("%s @[%s]", s.Value, s.Timestamp)
-}
+func (s SamplePair) String() string { _ = "STUB: not implemented"; return "" }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (s *SamplePair) UnmarshalJSON(b []byte) error {
-	v := [...]json.Unmarshaler{&s.Timestamp, &s.Value}
-	return json.Unmarshal(b, &v)
-}
+func (s *SamplePair) UnmarshalJSON(b []byte) error { _ = "STUB: not implemented"; return nil }
 
 // MarshalJSON implements json.Marshaler.
-func (s SamplePair) MarshalJSON() ([]byte, error) {
-	t, err := json.Marshal(s.Timestamp)
-	if err != nil {
-		return nil, err
-	}
-	v, err := json.Marshal(s.Value)
-	if err != nil {
-		return nil, err
-	}
-	return []byte(fmt.Sprintf("[%s,%s]", t, v)), nil
-}
+func (s SamplePair) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // SampleStream is a stream of Values belonging to an attached COWMetric.
 type SampleStream struct {
@@ -91,10 +49,4 @@ type SampleStream struct {
 	Values []SamplePair `json:"values"`
 }
 
-func (ss SampleStream) String() string {
-	vals := make([]string, len(ss.Values))
-	for i, v := range ss.Values {
-		vals[i] = v.String()
-	}
-	return fmt.Sprintf("%s =>\n%s", ss.Metric, strings.Join(vals, "\n"))
-}
+func (ss SampleStream) String() string { _ = "STUB: not implemented"; return "" }

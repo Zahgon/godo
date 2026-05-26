@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"time"
 
 	"github.com/digitalocean/godo/metrics"
@@ -296,496 +294,340 @@ type MetricsData struct {
 
 // ListAlertPolicies all alert policies
 func (s *MonitoringServiceOp) ListAlertPolicies(ctx context.Context, opt *ListOptions) ([]AlertPolicy, *Response, error) {
-	path := alertPolicyBasePath
-	path, err := addOptions(path, opt)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(alertPoliciesRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.AlertPolicies, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetAlertPolicy gets a single alert policy
 func (s *MonitoringServiceOp) GetAlertPolicy(ctx context.Context, uuid string) (*AlertPolicy, *Response, error) {
-	path := fmt.Sprintf("%s/%s", alertPolicyBasePath, uuid)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(alertPolicyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.AlertPolicy, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateAlertPolicy creates a new alert policy
 func (s *MonitoringServiceOp) CreateAlertPolicy(ctx context.Context, createRequest *AlertPolicyCreateRequest) (*AlertPolicy, *Response, error) {
-	if createRequest == nil {
-		return nil, nil, NewArgError("createRequest", "cannot be nil")
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, alertPolicyBasePath, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(alertPolicyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.AlertPolicy, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateAlertPolicy updates an existing alert policy
 func (s *MonitoringServiceOp) UpdateAlertPolicy(ctx context.Context, uuid string, updateRequest *AlertPolicyUpdateRequest) (*AlertPolicy, *Response, error) {
-	if uuid == "" {
-		return nil, nil, NewArgError("uuid", "cannot be empty")
-	}
-	if updateRequest == nil {
-		return nil, nil, NewArgError("updateRequest", "cannot be nil")
-	}
-
-	path := fmt.Sprintf("%s/%s", alertPolicyBasePath, uuid)
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, updateRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(alertPolicyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.AlertPolicy, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteAlertPolicy deletes an existing alert policy
 func (s *MonitoringServiceOp) DeleteAlertPolicy(ctx context.Context, uuid string) (*Response, error) {
-	if uuid == "" {
-		return nil, NewArgError("uuid", "cannot be empty")
-	}
-
-	path := fmt.Sprintf("%s/%s", alertPolicyBasePath, uuid)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(ctx, req, nil)
-
-	return resp, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetDropletBandwidth retrieves Droplet bandwidth metrics.
 func (s *MonitoringServiceOp) GetDropletBandwidth(ctx context.Context, args *DropletBandwidthMetricsRequest) (*MetricsResponse, *Response, error) {
-	path := dropletMetricsBasePath + "/bandwidth"
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	q := req.URL.Query()
-	q.Add("host_id", args.HostID)
-	q.Add("interface", args.Interface)
-	q.Add("direction", args.Direction)
-	q.Add("start", fmt.Sprintf("%d", args.Start.Unix()))
-	q.Add("end", fmt.Sprintf("%d", args.End.Unix()))
-	req.URL.RawQuery = q.Encode()
-
-	root := new(MetricsResponse)
-	resp, err := s.client.Do(ctx, req, root)
-
-	return root, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDropletCPU retrieves Droplet CPU metrics.
 func (s *MonitoringServiceOp) GetDropletCPU(ctx context.Context, args *DropletMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getDropletMetrics(ctx, "/cpu", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDropletFilesystemFree retrieves Droplet filesystem free metrics.
 func (s *MonitoringServiceOp) GetDropletFilesystemFree(ctx context.Context, args *DropletMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getDropletMetrics(ctx, "/filesystem_free", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDropletFilesystemSize retrieves Droplet filesystem size metrics.
 func (s *MonitoringServiceOp) GetDropletFilesystemSize(ctx context.Context, args *DropletMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getDropletMetrics(ctx, "/filesystem_size", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDropletLoad1 retrieves Droplet load 1 metrics.
 func (s *MonitoringServiceOp) GetDropletLoad1(ctx context.Context, args *DropletMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getDropletMetrics(ctx, "/load_1", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDropletLoad5 retrieves Droplet load 5 metrics.
 func (s *MonitoringServiceOp) GetDropletLoad5(ctx context.Context, args *DropletMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getDropletMetrics(ctx, "/load_5", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDropletLoad15 retrieves Droplet load 15 metrics.
 func (s *MonitoringServiceOp) GetDropletLoad15(ctx context.Context, args *DropletMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getDropletMetrics(ctx, "/load_15", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDropletCachedMemory retrieves Droplet cached memory metrics.
 func (s *MonitoringServiceOp) GetDropletCachedMemory(ctx context.Context, args *DropletMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getDropletMetrics(ctx, "/memory_cached", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDropletFreeMemory retrieves Droplet free memory metrics.
 func (s *MonitoringServiceOp) GetDropletFreeMemory(ctx context.Context, args *DropletMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getDropletMetrics(ctx, "/memory_free", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDropletTotalMemory retrieves Droplet total memory metrics.
 func (s *MonitoringServiceOp) GetDropletTotalMemory(ctx context.Context, args *DropletMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getDropletMetrics(ctx, "/memory_total", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDropletAvailableMemory retrieves Droplet available memory metrics.
 func (s *MonitoringServiceOp) GetDropletAvailableMemory(ctx context.Context, args *DropletMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getDropletMetrics(ctx, "/memory_available", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *MonitoringServiceOp) getDropletMetrics(ctx context.Context, path string, args *DropletMetricsRequest) (*MetricsResponse, *Response, error) {
-	fullPath := dropletMetricsBasePath + path
-	req, err := s.client.NewRequest(ctx, http.MethodGet, fullPath, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	q := req.URL.Query()
-	q.Add("host_id", args.HostID)
-	q.Add("start", fmt.Sprintf("%d", args.Start.Unix()))
-	q.Add("end", fmt.Sprintf("%d", args.End.Unix()))
-	req.URL.RawQuery = q.Encode()
-
-	root := new(MetricsResponse)
-	resp, err := s.client.Do(ctx, req, root)
-
-	return root, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendHttpRequestsPerSecond retrieves frontend HTTP requests per second for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendHttpRequestsPerSecond(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_http_requests_per_second", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendConnectionsCurrent retrieves frontend total current active connections for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendConnectionsCurrent(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_connections_current", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendConnectionsLimit retrieves frontend max connections limit for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendConnectionsLimit(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_connections_limit", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendCpuUtilization retrieves frontend average percentage cpu utilization for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendCpuUtilization(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_cpu_utilization", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendNetworkThroughputHttp retrieves frontend HTTP throughput for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendNetworkThroughputHttp(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_network_throughput_http", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendNetworkThroughputUdp retrieves frontend UDP throughput for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendNetworkThroughputUdp(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_network_throughput_udp", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendNetworkThroughputTcp retrieves frontend TCP throughput for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendNetworkThroughputTcp(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_network_throughput_tcp", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendNlbTcpNetworkThroughput retrieves frontend TCP throughput for a given network load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendNlbTcpNetworkThroughput(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_nlb_tcp_network_throughput", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendNlbUdpNetworkThroughput retrieves frontend UDP throughput for a given network load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendNlbUdpNetworkThroughput(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_nlb_udp_network_throughput", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendFirewallDroppedBytes retrieves firewall dropped bytes for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendFirewallDroppedBytes(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_firewall_dropped_bytes", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendFirewallDroppedPackets retrieves firewall dropped packets for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendFirewallDroppedPackets(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_firewall_dropped_packets", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendHttpResponses retrieves frontend HTTP rate of response code for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendHttpResponses(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_http_responses", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendTlsConnectionsCurrent retrieves frontend current TLS connections rate for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendTlsConnectionsCurrent(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_tls_connections_current", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendTlsConnectionsLimit retrieves frontend max TLS connections limit for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendTlsConnectionsLimit(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_tls_connections_limit", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerFrontendTlsConnectionsExceedingRateLimit retrieves frontend closed TLS connections for exceeded rate limit for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerFrontendTlsConnectionsExceedingRateLimit(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/frontend_tls_connections_exceeding_rate_limit", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsHttpSessionDurationAvg retrieves droplet average HTTP session duration for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsHttpSessionDurationAvg(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_http_session_duration_avg", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsHttpSessionDuration50P retrieves droplet 50th percentile HTTP session duration for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsHttpSessionDuration50P(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_http_session_duration_50p", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsHttpSessionDuration95P retrieves droplet 95th percentile HTTP session duration for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsHttpSessionDuration95P(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_http_session_duration_95p", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsHttpResponseTimeAvg retrieves droplet average HTTP response time for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsHttpResponseTimeAvg(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_http_response_time_avg", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsHttpResponseTime50P retrieves droplet 50th percentile HTTP response time for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsHttpResponseTime50P(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_http_response_time_50p", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsHttpResponseTime95P retrieves droplet 95th percentile HTTP response time for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsHttpResponseTime95P(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_http_response_time_95p", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsHttpResponseTime99P retrieves droplet 99th percentile HTTP response time for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsHttpResponseTime99P(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_http_response_time_99p", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsQueueSize retrieves droplet queue size for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsQueueSize(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_queue_size", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsHttpResponses retrieves droplet HTTP rate of response code for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsHttpResponses(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_http_responses", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsConnections retrieves droplet active connections for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsConnections(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_connections", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsHealthChecks retrieves droplet health check status for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsHealthChecks(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_health_checks", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLoadBalancerDropletsDowntime retrieves droplet downtime status for a given load balancer.
 func (s *MonitoringServiceOp) GetLoadBalancerDropletsDowntime(ctx context.Context, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	return s.getLoadBalancerMetrics(ctx, "/droplets_downtime", args)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *MonitoringServiceOp) getLoadBalancerMetrics(ctx context.Context, path string, args *LoadBalancerMetricsRequest) (*MetricsResponse, *Response, error) {
-	fullPath := loadBalancerMetricsBasePath + path
-	req, err := s.client.NewRequest(ctx, http.MethodGet, fullPath, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	q := req.URL.Query()
-	q.Add("lb_id", args.LoadBalancerID)
-	q.Add("start", fmt.Sprintf("%d", args.Start.Unix()))
-	q.Add("end", fmt.Sprintf("%d", args.End.Unix()))
-	req.URL.RawQuery = q.Encode()
-
-	root := new(MetricsResponse)
-	resp, err := s.client.Do(ctx, req, root)
-
-	return root, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // getDbaasMysqlMetrics performs a GET request for a DBaaS MySQL metric path with the given query params.
 func (s *MonitoringServiceOp) getDbaasMysqlMetrics(ctx context.Context, path string, params map[string]string) (*MetricsResponse, *Response, error) {
-	fullPath := dbaasMysqlMetricsBasePath + path
-	req, err := s.client.NewRequest(ctx, http.MethodGet, fullPath, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	q := req.URL.Query()
-	for k, v := range params {
-		q.Add(k, v)
-	}
-	req.URL.RawQuery = q.Encode()
-	root := new(MetricsResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	return root, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDbaasMysqlCpuUsage retrieves CPU usage (percent) for a MySQL cluster. Aggregate: avg, max, min.
 func (s *MonitoringServiceOp) GetDbaasMysqlCpuUsage(ctx context.Context, args *DbaasMysqlCpuUsageRequest) (*MetricsResponse, *Response, error) {
-	params := map[string]string{
-		"db_id":     args.DBID,
-		"start":     fmt.Sprintf("%d", args.Start.Unix()),
-		"end":       fmt.Sprintf("%d", args.End.Unix()),
-		"aggregate": args.Aggregate,
-	}
-	return s.getDbaasMysqlMetrics(ctx, "/cpu_usage", params)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDbaasMysqlLoad retrieves load average for a MySQL cluster. Metric: load1, load5, load15. Aggregate: avg, max.
 func (s *MonitoringServiceOp) GetDbaasMysqlLoad(ctx context.Context, args *DbaasMysqlLoadRequest) (*MetricsResponse, *Response, error) {
-	params := map[string]string{
-		"db_id":     args.DBID,
-		"start":     fmt.Sprintf("%d", args.Start.Unix()),
-		"end":       fmt.Sprintf("%d", args.End.Unix()),
-		"metric":    args.Metric,
-		"aggregate": args.Aggregate,
-	}
-	return s.getDbaasMysqlMetrics(ctx, "/load", params)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDbaasMysqlMemoryUsage retrieves memory usage (percent) for a MySQL cluster. Aggregate: avg, max, min.
 func (s *MonitoringServiceOp) GetDbaasMysqlMemoryUsage(ctx context.Context, args *DbaasMysqlMemoryUsageRequest) (*MetricsResponse, *Response, error) {
-	params := map[string]string{
-		"db_id":     args.DBID,
-		"start":     fmt.Sprintf("%d", args.Start.Unix()),
-		"end":       fmt.Sprintf("%d", args.End.Unix()),
-		"aggregate": args.Aggregate,
-	}
-	return s.getDbaasMysqlMetrics(ctx, "/memory_usage", params)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDbaasMysqlDiskUsage retrieves disk usage (percent) for a MySQL cluster. Aggregate: avg, max, min.
 func (s *MonitoringServiceOp) GetDbaasMysqlDiskUsage(ctx context.Context, args *DbaasMysqlDiskUsageRequest) (*MetricsResponse, *Response, error) {
-	params := map[string]string{
-		"db_id":     args.DBID,
-		"start":     fmt.Sprintf("%d", args.Start.Unix()),
-		"end":       fmt.Sprintf("%d", args.End.Unix()),
-		"aggregate": args.Aggregate,
-	}
-	return s.getDbaasMysqlMetrics(ctx, "/disk_usage", params)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDbaasMysqlThreadsConnected retrieves current threads connected for a MySQL service.
 func (s *MonitoringServiceOp) GetDbaasMysqlThreadsConnected(ctx context.Context, args *DbaasMysqlServiceMetricsRequest) (*MetricsResponse, *Response, error) {
-	params := map[string]string{
-		"db_id":   args.DBID,
-		"service": args.Service,
-		"start":   fmt.Sprintf("%d", args.Start.Unix()),
-		"end":     fmt.Sprintf("%d", args.End.Unix()),
-	}
-	return s.getDbaasMysqlMetrics(ctx, "/threads_connected", params)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDbaasMysqlThreadsCreatedRate retrieves threads created rate (per second) for a MySQL service.
 func (s *MonitoringServiceOp) GetDbaasMysqlThreadsCreatedRate(ctx context.Context, args *DbaasMysqlServiceMetricsRequest) (*MetricsResponse, *Response, error) {
-	params := map[string]string{
-		"db_id":   args.DBID,
-		"service": args.Service,
-		"start":   fmt.Sprintf("%d", args.Start.Unix()),
-		"end":     fmt.Sprintf("%d", args.End.Unix()),
-	}
-	return s.getDbaasMysqlMetrics(ctx, "/threads_created_rate", params)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDbaasMysqlThreadsActive retrieves active (running) threads for a MySQL service.
 func (s *MonitoringServiceOp) GetDbaasMysqlThreadsActive(ctx context.Context, args *DbaasMysqlServiceMetricsRequest) (*MetricsResponse, *Response, error) {
-	params := map[string]string{
-		"db_id":   args.DBID,
-		"service": args.Service,
-		"start":   fmt.Sprintf("%d", args.Start.Unix()),
-		"end":     fmt.Sprintf("%d", args.End.Unix()),
-	}
-	return s.getDbaasMysqlMetrics(ctx, "/threads_active", params)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDbaasMysqlIndexVsSequentialReads retrieves index vs sequential reads ratio (percent) for a MySQL service.
 func (s *MonitoringServiceOp) GetDbaasMysqlIndexVsSequentialReads(ctx context.Context, args *DbaasMysqlServiceMetricsRequest) (*MetricsResponse, *Response, error) {
-	params := map[string]string{
-		"db_id":   args.DBID,
-		"service": args.Service,
-		"start":   fmt.Sprintf("%d", args.Start.Unix()),
-		"end":     fmt.Sprintf("%d", args.End.Unix()),
-	}
-	return s.getDbaasMysqlMetrics(ctx, "/index_vs_sequential_reads", params)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDbaasMysqlOpRates retrieves operations rate (select, insert, update, delete per second) for a MySQL service.
 func (s *MonitoringServiceOp) GetDbaasMysqlOpRates(ctx context.Context, args *DbaasMysqlOpRatesRequest) (*MetricsResponse, *Response, error) {
-	params := map[string]string{
-		"db_id":   args.DBID,
-		"service": args.Service,
-		"metric":  args.Metric,
-		"start":   fmt.Sprintf("%d", args.Start.Unix()),
-		"end":     fmt.Sprintf("%d", args.End.Unix()),
-	}
-	return s.getDbaasMysqlMetrics(ctx, "/op_rates", params)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDbaasMysqlSchemaThroughput retrieves table I/O throughput (rows/s) for a MySQL schema. Metric: insert, fetch, update, delete.
 func (s *MonitoringServiceOp) GetDbaasMysqlSchemaThroughput(ctx context.Context, args *DbaasMysqlSchemaThroughputRequest) (*MetricsResponse, *Response, error) {
-	params := map[string]string{
-		"db_id":   args.DBID,
-		"service": args.Service,
-		"schema":  args.Schema,
-		"metric":  args.Metric,
-		"start":   fmt.Sprintf("%d", args.Start.Unix()),
-		"end":     fmt.Sprintf("%d", args.End.Unix()),
-	}
-	return s.getDbaasMysqlMetrics(ctx, "/schema_throughput", params)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDbaasMysqlSchemaLatency retrieves table I/O latency (seconds) for a MySQL schema. Metric: insert, fetch, update, delete.
 func (s *MonitoringServiceOp) GetDbaasMysqlSchemaLatency(ctx context.Context, args *DbaasMysqlSchemaLatencyRequest) (*MetricsResponse, *Response, error) {
-	params := map[string]string{
-		"db_id":   args.DBID,
-		"service": args.Service,
-		"schema":  args.Schema,
-		"metric":  args.Metric,
-		"start":   fmt.Sprintf("%d", args.Start.Unix()),
-		"end":     fmt.Sprintf("%d", args.End.Unix()),
-	}
-	return s.getDbaasMysqlMetrics(ctx, "/schema_latency", params)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

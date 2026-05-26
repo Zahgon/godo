@@ -1,15 +1,8 @@
 package godo
 
 import (
-	"bytes"
 	"context"
 	"encoding"
-	"encoding/json"
-	"fmt"
-	"net/http"
-	"net/url"
-	"strconv"
-	"strings"
 	"time"
 )
 
@@ -136,12 +129,7 @@ type Taint struct {
 	Effect string
 }
 
-func (t Taint) String() string {
-	if t.Value == "" {
-		return fmt.Sprintf("%s:%s", t.Key, t.Effect)
-	}
-	return fmt.Sprintf("%s=%s:%s", t.Key, t.Value, t.Effect)
-}
+func (t Taint) String() string { _ = "STUB: not implemented"; return "" }
 
 // KubernetesNodePoolCreateRequest represents a request to create a node pool for a
 // Kubernetes cluster.
@@ -262,9 +250,7 @@ type KubernetesCluster struct {
 }
 
 // URN returns the Kubernetes cluster's ID in the format of DigitalOcean URN.
-func (kc KubernetesCluster) URN() string {
-	return ToURN("Kubernetes", kc.ID)
-}
+func (kc KubernetesCluster) URN() string { _ = "STUB: not implemented"; return "" }
 
 // KubernetesClusterUser represents a Kubernetes cluster user.
 type KubernetesClusterUser struct {
@@ -404,44 +390,22 @@ var (
 
 // KubernetesMaintenanceToDay returns the appropriate KubernetesMaintenancePolicyDay for the given string.
 func KubernetesMaintenanceToDay(day string) (KubernetesMaintenancePolicyDay, error) {
-	d, ok := toDay[strings.ToLower(day)]
-	if !ok {
-		return 0, fmt.Errorf("unknown day: %q", day)
-	}
-
-	return d, nil
+	_ = "STUB: not implemented"
+	return *new(KubernetesMaintenancePolicyDay), nil
 }
 
-func (k KubernetesMaintenancePolicyDay) String() string {
-	if KubernetesMaintenanceDayAny <= k && k <= KubernetesMaintenanceDaySunday {
-		return days[k]
-	}
-	return fmt.Sprintf("%d !Weekday", k)
-
-}
+func (k KubernetesMaintenancePolicyDay) String() string { _ = "STUB: not implemented"; return "" }
 
 // UnmarshalJSON parses the JSON string into KubernetesMaintenancePolicyDay
 func (k *KubernetesMaintenancePolicyDay) UnmarshalJSON(data []byte) error {
-	var val string
-	if err := json.Unmarshal(data, &val); err != nil {
-		return err
-	}
-
-	parsed, err := KubernetesMaintenanceToDay(val)
-	if err != nil {
-		return err
-	}
-	*k = parsed
+	_ = "STUB: not implemented"
 	return nil
 }
 
 // MarshalJSON returns the JSON string for KubernetesMaintenancePolicyDay
 func (k KubernetesMaintenancePolicyDay) MarshalJSON() ([]byte, error) {
-	if KubernetesMaintenanceDayAny <= k && k <= KubernetesMaintenanceDaySunday {
-		return json.Marshal(days[k])
-	}
-
-	return nil, fmt.Errorf("invalid day: %d", k)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Possible states for a cluster.
@@ -462,24 +426,7 @@ var _ encoding.TextUnmarshaler = (*KubernetesClusterStatusState)(nil)
 
 // UnmarshalText unmarshals the state.
 func (s *KubernetesClusterStatusState) UnmarshalText(text []byte) error {
-	switch KubernetesClusterStatusState(strings.ToLower(string(text))) {
-	case KubernetesClusterStatusProvisioning:
-		*s = KubernetesClusterStatusProvisioning
-	case KubernetesClusterStatusRunning:
-		*s = KubernetesClusterStatusRunning
-	case KubernetesClusterStatusDegraded:
-		*s = KubernetesClusterStatusDegraded
-	case KubernetesClusterStatusError:
-		*s = KubernetesClusterStatusError
-	case KubernetesClusterStatusDeleted:
-		*s = KubernetesClusterStatusDeleted
-	case KubernetesClusterStatusUpgrading:
-		*s = KubernetesClusterStatusUpgrading
-	case "", KubernetesClusterStatusInvalid:
-		*s = KubernetesClusterStatusInvalid
-	default:
-		return fmt.Errorf("unknown cluster state %q", string(text))
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
@@ -646,153 +593,63 @@ type kubernetesUpgradesRoot struct {
 
 // Get retrieves the details of a Kubernetes cluster.
 func (svc *KubernetesServiceOp) Get(ctx context.Context, clusterID string) (*KubernetesCluster, *Response, error) {
-	path := fmt.Sprintf("%s/%s", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(kubernetesClusterRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Cluster, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetUser retrieves the details of a Kubernetes cluster user.
 func (svc *KubernetesServiceOp) GetUser(ctx context.Context, clusterID string) (*KubernetesClusterUser, *Response, error) {
-	path := fmt.Sprintf("%s/%s/user", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(kubernetesClusterUserRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.User, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetUpgrades retrieves versions a Kubernetes cluster can be upgraded to. An
 // upgrade can be requested using `Upgrade`.
 func (svc *KubernetesServiceOp) GetUpgrades(ctx context.Context, clusterID string) ([]*KubernetesVersion, *Response, error) {
-	path := fmt.Sprintf("%s/%s/upgrades", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(kubernetesUpgradesRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	return root.AvailableUpgradeVersions, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create creates a Kubernetes cluster.
 func (svc *KubernetesServiceOp) Create(ctx context.Context, create *KubernetesClusterCreateRequest) (*KubernetesCluster, *Response, error) {
-	path := kubernetesClustersPath
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, create)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(kubernetesClusterRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Cluster, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete deletes a Kubernetes cluster. There is no way to recover a cluster
 // once it has been destroyed.
 func (svc *KubernetesServiceOp) Delete(ctx context.Context, clusterID string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DeleteSelective deletes a Kubernetes cluster and the specified associated resources.
 // Users can choose to delete specific volumes, volume snapshots or load balancers along with the cluster
 // There is no way to recover a cluster or the specified resources once destroyed.
 func (svc *KubernetesServiceOp) DeleteSelective(ctx context.Context, clusterID string, request *KubernetesClusterDeleteSelectiveRequest) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/destroy_with_associated_resources/selective", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, request)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DeleteDangerous deletes a Kubernetes cluster and all its associated resources. There is no way to recover a cluster
 // or it's associated resources once destroyed.
 func (svc *KubernetesServiceOp) DeleteDangerous(ctx context.Context, clusterID string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/destroy_with_associated_resources/dangerous", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListAssociatedResourcesForDeletion lists a Kubernetes cluster's resources that can be selected
 // for deletion along with the cluster. See DeleteSelective
 // Associated resources include volumes, volume snapshots and load balancers.
 func (svc *KubernetesServiceOp) ListAssociatedResourcesForDeletion(ctx context.Context, clusterID string) (*KubernetesAssociatedResources, *Response, error) {
-	path := fmt.Sprintf("%s/%s/destroy_with_associated_resources", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(KubernetesAssociatedResources)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List returns a list of the Kubernetes clusters visible with the caller's API token.
 func (svc *KubernetesServiceOp) List(ctx context.Context, opts *ListOptions) ([]*KubernetesCluster, *Response, error) {
-	path := kubernetesClustersPath
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(kubernetesClustersRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Clusters, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // KubernetesClusterConfig is the content of a Kubernetes config file, which can be
@@ -804,232 +661,83 @@ type KubernetesClusterConfig struct {
 
 // GetKubeConfig returns a Kubernetes config file for the specified cluster.
 func (svc *KubernetesServiceOp) GetKubeConfig(ctx context.Context, clusterID string, get *KubernetesClusterKubeconfigGetRequest) (*KubernetesClusterConfig, *Response, error) {
-	path := fmt.Sprintf("%s/%s/kubeconfig", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	q := req.URL.Query()
-	if get != nil && get.Type != "" {
-		q.Add("type", get.Type)
-	}
-	req.URL.RawQuery = q.Encode()
-	configBytes := bytes.NewBuffer(nil)
-	resp, err := svc.client.Do(ctx, req, configBytes)
-	if err != nil {
-		return nil, resp, err
-	}
-	res := &KubernetesClusterConfig{
-		KubeconfigYAML: configBytes.Bytes(),
-	}
-	return res, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetKubeConfigWithExpiry returns a Kubernetes config file for the specified cluster with expiry_seconds.
 // Expiry only makes sense for token-based kubeconfigs.
 func (svc *KubernetesServiceOp) GetKubeConfigWithExpiry(ctx context.Context, clusterID string, expirySeconds int64) (*KubernetesClusterConfig, *Response, error) {
-	path := fmt.Sprintf("%s/%s/kubeconfig", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	q := req.URL.Query()
-	q.Add("expiry_seconds", fmt.Sprintf("%d", expirySeconds))
-	q.Add("type", "token")
-	req.URL.RawQuery = q.Encode()
-	configBytes := bytes.NewBuffer(nil)
-	resp, err := svc.client.Do(ctx, req, configBytes)
-	if err != nil {
-		return nil, resp, err
-	}
-	res := &KubernetesClusterConfig{
-		KubeconfigYAML: configBytes.Bytes(),
-	}
-	return res, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetCredentials returns a Kubernetes API server credentials for the specified cluster.
 func (svc *KubernetesServiceOp) GetCredentials(ctx context.Context, clusterID string, get *KubernetesClusterCredentialsGetRequest) (*KubernetesClusterCredentials, *Response, error) {
-	path := fmt.Sprintf("%s/%s/credentials", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	q := req.URL.Query()
-	if get != nil && get.ExpirySeconds != nil {
-		q.Add("expiry_seconds", strconv.Itoa(*get.ExpirySeconds))
-	}
-	req.URL.RawQuery = q.Encode()
-	credentials := new(KubernetesClusterCredentials)
-	resp, err := svc.client.Do(ctx, req, credentials)
-	if err != nil {
-		return nil, nil, err
-	}
-	return credentials, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Update updates a Kubernetes cluster's properties.
 func (svc *KubernetesServiceOp) Update(ctx context.Context, clusterID string, update *KubernetesClusterUpdateRequest) (*KubernetesCluster, *Response, error) {
-	path := fmt.Sprintf("%s/%s", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(kubernetesClusterRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Cluster, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Upgrade upgrades a Kubernetes cluster to a new version. Valid upgrade
 // versions for a given cluster can be retrieved with `GetUpgrades`.
 func (svc *KubernetesServiceOp) Upgrade(ctx context.Context, clusterID string, upgrade *KubernetesClusterUpgradeRequest) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/upgrade", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, upgrade)
-	if err != nil {
-		return nil, err
-	}
-	return svc.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // CreateNodePool creates a new node pool in an existing Kubernetes cluster.
 func (svc *KubernetesServiceOp) CreateNodePool(ctx context.Context, clusterID string, create *KubernetesNodePoolCreateRequest) (*KubernetesNodePool, *Response, error) {
-	path := fmt.Sprintf("%s/%s/node_pools", kubernetesClustersPath, clusterID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, create)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(kubernetesNodePoolRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.NodePool, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetNodePool retrieves an existing node pool in a Kubernetes cluster.
 func (svc *KubernetesServiceOp) GetNodePool(ctx context.Context, clusterID, poolID string) (*KubernetesNodePool, *Response, error) {
-	path := fmt.Sprintf("%s/%s/node_pools/%s", kubernetesClustersPath, clusterID, poolID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(kubernetesNodePoolRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.NodePool, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetNodePoolTemplate retrieves the template used for a given node pool to scale up from zero.
 func (svc *KubernetesServiceOp) GetNodePoolTemplate(ctx context.Context, clusterID string, nodePoolName string) (*KubernetesNodePoolTemplate, *Response, error) {
-	path, err := url.JoinPath(kubernetesClustersPath, clusterID, "node_pools_template", nodePoolName)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(KubernetesNodePoolTemplate)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListNodePools lists all the node pools found in a Kubernetes cluster.
 func (svc *KubernetesServiceOp) ListNodePools(ctx context.Context, clusterID string, opts *ListOptions) ([]*KubernetesNodePool, *Response, error) {
-	path := fmt.Sprintf("%s/%s/node_pools", kubernetesClustersPath, clusterID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(kubernetesNodePoolsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.NodePools, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateNodePool updates the details of an existing node pool.
 func (svc *KubernetesServiceOp) UpdateNodePool(ctx context.Context, clusterID, poolID string, update *KubernetesNodePoolUpdateRequest) (*KubernetesNodePool, *Response, error) {
-	path := fmt.Sprintf("%s/%s/node_pools/%s", kubernetesClustersPath, clusterID, poolID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(kubernetesNodePoolRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.NodePool, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // RecycleNodePoolNodes is DEPRECATED please use DeleteNode
 // The method will be removed in godo 2.0.
 func (svc *KubernetesServiceOp) RecycleNodePoolNodes(ctx context.Context, clusterID, poolID string, recycle *KubernetesNodePoolRecycleNodesRequest) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/node_pools/%s/recycle", kubernetesClustersPath, clusterID, poolID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, recycle)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DeleteNodePool deletes a node pool, and subsequently all the nodes in that pool.
 func (svc *KubernetesServiceOp) DeleteNodePool(ctx context.Context, clusterID, poolID string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/node_pools/%s", kubernetesClustersPath, clusterID, poolID)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DeleteNode deletes a specific node in a node pool.
 func (svc *KubernetesServiceOp) DeleteNode(ctx context.Context, clusterID, poolID, nodeID string, deleteReq *KubernetesNodeDeleteRequest) (*Response, error) {
-	path := fmt.Sprintf("%s/%s/node_pools/%s/nodes/%s", kubernetesClustersPath, clusterID, poolID, nodeID)
-	if deleteReq != nil {
-		v := make(url.Values)
-		if deleteReq.SkipDrain {
-			v.Set("skip_drain", "1")
-		}
-		if deleteReq.Replace {
-			v.Set("replace", "1")
-		}
-		if query := v.Encode(); query != "" {
-			path = path + "?" + query
-		}
-	}
-
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 type kubernetesOptionsRoot struct {
@@ -1040,45 +748,20 @@ type kubernetesOptionsRoot struct {
 // GetOptions returns options about the Kubernetes service, such as the versions available for
 // cluster creation.
 func (svc *KubernetesServiceOp) GetOptions(ctx context.Context) (*KubernetesOptions, *Response, error) {
-	path := kubernetesOptionsPath
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(kubernetesOptionsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Options, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // AddRegistry integrates docr registry with all the specified clusters
 func (svc *KubernetesServiceOp) AddRegistry(ctx context.Context, req *KubernetesClusterRegistryRequest) (*Response, error) {
-	path := fmt.Sprintf("%s/registry", kubernetesBasePath)
-	request, err := svc.client.NewRequest(ctx, http.MethodPost, path, req)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, request, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // RemoveRegistry removes docr registry support for all the specified clusters
 func (svc *KubernetesServiceOp) RemoveRegistry(ctx context.Context, req *KubernetesClusterRegistryRequest) (*Response, error) {
-	path := fmt.Sprintf("%s/registry", kubernetesBasePath)
-	request, err := svc.client.NewRequest(ctx, http.MethodDelete, path, req)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, request, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 type runClusterlintRoot struct {
@@ -1087,17 +770,8 @@ type runClusterlintRoot struct {
 
 // RunClusterlint schedules a clusterlint run for the specified cluster
 func (svc *KubernetesServiceOp) RunClusterlint(ctx context.Context, clusterID string, req *KubernetesRunClusterlintRequest) (string, *Response, error) {
-	path := fmt.Sprintf("%s/%s/clusterlint", kubernetesClustersPath, clusterID)
-	request, err := svc.client.NewRequest(ctx, http.MethodPost, path, req)
-	if err != nil {
-		return "", nil, err
-	}
-	root := new(runClusterlintRoot)
-	resp, err := svc.client.Do(ctx, request, root)
-	if err != nil {
-		return "", resp, err
-	}
-	return root.RunID, resp, nil
+	_ = "STUB: not implemented"
+	return "", nil, nil
 }
 
 type clusterlintDiagnosticsRoot struct {
@@ -1106,50 +780,11 @@ type clusterlintDiagnosticsRoot struct {
 
 // GetClusterlintResults fetches the diagnostics after clusterlint run completes
 func (svc *KubernetesServiceOp) GetClusterlintResults(ctx context.Context, clusterID string, req *KubernetesGetClusterlintRequest) ([]*ClusterlintDiagnostic, *Response, error) {
-	path := fmt.Sprintf("%s/%s/clusterlint", kubernetesClustersPath, clusterID)
-	if req != nil {
-		v := make(url.Values)
-		if req.RunId != "" {
-			v.Set("run_id", req.RunId)
-		}
-		if query := v.Encode(); query != "" {
-			path = path + "?" + query
-		}
-	}
-
-	request, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(clusterlintDiagnosticsRoot)
-	resp, err := svc.client.Do(ctx, request, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Diagnostics, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (svc *KubernetesServiceOp) GetClusterStatusMessages(ctx context.Context, clusterID string, req *KubernetesGetClusterStatusMessagesRequest) ([]*KubernetesClusterStatusMessage, *Response, error) {
-	path := fmt.Sprintf("%s/%s/status_messages", kubernetesClustersPath, clusterID)
-
-	if req != nil {
-		v := make(url.Values)
-		if req.Since != nil {
-			v.Set("since", req.Since.Format(time.RFC3339))
-		}
-		if query := v.Encode(); query != "" {
-			path = path + "?" + query
-		}
-	}
-
-	request, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(clusterStatusMessagesRoot)
-	resp, err := svc.client.Do(ctx, request, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Messages, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

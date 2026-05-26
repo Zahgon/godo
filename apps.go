@@ -2,10 +2,6 @@ package godo
 
 import (
 	"context"
-	"errors"
-	"fmt"
-	"net/http"
-	netURL "net/url"
 )
 
 const (
@@ -274,485 +270,148 @@ type GetAppInstancesOpts struct {
 }
 
 // URN returns a URN identifier for the app
-func (a App) URN() string {
-	return ToURN("app", a.ID)
-}
+func (a App) URN() string { _ = "STUB: not implemented"; return "" }
 
 type appHealthRoot struct {
 	Health *AppHealth `json:"app_health"`
 }
 
 func (s *AppsServiceOp) GetAppHealth(ctx context.Context, appID string) (*AppHealth, *Response, error) {
-	path := fmt.Sprintf("%s/%s/health", appsBasePath, appID)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(appHealthRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Health, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create an app.
 func (s *AppsServiceOp) Create(ctx context.Context, create *AppCreateRequest) (*App, *Response, error) {
-	path := appsBasePath
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, create)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(appRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.App, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an app.
 func (s *AppsServiceOp) Get(ctx context.Context, appID string) (*App, *Response, error) {
-	path := fmt.Sprintf("%s/%s", appsBasePath, appID)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(appRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.App, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List apps.
 func (s *AppsServiceOp) List(ctx context.Context, opts *ListOptions) ([]*App, *Response, error) {
-	path := appsBasePath
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(appsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Apps, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Update an app.
 func (s *AppsServiceOp) Update(ctx context.Context, appID string, update *AppUpdateRequest) (*App, *Response, error) {
-	path := fmt.Sprintf("%s/%s", appsBasePath, appID)
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(appRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.App, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete an app.
 func (s *AppsServiceOp) Delete(ctx context.Context, appID string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", appsBasePath, appID)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := s.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Propose an app.
 func (s *AppsServiceOp) Propose(ctx context.Context, propose *AppProposeRequest) (*AppProposeResponse, *Response, error) {
-	path := fmt.Sprintf("%s/propose", appsBasePath)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, propose)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	res := &AppProposeResponse{}
-	resp, err := s.client.Do(ctx, req, res)
-	if err != nil {
-		return nil, resp, err
-	}
-	return res, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Restart restarts an app.
 func (s *AppsServiceOp) Restart(ctx context.Context, appID string, opts *AppRestartRequest) (*Deployment, *Response, error) {
-	path := fmt.Sprintf("%s/%s/restart", appsBasePath, appID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(deploymentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Deployment, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDeployment gets an app deployment.
 func (s *AppsServiceOp) GetDeployment(ctx context.Context, appID, deploymentID string) (*Deployment, *Response, error) {
-	path := fmt.Sprintf("%s/%s/deployments/%s", appsBasePath, appID, deploymentID)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(deploymentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Deployment, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListDeployments lists an app deployments.
 func (s *AppsServiceOp) ListDeployments(ctx context.Context, appID string, opts *ListOptions) ([]*Deployment, *Response, error) {
-	path := fmt.Sprintf("%s/%s/deployments", appsBasePath, appID)
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(deploymentsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Deployments, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateDeployment creates an app deployment.
 func (s *AppsServiceOp) CreateDeployment(ctx context.Context, appID string, create ...*DeploymentCreateRequest) (*Deployment, *Response, error) {
-	path := fmt.Sprintf("%s/%s/deployments", appsBasePath, appID)
-
-	var createReq *DeploymentCreateRequest
-	for _, c := range create {
-		createReq = c
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, createReq)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(deploymentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Deployment, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListJobInvocations lists all job invocations for a given app.
 func (s *AppsServiceOp) ListJobInvocations(ctx context.Context, appID string, opts *ListJobInvocationsOptions) ([]*JobInvocation, *Response, error) {
-	path := fmt.Sprintf("%s/%s/job-invocations", appsBasePath, appID)
-
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(jobInvocationsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.JobInvocations, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetJobInvocation gets a specific job invocation for a given app.
 func (s *AppsServiceOp) GetJobInvocation(ctx context.Context, appID string, jobInvocationId string, opts *GetJobInvocationOptions) (*JobInvocation, *Response, error) {
-	url := fmt.Sprintf("%s/%s/job-invocations/%s", appsBasePath, appID, jobInvocationId)
-
-	url, err := addOptions(url, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, url, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(jobInvocationRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.JobInvocation, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetJobInvocationLogs retrieves job invocation logs.
 func (s *AppsServiceOp) GetJobInvocationLogs(ctx context.Context, appID, jobInvocationId string, opts *GetJobInvocationLogsOptions) (*AppLogs, *Response, error) {
-	url := fmt.Sprintf("%s/%s/jobs/%s/invocations/%s/logs?type=JOB_INVOCATION", appsBasePath, appID, opts.JobName, jobInvocationId)
-
-	if opts.Follow {
-		url += fmt.Sprintf("&follow=%t", opts.Follow)
-	}
-	if opts.TailLines > 0 {
-		url += fmt.Sprintf("&tail_lines=%d", opts.TailLines)
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, url, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	logs := new(AppLogs)
-	resp, err := s.client.Do(ctx, req, logs)
-	if err != nil {
-		return nil, resp, err
-	}
-	return logs, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CancelJobInvocation cancels a specific job invocation for a given app.
 func (s *AppsServiceOp) CancelJobInvocation(ctx context.Context, appID string, jobInvocationId string, opts *CancelJobInvocationOptions) (*JobInvocation, *Response, error) {
-	url := fmt.Sprintf("%s/%s/job-invocations/%s/cancel", appsBasePath, appID, jobInvocationId)
-
-	url, err := addOptions(url, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, url, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(jobInvocationRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.JobInvocation, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListEvents lists all events for a given app.
 func (s *AppsServiceOp) ListEvents(ctx context.Context, appID string, opts *ListEventsOptions) ([]*Event, *Response, error) {
-	path := fmt.Sprintf("%s/%s/events", appsBasePath, appID)
-
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(eventsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-	return root.Events, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetEvent retrieves a single event for an app.
 func (s *AppsServiceOp) GetEvent(ctx context.Context, appID, eventID string) (*Event, *Response, error) {
-	url := fmt.Sprintf("%s/%s/events/%s", appsBasePath, appID, eventID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, url, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(eventRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Event, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CancelEvent cancels an in-progress autoscaling event.
 func (s *AppsServiceOp) CancelEvent(ctx context.Context, appID, eventID string) (*Event, *Response, error) {
-	url := fmt.Sprintf("%s/%s/events/%s/cancel", appsBasePath, appID, eventID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, url, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(eventRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Event, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetEventLogs retrieves logs for an autoscaling event.
 func (s *AppsServiceOp) GetEventLogs(ctx context.Context, appID, eventID string, opts *GetEventLogsOptions) (*AppLogs, *Response, error) {
-	url := fmt.Sprintf("%s/%s/events/%s/logs?type=%s", appsBasePath, appID, eventID, AppLogTypeAutoscaleEvent)
-
-	if opts != nil {
-		if opts.Follow {
-			url += fmt.Sprintf("&follow=%t", opts.Follow)
-		}
-		if opts.TailLines > 0 {
-			url += fmt.Sprintf("&tail_lines=%d", opts.TailLines)
-		}
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, url, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	logs := new(AppLogs)
-	resp, err := s.client.Do(ctx, req, logs)
-	if err != nil {
-		return nil, resp, err
-	}
-	return logs, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetLogs retrieves app logs.
 func (s *AppsServiceOp) GetLogs(ctx context.Context, appID, deploymentID, component string, logType AppLogType, follow bool, tailLines int) (*AppLogs, *Response, error) {
-	var url string
-	if deploymentID == "" {
-		url = fmt.Sprintf("%s/%s/logs?type=%s&follow=%t&tail_lines=%d", appsBasePath, appID, logType, follow, tailLines)
-	} else {
-		url = fmt.Sprintf("%s/%s/deployments/%s/logs?type=%s&follow=%t&tail_lines=%d", appsBasePath, appID, deploymentID, logType, follow, tailLines)
-	}
-	if component != "" {
-		url = fmt.Sprintf("%s&component_name=%s", url, component)
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, url, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	logs := new(AppLogs)
-	resp, err := s.client.Do(ctx, req, logs)
-	if err != nil {
-		return nil, resp, err
-	}
-	return logs, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetExec retrieves the websocket URL used for sending/receiving console input and output.
 // Deprecated: Use GetExecWithOpts instead.
 func (s *AppsServiceOp) GetExec(ctx context.Context, appID, deploymentID, component string) (*AppExec, *Response, error) {
-	return s.GetExecWithOpts(ctx, appID, component, &AppGetExecOptions{
-		DeploymentID: deploymentID,
-	})
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetExecWithOpts retrieves the websocket URL used for sending/receiving console input and output.
 func (s *AppsServiceOp) GetExecWithOpts(ctx context.Context, appID, componentName string, opts *AppGetExecOptions) (*AppExec, *Response, error) {
-	var url string
-	if opts.DeploymentID == "" {
-		url = fmt.Sprintf("%s/%s/components/%s/exec", appsBasePath, appID, componentName)
-	} else {
-		url = fmt.Sprintf("%s/%s/deployments/%s/components/%s/exec", appsBasePath, appID, opts.DeploymentID, componentName)
-	}
-
-	params := map[string]string{
-		"instance_name": opts.InstanceName,
-	}
-
-	urlValues := netURL.Values{}
-
-	for k, v := range params {
-		if v == "" {
-			continue
-		}
-
-		urlValues.Add(k, v)
-	}
-
-	if len(urlValues) > 0 {
-		url = fmt.Sprintf("%s?%s", url, urlValues.Encode())
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, url, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	logs := new(AppExec)
-	resp, err := s.client.Do(ctx, req, logs)
-	if err != nil {
-		return nil, resp, err
-	}
-	return logs, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListRegions lists all regions supported by App Platform.
 func (s *AppsServiceOp) ListRegions(ctx context.Context) ([]*AppRegion, *Response, error) {
-	path := fmt.Sprintf("%s/regions", appsBasePath)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(appRegionsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Regions, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListTiers lists available app tiers.
@@ -760,17 +419,8 @@ func (s *AppsServiceOp) ListRegions(ctx context.Context) ([]*AppRegion, *Respons
 // Deprecated: The '/v2/apps/tiers' endpoint has been deprecated as app tiers
 // are no longer tied to instance sizes. The concept of tiers is being retired.
 func (s *AppsServiceOp) ListTiers(ctx context.Context) ([]*AppTier, *Response, error) {
-	path := fmt.Sprintf("%s/tiers", appsBasePath)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(appTiersRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Tiers, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetTier retrieves information about a specific app tier.
@@ -778,153 +428,62 @@ func (s *AppsServiceOp) ListTiers(ctx context.Context) ([]*AppTier, *Response, e
 // Deprecated: The '/v2/apps/tiers/{slug}' endpoints have been deprecated as app
 // tiers are no longer tied to instance sizes. The concept of tiers is being retired.
 func (s *AppsServiceOp) GetTier(ctx context.Context, slug string) (*AppTier, *Response, error) {
-	path := fmt.Sprintf("%s/tiers/%s", appsBasePath, slug)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(appTierRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Tier, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListInstanceSizes lists available instance sizes for service, worker, and job components.
 func (s *AppsServiceOp) ListInstanceSizes(ctx context.Context) ([]*AppInstanceSize, *Response, error) {
-	path := fmt.Sprintf("%s/tiers/instance_sizes", appsBasePath)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(instanceSizesRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.InstanceSizes, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetInstanceSize retrieves information about a specific instance size for service, worker, and job components.
 func (s *AppsServiceOp) GetInstanceSize(ctx context.Context, slug string) (*AppInstanceSize, *Response, error) {
-	path := fmt.Sprintf("%s/tiers/instance_sizes/%s", appsBasePath, slug)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(instanceSizeRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.InstanceSize, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListAlerts retrieves a list of alerts on an app
 func (s *AppsServiceOp) ListAlerts(ctx context.Context, appID string) ([]*AppAlert, *Response, error) {
-	path := fmt.Sprintf("%s/%s/alerts", appsBasePath, appID)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(appAlertsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Alerts, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateAlertDestinations updates the alert destinations of an app's alert
 func (s *AppsServiceOp) UpdateAlertDestinations(ctx context.Context, appID, alertID string, update *AlertDestinationUpdateRequest) (*AppAlert, *Response, error) {
-	path := fmt.Sprintf("%s/%s/alerts/%s/destinations", appsBasePath, appID, alertID)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(appAlertRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Alert, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Detect an app.
 func (s *AppsServiceOp) Detect(ctx context.Context, detect *DetectRequest) (*DetectResponse, *Response, error) {
-	path := fmt.Sprintf("%s/detect", appsBasePath)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, detect)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	res := &DetectResponse{}
-	resp, err := s.client.Do(ctx, req, res)
-	if err != nil {
-		return nil, resp, err
-	}
-	return res, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListBuildpacks lists the available buildpacks on App Platform.
 func (s *AppsServiceOp) ListBuildpacks(ctx context.Context) ([]*Buildpack, *Response, error) {
-	path := fmt.Sprintf("%s/buildpacks", appsBasePath)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(buildpacksRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Buildpacks, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpgradeBuildpack upgrades a buildpack for an app.
 func (s *AppsServiceOp) UpgradeBuildpack(ctx context.Context, appID string, opts UpgradeBuildpackOptions) (*UpgradeBuildpackResponse, *Response, error) {
-	path := fmt.Sprintf("%s/%s/upgrade_buildpack", appsBasePath, appID)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(UpgradeBuildpackResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetAppDatabaseConnectionDetails retrieves credentials for databases associated with the app.
 func (s *AppsServiceOp) GetAppDatabaseConnectionDetails(ctx context.Context, appID string) ([]*GetDatabaseConnectionDetailsResponse, *Response, error) {
-	path := fmt.Sprintf("%s/%s/database_connection_details", appsBasePath, appID)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(GetAppDatabaseConnectionDetailsResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.ConnectionDetails, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ResetDatabasePassword resets credentials for a database component associated with the app.
 func (s *AppsServiceOp) ResetDatabasePassword(ctx context.Context, appID string, component string) (*Deployment, *Response, error) {
-	path := fmt.Sprintf("%s/%s/components/%s/reset_password", appsBasePath, appID, component)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(deploymentRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Deployment, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ToggleDatabaseTrustedSource enables/disables trusted sources on the specified dev database component.
@@ -938,34 +497,15 @@ func (s *AppsServiceOp) ToggleDatabaseTrustedSource(
 	*Response,
 	error,
 ) {
-	path := fmt.Sprintf("%s/%s/components/%s/trusted_sources", appsBasePath, appID, component)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(ToggleDatabaseTrustedSourceResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetAppInstances returns a list of emphemeral compute instances of the current deployment for an app.
 // opts is reserved for future use.
 func (s *AppsServiceOp) GetAppInstances(ctx context.Context, appID string, opts *GetAppInstancesOpts) ([]*AppInstance, *Response, error) {
-	path := fmt.Sprintf("%s/%s/instances", appsBasePath, appID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(GetAppInstancesResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Instances, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // AppComponentType is an app component type.
@@ -988,32 +528,38 @@ const (
 
 // GetType returns the Service component type.
 func (s *AppServiceSpec) GetType() AppComponentType {
-	return AppComponentTypeService
+	_ = "STUB: not implemented"
+	return *new(AppComponentType)
 }
 
 // GetType returns the Worker component type.
 func (s *AppWorkerSpec) GetType() AppComponentType {
-	return AppComponentTypeWorker
+	_ = "STUB: not implemented"
+	return *new(AppComponentType)
 }
 
 // GetType returns the Job component type.
 func (s *AppJobSpec) GetType() AppComponentType {
-	return AppComponentTypeJob
+	_ = "STUB: not implemented"
+	return *new(AppComponentType)
 }
 
 // GetType returns the StaticSite component type.
 func (s *AppStaticSiteSpec) GetType() AppComponentType {
-	return AppComponentTypeStaticSite
+	_ = "STUB: not implemented"
+	return *new(AppComponentType)
 }
 
 // GetType returns the Database component type.
 func (s *AppDatabaseSpec) GetType() AppComponentType {
-	return AppComponentTypeDatabase
+	_ = "STUB: not implemented"
+	return *new(AppComponentType)
 }
 
 // GetType returns the Functions component type.
 func (s *AppFunctionsSpec) GetType() AppComponentType {
-	return AppComponentTypeFunctions
+	_ = "STUB: not implemented"
+	return *new(AppComponentType)
 }
 
 // AppComponentSpec represents a component's spec.
@@ -1086,27 +632,34 @@ type SourceSpec interface {
 
 // GetType returns the Bitbucket source type.
 func (s *BitbucketSourceSpec) GetType() AppSourceType {
-	return AppSourceTypeBitbucket
+	_ = "STUB: not implemented"
+	return *new(AppSourceType)
 }
 
 // GetType returns the GitHub source type.
 func (s *GitHubSourceSpec) GetType() AppSourceType {
-	return AppSourceTypeGitHub
+	_ = "STUB: not implemented"
+	return *new(AppSourceType)
 }
 
 // GetType returns the GitLab source type.
 func (s *GitLabSourceSpec) GetType() AppSourceType {
-	return AppSourceTypeGitLab
+	_ = "STUB: not implemented"
+	return *new(AppSourceType)
 }
 
 // GetType returns the Git source type.
 func (s *GitSourceSpec) GetType() AppSourceType {
-	return AppSourceTypeGit
+	_ = "STUB: not implemented"
+	return *
+
+	// GetType returns the Image source type.
+	new(AppSourceType)
 }
 
-// GetType returns the Image source type.
 func (s *ImageSourceSpec) GetType() AppSourceType {
-	return AppSourceTypeImage
+	_ = "STUB: not implemented"
+	return *new(AppSourceType)
 }
 
 // VCSSourceSpec represents a VCS source.
@@ -1117,45 +670,11 @@ type VCSSourceSpec interface {
 }
 
 // GetRepo allows GitSourceSpec to implement the SourceSpec interface.
-func (s *GitSourceSpec) GetRepo() string {
-	return s.RepoCloneURL
-}
+func (s *GitSourceSpec) GetRepo() string { _ = "STUB: not implemented"; return "" }
 
 // ForEachAppComponentSpec iterates over each component spec in an app.
 func (s *AppSpec) ForEachAppComponentSpec(fn func(component AppComponentSpec) error) error {
-	if s == nil {
-		return nil
-	}
-	for _, c := range s.Services {
-		if err := fn(c); err != nil {
-			return err
-		}
-	}
-	for _, c := range s.Workers {
-		if err := fn(c); err != nil {
-			return err
-		}
-	}
-	for _, c := range s.Jobs {
-		if err := fn(c); err != nil {
-			return err
-		}
-	}
-	for _, c := range s.StaticSites {
-		if err := fn(c); err != nil {
-			return err
-		}
-	}
-	for _, c := range s.Databases {
-		if err := fn(c); err != nil {
-			return err
-		}
-	}
-	for _, c := range s.Functions {
-		if err := fn(c); err != nil {
-			return err
-		}
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
@@ -1168,14 +687,8 @@ func (s *AppSpec) ForEachAppComponentSpec(fn func(component AppComponentSpec) er
 //   - struct type constraint
 //     godo.ForEachAppSpecComponent(spec, func(component *godo.AppStaticSiteSpec) error { ... })
 func ForEachAppSpecComponent[T any](s *AppSpec, fn func(component T) error) error {
-	return s.ForEachAppComponentSpec(func(component AppComponentSpec) error {
-		if c, ok := component.(T); ok {
-			if err := fn(c); err != nil {
-				return err
-			}
-		}
-		return nil
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetAppSpecComponent returns an app spec component by type and name.
@@ -1188,17 +701,6 @@ func ForEachAppSpecComponent[T any](s *AppSpec, fn func(component T) error) erro
 func GetAppSpecComponent[T interface {
 	GetName() string
 }](s *AppSpec, name string) (T, error) {
-	var c T
-	errStop := errors.New("stop")
-	err := ForEachAppSpecComponent(s, func(component T) error {
-		if component.GetName() == name {
-			c = component
-			return errStop
-		}
-		return nil
-	})
-	if err == errStop {
-		return c, nil
-	}
-	return c, fmt.Errorf("component %s not found", name)
+	_ = "STUB: not implemented"
+	return *new(T), nil
 }

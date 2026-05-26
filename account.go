@@ -2,7 +2,6 @@ package godo
 
 import (
 	"context"
-	"net/http"
 )
 
 // AccountService is an interface for interfacing with the Account
@@ -45,25 +44,10 @@ type accountRoot struct {
 	Account *Account `json:"account"`
 }
 
-func (r Account) String() string {
-	return Stringify(r)
-}
+func (r Account) String() string { _ = "STUB: not implemented"; return "" }
 
 // Get DigitalOcean account info
 func (s *AccountServiceOp) Get(ctx context.Context) (*Account, *Response, error) {
-
-	path := "v2/account"
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(accountRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Account, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

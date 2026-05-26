@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -92,148 +90,39 @@ type byoipPrefixUpdateRoot struct {
 	BYOIPPrefix *BYOIPPrefix `json:"byoip_prefix"`
 }
 
-func (r BYOIPPrefix) String() string {
-	return Stringify(r)
-}
+func (r BYOIPPrefix) String() string { _ = "STUB: not implemented"; return "" }
 
 // List all BYOIP prefixes.
 func (r *BYOIPPrefixServiceOp) List(ctx context.Context, opt *ListOptions) ([]*BYOIPPrefix, *Response, error) {
-	path := byoipsBasePath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := r.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(byoipsRoot)
-	resp, err := r.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-
-	return root.BYOIPs, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an individual BYOIP prefix details.
 func (r *BYOIPPrefixServiceOp) Get(ctx context.Context, uuid string) (*BYOIPPrefix, *Response, error) {
-	path := fmt.Sprintf("%s/%s", byoipsBasePath, uuid)
-
-	req, err := r.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(byoipPrefixRoot)
-	resp, err := r.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.BYOIPPrefix, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetResources return all existing BYOIP allocations for given BYOIP prefix id.
 func (r *BYOIPPrefixServiceOp) GetResources(ctx context.Context, uuid string, opt *ListOptions) ([]BYOIPPrefixResource, *Response, error) {
-	path := fmt.Sprintf("%s/%s/ips", byoipsBasePath, uuid)
-
-	addOptions(path, opt)
-	req, err := r.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(byoipResourcesRoot)
-
-	resp, err := r.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-	return root.Resources, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create a BYOIP prefix
 func (r *BYOIPPrefixServiceOp) Create(ctx context.Context, byoipPrefix *BYOIPPrefixCreateReq) (*BYOIPPrefixCreateResp, *Response, error) {
-
-	if byoipPrefix.Prefix == "" {
-		return nil, nil, fmt.Errorf("prefix is required")
-	}
-	if byoipPrefix.Signature == "" {
-		return nil, nil, fmt.Errorf("signature is required")
-	}
-	if byoipPrefix.Region == "" {
-		return nil, nil, fmt.Errorf("region is required")
-	}
-
-	path := byoipsBasePath
-
-	req, err := r.client.NewRequest(ctx, http.MethodPost, path, byoipPrefix)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(byoipPrefixCreateRoot)
-	resp, err := r.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.BYOIPPrefixCreate, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (r *BYOIPPrefixServiceOp) Delete(ctx context.Context, uuid string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", byoipsBasePath, uuid)
-
-	req, err := r.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := r.client.Do(ctx, req, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Update a BYOIP prefix
 func (r *BYOIPPrefixServiceOp) Update(ctx context.Context, prefixUUID string, updateReq *BYOIPPrefixUpdateReq) (*BYOIPPrefix, *Response, error) {
-
-	if prefixUUID == "" {
-		return nil, nil, fmt.Errorf("prefix UUID is required")
-	}
-
-	if updateReq.Advertise == nil {
-		return nil, nil, fmt.Errorf("is_advertised is required")
-	}
-
-	path := fmt.Sprintf("%s/%s", byoipsBasePath, prefixUUID)
-
-	req, err := r.client.NewRequest(ctx, http.MethodPatch, path, updateReq)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(byoipPrefixUpdateRoot)
-	resp, err := r.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.BYOIPPrefix, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

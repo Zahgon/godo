@@ -2,7 +2,6 @@ package godo
 
 import (
 	"context"
-	"net/http"
 	"time"
 )
 
@@ -68,10 +67,13 @@ type VPCSetDescription string
 // set a VPC as the default one in the region
 // Ex.: VPCs.Set(..., VPCSetDefault())
 func VPCSetDefault() VPCSetField {
-	return &vpcSetDefault{}
+	_ = "STUB: not implemented"
+	return *
+
+	// vpcSetDefault satisfies the VPCSetField interface
+	new(VPCSetField)
 }
 
-// vpcSetDefault satisfies the VPCSetField interface
 type vpcSetDefault struct{}
 
 // VPC represents a DigitalOcean Virtual Private Cloud configuration.
@@ -114,160 +116,51 @@ type vpcMembersRoot struct {
 
 // Get returns the details of a Virtual Private Cloud.
 func (v *VPCsServiceOp) Get(ctx context.Context, id string) (*VPC, *Response, error) {
-	path := vpcsBasePath + "/" + id
-	req, err := v.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.VPC, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create creates a new Virtual Private Cloud.
 func (v *VPCsServiceOp) Create(ctx context.Context, create *VPCCreateRequest) (*VPC, *Response, error) {
-	path := vpcsBasePath
-	req, err := v.client.NewRequest(ctx, http.MethodPost, path, create)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.VPC, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List returns a list of the caller's VPCs, with optional pagination.
 func (v *VPCsServiceOp) List(ctx context.Context, opt *ListOptions) ([]*VPC, *Response, error) {
-	path, err := addOptions(vpcsBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := v.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcsRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.VPCs, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Update updates a Virtual Private Cloud's properties.
 func (v *VPCsServiceOp) Update(ctx context.Context, id string, update *VPCUpdateRequest) (*VPC, *Response, error) {
-	path := vpcsBasePath + "/" + id
-	req, err := v.client.NewRequest(ctx, http.MethodPut, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.VPC, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
-func (n VPCSetName) vpcSetField(in map[string]interface{}) {
-	in["name"] = n
-}
+func (n VPCSetName) vpcSetField(in map[string]interface{}) { _ = "STUB: not implemented"; return }
 
 func (n VPCSetDescription) vpcSetField(in map[string]interface{}) {
-	in["description"] = n
+	_ = "STUB: not implemented"
+	return
 }
 
-func (*vpcSetDefault) vpcSetField(in map[string]interface{}) {
-	in["default"] = true
-}
+func (*vpcSetDefault) vpcSetField(in map[string]interface{}) { _ = "STUB: not implemented"; return }
 
 // Set updates specific properties of a Virtual Private Cloud.
 func (v *VPCsServiceOp) Set(ctx context.Context, id string, fields ...VPCSetField) (*VPC, *Response, error) {
-	path := vpcsBasePath + "/" + id
-	update := make(map[string]interface{}, len(fields))
-	for _, field := range fields {
-		field.vpcSetField(update)
-	}
-
-	req, err := v.client.NewRequest(ctx, http.MethodPatch, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.VPC, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete deletes a Virtual Private Cloud. There is no way to recover a VPC once it has been
 // destroyed.
 func (v *VPCsServiceOp) Delete(ctx context.Context, id string) (*Response, error) {
-	path := vpcsBasePath + "/" + id
-	req, err := v.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := v.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (v *VPCsServiceOp) ListMembers(ctx context.Context, id string, request *VPCListMembersRequest, opt *ListOptions) ([]*VPCMember, *Response, error) {
-	path := vpcsBasePath + "/" + id + "/members"
-	pathWithResourceType, err := addOptions(path, request)
-	if err != nil {
-		return nil, nil, err
-	}
-	pathWithOpts, err := addOptions(pathWithResourceType, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := v.client.NewRequest(ctx, http.MethodGet, pathWithOpts, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(vpcMembersRoot)
-	resp, err := v.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Members, resp, nil
-
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

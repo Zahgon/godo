@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 const domainsBasePath = "v2/domains"
@@ -97,236 +95,75 @@ type DomainRecordEditRequest struct {
 	Tag      string `json:"tag,omitempty"`
 }
 
-func (d Domain) String() string {
-	return Stringify(d)
-}
+func (d Domain) String() string { _ = "STUB: not implemented"; return "" }
 
 // URN returns the domain name in a valid DO API URN form.
-func (d Domain) URN() string {
-	return ToURN("Domain", d.Name)
-}
+func (d Domain) URN() string { _ = "STUB: not implemented"; return "" }
 
 // List all domains.
 func (s DomainsServiceOp) List(ctx context.Context, opt *ListOptions) ([]Domain, *Response, error) {
-	path := domainsBasePath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(domainsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Domains, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get individual domain. It requires a non-empty domain name.
 func (s *DomainsServiceOp) Get(ctx context.Context, name string) (*Domain, *Response, error) {
-	if len(name) < 1 {
-		return nil, nil, NewArgError("name", "cannot be an empty string")
-	}
-
-	path := fmt.Sprintf("%s/%s", domainsBasePath, name)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(domainRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Domain, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create a new domain
 func (s *DomainsServiceOp) Create(ctx context.Context, createRequest *DomainCreateRequest) (*Domain, *Response, error) {
-	if createRequest == nil {
-		return nil, nil, NewArgError("createRequest", "cannot be nil")
-	}
-
-	path := domainsBasePath
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(domainRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Domain, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete domain
 func (s *DomainsServiceOp) Delete(ctx context.Context, name string) (*Response, error) {
-	if len(name) < 1 {
-		return nil, NewArgError("name", "cannot be an empty string")
-	}
-
-	path := fmt.Sprintf("%s/%s", domainsBasePath, name)
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(ctx, req, nil)
-
-	return resp, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Converts a DomainRecord to a string.
-func (d DomainRecord) String() string {
-	return Stringify(d)
-}
+func (d DomainRecord) String() string { _ = "STUB: not implemented"; return "" }
 
 // Converts a DomainRecordEditRequest to a string.
-func (d DomainRecordEditRequest) String() string {
-	return Stringify(d)
-}
+func (d DomainRecordEditRequest) String() string { _ = "STUB: not implemented"; return "" }
 
 // Records returns a slice of DomainRecord for a domain.
 func (s *DomainsServiceOp) Records(ctx context.Context, domain string, opt *ListOptions) ([]DomainRecord, *Response, error) {
-	if len(domain) < 1 {
-		return nil, nil, NewArgError("domain", "cannot be an empty string")
-	}
-
-	path := fmt.Sprintf("%s/%s/records", domainsBasePath, domain)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return s.records(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // RecordsByType returns a slice of DomainRecord for a domain matched by record type.
 func (s *DomainsServiceOp) RecordsByType(ctx context.Context, domain, ofType string, opt *ListOptions) ([]DomainRecord, *Response, error) {
-	if len(domain) < 1 {
-		return nil, nil, NewArgError("domain", "cannot be an empty string")
-	}
-
-	if len(ofType) < 1 {
-		return nil, nil, NewArgError("type", "cannot be an empty string")
-	}
-
-	path := fmt.Sprintf("%s/%s/records?type=%s", domainsBasePath, domain, ofType)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return s.records(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // RecordsByName returns a slice of DomainRecord for a domain matched by record name.
 func (s *DomainsServiceOp) RecordsByName(ctx context.Context, domain, name string, opt *ListOptions) ([]DomainRecord, *Response, error) {
-	if len(domain) < 1 {
-		return nil, nil, NewArgError("domain", "cannot be an empty string")
-	}
-
-	if len(name) < 1 {
-		return nil, nil, NewArgError("name", "cannot be an empty string")
-	}
-
-	path := fmt.Sprintf("%s/%s/records?name=%s", domainsBasePath, domain, name)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return s.records(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // RecordsByTypeAndName returns a slice of DomainRecord for a domain matched by record type and name.
 func (s *DomainsServiceOp) RecordsByTypeAndName(ctx context.Context, domain, ofType, name string, opt *ListOptions) ([]DomainRecord, *Response, error) {
-	if len(domain) < 1 {
-		return nil, nil, NewArgError("domain", "cannot be an empty string")
-	}
-
-	if len(ofType) < 1 {
-		return nil, nil, NewArgError("type", "cannot be an empty string")
-	}
-
-	if len(name) < 1 {
-		return nil, nil, NewArgError("name", "cannot be an empty string")
-	}
-
-	path := fmt.Sprintf("%s/%s/records?type=%s&name=%s", domainsBasePath, domain, ofType, name)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return s.records(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Record returns the record id from a domain
 func (s *DomainsServiceOp) Record(ctx context.Context, domain string, id int) (*DomainRecord, *Response, error) {
-	if len(domain) < 1 {
-		return nil, nil, NewArgError("domain", "cannot be an empty string")
-	}
-
-	if id < 1 {
-		return nil, nil, NewArgError("id", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%s/records/%d", domainsBasePath, domain, id)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	record := new(domainRecordRoot)
-	resp, err := s.client.Do(ctx, req, record)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return record.DomainRecord, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteRecord deletes a record from a domain identified by id
 func (s *DomainsServiceOp) DeleteRecord(ctx context.Context, domain string, id int) (*Response, error) {
-	if len(domain) < 1 {
-		return nil, NewArgError("domain", "cannot be an empty string")
-	}
-
-	if id < 1 {
-		return nil, NewArgError("id", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%s/records/%d", domainsBasePath, domain, id)
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(ctx, req, nil)
-
-	return resp, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // EditRecord edits a record using a DomainRecordEditRequest
@@ -335,77 +172,20 @@ func (s *DomainsServiceOp) EditRecord(ctx context.Context,
 	id int,
 	editRequest *DomainRecordEditRequest,
 ) (*DomainRecord, *Response, error) {
-	if len(domain) < 1 {
-		return nil, nil, NewArgError("domain", "cannot be an empty string")
-	}
-
-	if id < 1 {
-		return nil, nil, NewArgError("id", "cannot be less than 1")
-	}
-
-	if editRequest == nil {
-		return nil, nil, NewArgError("editRequest", "cannot be nil")
-	}
-
-	path := fmt.Sprintf("%s/%s/records/%d", domainsBasePath, domain, id)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, editRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(domainRecordRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.DomainRecord, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateRecord creates a record using a DomainRecordEditRequest
 func (s *DomainsServiceOp) CreateRecord(ctx context.Context,
 	domain string,
 	createRequest *DomainRecordEditRequest) (*DomainRecord, *Response, error) {
-	if len(domain) < 1 {
-		return nil, nil, NewArgError("domain", "cannot be empty string")
-	}
-
-	if createRequest == nil {
-		return nil, nil, NewArgError("createRequest", "cannot be nil")
-	}
-
-	path := fmt.Sprintf("%s/%s/records", domainsBasePath, domain)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, createRequest)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	d := new(domainRecordRoot)
-	resp, err := s.client.Do(ctx, req, d)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return d.DomainRecord, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Performs a domain records request given a path.
 func (s *DomainsServiceOp) records(ctx context.Context, path string) ([]DomainRecord, *Response, error) {
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(domainRecordsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	return root.DomainRecords, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

@@ -66,32 +66,11 @@ func main() {
 }
 
 func poll(ctx context.Context, client *godo.Client, requestID string, interval time.Duration) (*godo.AsyncInvocation, error) {
-	ticker := time.NewTicker(interval)
-	defer ticker.Stop()
-
-	for {
-		inv, _, err := client.AsyncInvocations.Get(ctx, requestID)
-		if err != nil {
-			return nil, err
-		}
-		fmt.Printf("  [%s] status=%s\n", time.Now().Format("15:04:05"), inv.Status)
-		switch inv.Status {
-		case "COMPLETED", "FAILED":
-			return inv, nil
-		}
-		select {
-		case <-ctx.Done():
-			return nil, fmt.Errorf("polling %s: %w (last status %q)", requestID, ctx.Err(), inv.Status)
-		case <-ticker.C:
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func durationFromEnv(name string, fallback time.Duration) time.Duration {
-	if v := os.Getenv(name); v != "" {
-		if d, err := time.ParseDuration(v); err == nil {
-			return d
-		}
-	}
-	return fallback
+	_ = "STUB: not implemented"
+	return *new(time.Duration)
 }

@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 const nfsBasePath = "v2/nfs"
@@ -142,201 +140,42 @@ type nfsOptions struct {
 
 // Create creates a new NFS share.
 func (s *NfsServiceOp) Create(ctx context.Context, createRequest *NfsCreateRequest) (*Nfs, *Response, error) {
-	if createRequest == nil {
-		return nil, nil, NewArgError("createRequest", "cannot be nil")
-	}
-
-	if createRequest.SizeGib < 50 {
-		return nil, nil, NewArgError("size_gib", "it cannot be less than 50Gib")
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, nfsBasePath, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(nfsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Share, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get retrieves an NFS share by ID and region.
 func (s *NfsServiceOp) Get(ctx context.Context, nfsShareId string, region string) (*Nfs, *Response, error) {
-	if nfsShareId == "" {
-		return nil, nil, NewArgError("id", "cannot be empty")
-	}
-
-	path := fmt.Sprintf("%s/%s", nfsBasePath, nfsShareId)
-
-	getOpts := &nfsOptions{Region: region}
-	path, err := addOptions(path, getOpts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(nfsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Share, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List returns a list of NFS shares.
 func (s *NfsServiceOp) List(ctx context.Context, opts *ListOptions, region string) ([]*Nfs, *Response, error) {
-	path, err := addOptions(nfsBasePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	listOpts := &nfsOptions{Region: region}
-	path, err = addOptions(path, listOpts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(nfsListRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-
-	return root.Shares, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete deletes an NFS share by ID and region.
 func (s *NfsServiceOp) Delete(ctx context.Context, nfsShareId string, region string) (*Response, error) {
-	if nfsShareId == "" {
-		return nil, NewArgError("id", "cannot be empty")
-	}
-	path := fmt.Sprintf("%s/%s", nfsBasePath, nfsShareId)
-
-	deleteOpts := &nfsOptions{Region: region}
-	path, err := addOptions(path, deleteOpts)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Get retrieves an NFS snapshot by ID and region.
 func (s *NfsServiceOp) GetSnapshot(ctx context.Context, nfsSnapshotID string, region string) (*NfsSnapshot, *Response, error) {
-	if nfsSnapshotID == "" {
-		return nil, nil, NewArgError("snapshotID", "cannot be empty")
-	}
-
-	path := fmt.Sprintf("%s/%s", nfsSnapshotsBasePath, nfsSnapshotID)
-
-	getOpts := &nfsOptions{Region: region}
-	path, err := addOptions(path, getOpts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(nfsSnapshotRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Snapshot, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List returns a list of NFS snapshots.
 func (s *NfsServiceOp) ListSnapshots(ctx context.Context, opts *ListOptions, nfsShareId, region string) ([]*NfsSnapshot, *Response, error) {
-
-	path, err := addOptions(nfsSnapshotsBasePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	listOpts := &nfsOptions{Region: region, ShareID: nfsShareId}
-	path, err = addOptions(path, listOpts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(nfsSnapshotListRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-
-	return root.Snapshots, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete deletes an NFS snapshot by ID and region.
 func (s *NfsServiceOp) DeleteSnapshot(ctx context.Context, nfsSnapshotID string, region string) (*Response, error) {
-	if nfsSnapshotID == "" {
-		return nil, NewArgError("snapshotID", "cannot be empty")
-	}
-	path := fmt.Sprintf("%s/%s", nfsSnapshotsBasePath, nfsSnapshotID)
-
-	deleteOpts := &nfsOptions{Region: region}
-	path, err := addOptions(path, deleteOpts)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }

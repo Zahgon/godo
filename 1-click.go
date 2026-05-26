@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 const oneClickBasePath = "v2/1-clicks"
@@ -47,35 +45,12 @@ type InstallKubernetesAppsResponse struct {
 
 // List returns a list of the available 1-click applications.
 func (ocs *OneClickServiceOp) List(ctx context.Context, oneClickType string) ([]*OneClick, *Response, error) {
-	path := fmt.Sprintf(`%s?type=%s`, oneClickBasePath, oneClickType)
-
-	req, err := ocs.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(OneClicksRoot)
-	resp, err := ocs.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.List, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // InstallKubernetes installs an addon on a kubernetes cluster
 func (ocs *OneClickServiceOp) InstallKubernetes(ctx context.Context, install *InstallKubernetesAppsRequest) (*InstallKubernetesAppsResponse, *Response, error) {
-	path := fmt.Sprintf(oneClickBasePath + "/kubernetes")
-
-	req, err := ocs.client.NewRequest(ctx, http.MethodPost, path, install)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	responseMessage := new(InstallKubernetesAppsResponse)
-	resp, err := ocs.client.Do(ctx, req, responseMessage)
-	if err != nil {
-		return nil, resp, err
-	}
-	return responseMessage, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

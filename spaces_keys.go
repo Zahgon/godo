@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 const spacesKeysBasePath = "v2/spaces/keys"
@@ -78,109 +76,30 @@ type spacesListKeysRoot struct {
 
 // Create creates a new Spaces key.
 func (s *SpacesKeysServiceOp) Create(ctx context.Context, createRequest *SpacesKeyCreateRequest) (*SpacesKey, *Response, error) {
-	if createRequest == nil {
-		return nil, nil, NewArgError("createRequest", "cannot be nil")
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, spacesKeysBasePath, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(spacesKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Key, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete deletes a Spaces key.
 func (s *SpacesKeysServiceOp) Delete(ctx context.Context, accessKey string) (*Response, error) {
-	if accessKey == "" {
-		return nil, NewArgError("accessKey", "cannot be empty")
-	}
-
-	path := fmt.Sprintf("%s/%s", spacesKeysBasePath, accessKey)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := s.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Update updates a Spaces key.
 func (s *SpacesKeysServiceOp) Update(ctx context.Context, accessKey string, updateRequest *SpacesKeyUpdateRequest) (*SpacesKey, *Response, error) {
-	if accessKey == "" {
-		return nil, nil, NewArgError("accessKey", "cannot be empty")
-	}
-	if updateRequest == nil {
-		return nil, nil, NewArgError("updateRequest", "cannot be nil")
-	}
-
-	path := fmt.Sprintf("%s/%s", spacesKeysBasePath, accessKey)
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, updateRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(spacesKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Key, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List returns a list of Spaces keys.
 func (s *SpacesKeysServiceOp) List(ctx context.Context, opts *ListOptions) ([]*SpacesKey, *Response, error) {
-	path, err := addOptions(spacesKeysBasePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(spacesListKeysRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-
-	return root.Keys, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get retrieves a Spaces key.
 func (s *SpacesKeysServiceOp) Get(ctx context.Context, accessKey string) (*SpacesKey, *Response, error) {
-	if accessKey == "" {
-		return nil, nil, NewArgError("accessKey", "cannot be empty")
-	}
-
-	path := fmt.Sprintf("%s/%s", spacesKeysBasePath, accessKey)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(spacesKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Key, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

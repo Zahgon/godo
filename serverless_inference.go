@@ -1,11 +1,8 @@
 package godo
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
-	"errors"
-	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -29,7 +26,8 @@ const (
 // See https://docs.digitalocean.com/reference/api/reference/serverless-inference/.
 
 func newInferenceTransport(client *Client, baseURL *url.URL) *inferenceTransport {
-	return &inferenceTransport{client: client, baseURL: baseURL}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // inferenceTransport is the shared request layer embedded by every inference service.
@@ -39,32 +37,14 @@ type inferenceTransport struct {
 }
 
 func (t *inferenceTransport) newRequest(ctx context.Context, method, path string, body interface{}) (*http.Request, error) {
-	rel, err := url.Parse(path)
-	if err != nil {
-		return nil, err
-	}
-	u := t.baseURL.ResolveReference(rel)
-	return t.client.NewRequest(ctx, method, u.String(), body)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // stream issues an SSE POST and wraps the live body in an InferenceStream; caller must Close.
 func (t *inferenceTransport) stream(ctx context.Context, path string, body interface{}) (*InferenceStream, *Response, error) {
-	req, err := t.newRequest(ctx, http.MethodPost, path, body)
-	if err != nil {
-		return nil, nil, err
-	}
-	req.Header.Set("Accept", "text/event-stream")
-	req.Header.Set("Cache-Control", "no-cache")
-	req.Header.Set("Connection", "keep-alive")
-
-	resp, err := t.client.DoStream(ctx, req)
-	if err != nil {
-		return nil, resp, err
-	}
-	return &InferenceStream{
-		SSEReader: NewSSEReader(resp.Body),
-		body:      resp.Body,
-	}, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // InferenceTag is a free-form key/value tag attached to an inference request.
@@ -90,12 +70,7 @@ type InferenceStream struct {
 }
 
 // Close releases the underlying HTTP response body.
-func (s *InferenceStream) Close() error {
-	if s.body == nil {
-		return nil
-	}
-	return s.body.Close()
-}
+func (s *InferenceStream) Close() error { _ = "STUB: not implemented"; return nil }
 
 // =====================================================================
 // /v1/async-invoke
@@ -129,34 +104,14 @@ type AsyncInvocation struct {
 
 // New starts an asynchronous fal model invocation.
 func (s *AsyncInvocationService) New(ctx context.Context, body *AsyncInvocationNewParams) (*AsyncInvocation, *Response, error) {
-	if body == nil {
-		return nil, nil, errors.New("serverless inference: body is required")
-	}
-	req, err := s.newRequest(ctx, http.MethodPost, serverlessInferenceAsyncInvokePath, body)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(AsyncInvocation)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get fetches the current status of an async invocation; Output/Error are populated only on terminal states.
 func (s *AsyncInvocationService) Get(ctx context.Context, requestID string) (*AsyncInvocation, *Response, error) {
-	path := fmt.Sprintf("%s/%s", serverlessInferenceAsyncInvokePath, requestID)
-	req, err := s.newRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(AsyncInvocation)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // =====================================================================
@@ -185,17 +140,20 @@ type ChatCompletionMessage struct {
 
 // UserMessage builds a ChatCompletionMessage with role "user".
 func UserMessage(content string) ChatCompletionMessage {
-	return ChatCompletionMessage{Role: "user", Content: &content}
+	_ = "STUB: not implemented"
+	return *new(ChatCompletionMessage)
 }
 
 // SystemMessage builds a ChatCompletionMessage with role "system".
 func SystemMessage(content string) ChatCompletionMessage {
-	return ChatCompletionMessage{Role: "system", Content: &content}
+	_ = "STUB: not implemented"
+	return *new(ChatCompletionMessage)
 }
 
 // AssistantMessage builds a ChatCompletionMessage with role "assistant".
 func AssistantMessage(content string) ChatCompletionMessage {
-	return ChatCompletionMessage{Role: "assistant", Content: &content}
+	_ = "STUB: not implemented"
+	return *new(ChatCompletionMessage)
 }
 
 // ChatCompletionToolCall is a tool invocation produced by the model.
@@ -306,19 +264,8 @@ type ChatCompletion struct {
 
 // New creates a non-streaming chat completion.
 func (s *ChatCompletionService) New(ctx context.Context, body *ChatCompletionNewParams) (*ChatCompletion, *Response, error) {
-	if body == nil {
-		return nil, nil, errors.New("serverless inference: body is required")
-	}
-	req, err := s.newRequest(ctx, http.MethodPost, serverlessInferenceChatCompletions, body)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(ChatCompletion)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ChatCompletionChunk is one streamed event from POST /v1/chat/completions when stream=true.
@@ -358,53 +305,30 @@ type ChatCompletionStream struct {
 }
 
 // Next advances to the next chunk; returns false on EOF, "[DONE]", or error.
-func (s *ChatCompletionStream) Next() bool {
-	if s.done || s.err != nil {
-		return false
-	}
-	ev, err := s.raw.Next()
-	if errors.Is(err, io.EOF) {
-		s.done = true
-		return false
-	}
-	if err != nil {
-		s.err = err
-		return false
-	}
-	if bytes.Equal(ev.Data, []byte("[DONE]")) {
-		s.done = true
-		return false
-	}
-	var chunk ChatCompletionChunk
-	if err := json.Unmarshal(ev.Data, &chunk); err != nil {
-		s.err = err
-		return false
-	}
-	s.current = chunk
-	return true
-}
+func (s *ChatCompletionStream) Next() bool { _ = "STUB: not implemented"; return false }
 
 // Current returns the most recent chunk produced by Next.
-func (s *ChatCompletionStream) Current() ChatCompletionChunk { return s.current }
+func (s *ChatCompletionStream) Current() ChatCompletionChunk {
+	_ = "STUB: not implemented"
 
-// Err returns any non-EOF error encountered during iteration.
-func (s *ChatCompletionStream) Err() error { return s.err }
+	// Err returns any non-EOF error encountered during iteration.
+	return *new(ChatCompletionChunk)
+}
 
-// Close releases the underlying HTTP response body. Always call Close.
-func (s *ChatCompletionStream) Close() error { return s.raw.Close() }
+func (s *ChatCompletionStream) Err() error {
+	_ = "STUB: not implemented"
+
+	// Close releases the underlying HTTP response body. Always call Close.
+	return nil
+}
+
+func (s *ChatCompletionStream) Close() error { _ = "STUB: not implemented"; return nil }
 
 // NewStreaming opens an SSE stream of chat completion chunks; body.Stream is forced to true.
 // Callers MUST Close the returned stream.
 func (s *ChatCompletionService) NewStreaming(ctx context.Context, body *ChatCompletionNewParams) (*ChatCompletionStream, *Response, error) {
-	if body == nil {
-		return nil, nil, errors.New("serverless inference: body is required")
-	}
-	body.Stream = PtrTo(true)
-	raw, resp, err := s.stream(ctx, serverlessInferenceChatCompletions, body)
-	if err != nil {
-		return nil, resp, err
-	}
-	return &ChatCompletionStream{raw: raw}, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // =====================================================================
@@ -448,19 +372,8 @@ type CreateEmbeddingResponse struct {
 
 // New creates one or more embedding vectors. There is no streaming variant.
 func (s *EmbeddingService) New(ctx context.Context, body *EmbeddingNewParams) (*CreateEmbeddingResponse, *Response, error) {
-	if body == nil {
-		return nil, nil, errors.New("serverless inference: body is required")
-	}
-	req, err := s.newRequest(ctx, http.MethodPost, serverlessInferenceEmbeddingsPath, body)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(CreateEmbeddingResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // =====================================================================
@@ -521,19 +434,8 @@ type ImagesResponse struct {
 
 // Generate creates one or more images from a text prompt.
 func (s *ImageGenerationService) Generate(ctx context.Context, body *ImageGenerateParams) (*ImagesResponse, *Response, error) {
-	if body == nil {
-		return nil, nil, errors.New("serverless inference: body is required")
-	}
-	req, err := s.newRequest(ctx, http.MethodPost, serverlessInferenceImagesGenerations, body)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(ImagesResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ImageGenerationStreamEvent is one streamed event from /v1/images/generations
@@ -559,53 +461,30 @@ type ImageGenerationStream struct {
 }
 
 // Next advances the stream to the next event. Returns false on EOF or error.
-func (s *ImageGenerationStream) Next() bool {
-	if s.done || s.err != nil {
-		return false
-	}
-	ev, err := s.raw.Next()
-	if errors.Is(err, io.EOF) {
-		s.done = true
-		return false
-	}
-	if err != nil {
-		s.err = err
-		return false
-	}
-	if bytes.Equal(ev.Data, []byte("[DONE]")) {
-		s.done = true
-		return false
-	}
-	var event ImageGenerationStreamEvent
-	if err := json.Unmarshal(ev.Data, &event); err != nil {
-		s.err = err
-		return false
-	}
-	s.current = event
-	return true
-}
+func (s *ImageGenerationStream) Next() bool { _ = "STUB: not implemented"; return false }
 
 // Current returns the most recent event produced by Next.
-func (s *ImageGenerationStream) Current() ImageGenerationStreamEvent { return s.current }
+func (s *ImageGenerationStream) Current() ImageGenerationStreamEvent {
+	_ = "STUB: not implemented"
 
-// Err returns any non-EOF error encountered during iteration.
-func (s *ImageGenerationStream) Err() error { return s.err }
+	// Err returns any non-EOF error encountered during iteration.
+	return *new(ImageGenerationStreamEvent)
+}
 
-// Close releases the underlying HTTP response body. Always call Close.
-func (s *ImageGenerationStream) Close() error { return s.raw.Close() }
+func (s *ImageGenerationStream) Err() error {
+	_ = "STUB: not implemented"
+
+	// Close releases the underlying HTTP response body. Always call Close.
+	return nil
+}
+
+func (s *ImageGenerationStream) Close() error { _ = "STUB: not implemented"; return nil }
 
 // GenerateStreaming opens an SSE stream of partial-image then completed events.
 // body.Stream is forced to true; callers MUST Close the returned stream.
 func (s *ImageGenerationService) GenerateStreaming(ctx context.Context, body *ImageGenerateParams) (*ImageGenerationStream, *Response, error) {
-	if body == nil {
-		return nil, nil, errors.New("serverless inference: body is required")
-	}
-	body.Stream = PtrTo(true)
-	raw, resp, err := s.stream(ctx, serverlessInferenceImagesGenerations, body)
-	if err != nil {
-		return nil, resp, err
-	}
-	return &ImageGenerationStream{raw: raw}, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // =====================================================================
@@ -704,19 +583,8 @@ type Message struct {
 
 // New creates a non-streaming message.
 func (s *MessageService) New(ctx context.Context, body *MessageNewParams) (*Message, *Response, error) {
-	if body == nil {
-		return nil, nil, errors.New("serverless inference: body is required")
-	}
-	req, err := s.newRequest(ctx, http.MethodPost, serverlessInferenceMessagesPath, body)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(Message)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // MessageStreamEventDelta carries the incremental fields in a /v1/messages SSE event.
@@ -749,53 +617,30 @@ type MessageStream struct {
 }
 
 // Next advances the stream to the next event. Returns false on EOF or error.
-func (s *MessageStream) Next() bool {
-	if s.done || s.err != nil {
-		return false
-	}
-	ev, err := s.raw.Next()
-	if errors.Is(err, io.EOF) {
-		s.done = true
-		return false
-	}
-	if err != nil {
-		s.err = err
-		return false
-	}
-	if bytes.Equal(ev.Data, []byte("[DONE]")) {
-		s.done = true
-		return false
-	}
-	var event MessageStreamEvent
-	if err := json.Unmarshal(ev.Data, &event); err != nil {
-		s.err = err
-		return false
-	}
-	s.current = event
-	return true
-}
+func (s *MessageStream) Next() bool { _ = "STUB: not implemented"; return false }
 
 // Current returns the most recent event produced by Next.
-func (s *MessageStream) Current() MessageStreamEvent { return s.current }
+func (s *MessageStream) Current() MessageStreamEvent {
+	_ = "STUB: not implemented"
 
-// Err returns any non-EOF error encountered during iteration.
-func (s *MessageStream) Err() error { return s.err }
+	// Err returns any non-EOF error encountered during iteration.
+	return *new(MessageStreamEvent)
+}
 
-// Close releases the underlying HTTP response body. Always call Close.
-func (s *MessageStream) Close() error { return s.raw.Close() }
+func (s *MessageStream) Err() error {
+	_ = "STUB: not implemented"
+
+	// Close releases the underlying HTTP response body. Always call Close.
+	return nil
+}
+
+func (s *MessageStream) Close() error { _ = "STUB: not implemented"; return nil }
 
 // NewStreaming opens an SSE stream of /v1/messages events; body.Stream is forced to true.
 // Callers MUST Close the returned stream.
 func (s *MessageService) NewStreaming(ctx context.Context, body *MessageNewParams) (*MessageStream, *Response, error) {
-	if body == nil {
-		return nil, nil, errors.New("serverless inference: body is required")
-	}
-	body.Stream = PtrTo(true)
-	raw, resp, err := s.stream(ctx, serverlessInferenceMessagesPath, body)
-	if err != nil {
-		return nil, resp, err
-	}
-	return &MessageStream{raw: raw}, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // =====================================================================
@@ -823,16 +668,8 @@ type ModelList struct {
 
 // List returns the catalogue of models reachable from the caller's inference key.
 func (s *ModelService) List(ctx context.Context) (*ModelList, *Response, error) {
-	req, err := s.newRequest(ctx, http.MethodGet, serverlessInferenceModelsPath, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(ModelList)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // =====================================================================
@@ -936,36 +773,12 @@ type ResponsesResponse struct {
 }
 
 // OutputText concatenates every "output_text" content part across the response.
-func (r *ResponsesResponse) OutputText() string {
-	if r == nil {
-		return ""
-	}
-	var b bytes.Buffer
-	for _, item := range r.Output {
-		for _, part := range item.Content {
-			if part.Type == "output_text" {
-				b.WriteString(part.Text)
-			}
-		}
-	}
-	return b.String()
-}
+func (r *ResponsesResponse) OutputText() string { _ = "STUB: not implemented"; return "" }
 
 // New creates a non-streaming Responses API result.
 func (s *ResponseService) New(ctx context.Context, body *ResponseNewParams) (*ResponsesResponse, *Response, error) {
-	if body == nil {
-		return nil, nil, errors.New("serverless inference: body is required")
-	}
-	req, err := s.newRequest(ctx, http.MethodPost, serverlessInferenceResponsesPath, body)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(ResponsesResponse)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ResponseStreamEvent is one SSE event from /v1/responses (response.created,
@@ -993,51 +806,28 @@ type ResponseStream struct {
 }
 
 // Next advances the stream to the next event. Returns false on EOF or error.
-func (s *ResponseStream) Next() bool {
-	if s.done || s.err != nil {
-		return false
-	}
-	ev, err := s.raw.Next()
-	if errors.Is(err, io.EOF) {
-		s.done = true
-		return false
-	}
-	if err != nil {
-		s.err = err
-		return false
-	}
-	if bytes.Equal(ev.Data, []byte("[DONE]")) {
-		s.done = true
-		return false
-	}
-	var event ResponseStreamEvent
-	if err := json.Unmarshal(ev.Data, &event); err != nil {
-		s.err = err
-		return false
-	}
-	s.current = event
-	return true
-}
+func (s *ResponseStream) Next() bool { _ = "STUB: not implemented"; return false }
 
 // Current returns the most recent event produced by Next.
-func (s *ResponseStream) Current() ResponseStreamEvent { return s.current }
+func (s *ResponseStream) Current() ResponseStreamEvent {
+	_ = "STUB: not implemented"
 
-// Err returns any non-EOF error encountered during iteration.
-func (s *ResponseStream) Err() error { return s.err }
+	// Err returns any non-EOF error encountered during iteration.
+	return *new(ResponseStreamEvent)
+}
 
-// Close releases the underlying HTTP response body. Always call Close.
-func (s *ResponseStream) Close() error { return s.raw.Close() }
+func (s *ResponseStream) Err() error {
+	_ = "STUB: not implemented"
+
+	// Close releases the underlying HTTP response body. Always call Close.
+	return nil
+}
+
+func (s *ResponseStream) Close() error { _ = "STUB: not implemented"; return nil }
 
 // NewStreaming opens an SSE stream of /v1/responses events; body.Stream is forced to true.
 // Callers MUST Close the returned stream.
 func (s *ResponseService) NewStreaming(ctx context.Context, body *ResponseNewParams) (*ResponseStream, *Response, error) {
-	if body == nil {
-		return nil, nil, errors.New("serverless inference: body is required")
-	}
-	body.Stream = PtrTo(true)
-	raw, resp, err := s.stream(ctx, serverlessInferenceResponsesPath, body)
-	if err != nil {
-		return nil, resp, err
-	}
-	return &ResponseStream{raw: raw}, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

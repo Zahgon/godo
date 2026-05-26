@@ -3,7 +3,6 @@ package main
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -69,15 +68,4 @@ func main() {
 	}
 }
 
-func saveBase64Image(b64Data, filename string) error {
-	imageData, err := base64.StdEncoding.DecodeString(b64Data)
-	if err != nil {
-		return fmt.Errorf("failed to decode base64: %w", err)
-	}
-
-	if err := os.WriteFile(filename, imageData, 0644); err != nil {
-		return fmt.Errorf("failed to write file: %w", err)
-	}
-
-	return nil
-}
+func saveBase64Image(b64Data, filename string) error { _ = "STUB: not implemented"; return nil }

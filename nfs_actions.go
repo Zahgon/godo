@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 // NfsActionsService is an interface for interacting with the NFS actions
@@ -84,97 +82,43 @@ type NfsSwitchPerformanceTierParams struct {
 
 // Resize an NFS share
 func (s *NfsActionsServiceOp) Resize(ctx context.Context, nfsShareId string, size uint64, region string) (*NfsAction, *Response, error) {
-	request := &NfsActionRequest{
-		Type: "resize",
-		Params: &NfsResizeParams{
-			SizeGib: size,
-		},
-	}
-
-	return s.doAction(ctx, nfsShareId, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Snapshot an NFS share
 func (s *NfsActionsServiceOp) Snapshot(ctx context.Context, nfsShareId, nfsSnapshotName, region string) (*NfsAction, *Response, error) {
-	request := &NfsActionRequest{
-		Type: "snapshot",
-		Params: &NfsSnapshotParams{
-			Name: nfsSnapshotName,
-		},
-	}
-
-	return s.doAction(ctx, nfsShareId, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Attach an NFS share
 func (s *NfsActionsServiceOp) Attach(ctx context.Context, nfsShareId, vpcID, region string) (*NfsAction, *Response, error) {
-	request := &NfsActionRequest{
-		Type: "attach",
-		Params: &NfsAttachParams{
-			VpcID: vpcID,
-		},
-	}
-
-	return s.doAction(ctx, nfsShareId, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Detach an NFS share
 func (s *NfsActionsServiceOp) Detach(ctx context.Context, nfsShareId, vpcID, region string) (*NfsAction, *Response, error) {
-	request := &NfsActionRequest{
-		Type: "detach",
-		Params: &NfsAttachParams{
-			VpcID: vpcID,
-		},
-	}
-
-	return s.doAction(ctx, nfsShareId, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Reassign an NFS share from one VPC to another.
 func (s *NfsActionsServiceOp) Reassign(ctx context.Context, nfsShareId, oldVpcID, newVpcID string) (*NfsAction, *Response, error) {
-	request := &NfsActionRequest{
-		Type: "reassign",
-		Params: &NfsReassignParams{
-			OldVpcID: oldVpcID,
-			NewVpcID: newVpcID,
-		},
-	}
-
-	return s.doAction(ctx, nfsShareId, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Switch performance tier of an NFS share
 func (s *NfsActionsServiceOp) SwitchPerformanceTier(ctx context.Context, nfsShareId string, tier string) (*NfsAction, *Response, error) {
-	request := &NfsActionRequest{
-		Type: "switch_performance_tier",
-		Params: &NfsSwitchPerformanceTierParams{
-			PerformanceTier: tier,
-		},
-	}
-
-	return s.doAction(ctx, nfsShareId, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
+
 func (s *NfsActionsServiceOp) doAction(ctx context.Context, nfsShareId string, request *NfsActionRequest) (*NfsAction, *Response, error) {
-	if request == nil {
-		return nil, nil, NewArgError("request", "request can't be nil")
-	}
-
-	path := nfsActionPath(nfsShareId)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, request)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(nfsActionRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Event, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
-func nfsActionPath(nfsID string) string {
-	return fmt.Sprintf("v2/nfs/%v/actions", nfsID)
-}
+func nfsActionPath(nfsID string) string { _ = "STUB: not implemented"; return "" }

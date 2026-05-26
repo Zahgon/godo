@@ -2,9 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
-	"net/url"
 )
 
 // ActionRequest represents DigitalOcean Action Request
@@ -56,312 +53,199 @@ var _ DropletActionsService = &DropletActionsServiceOp{}
 
 // Shutdown a Droplet
 func (s *DropletActionsServiceOp) Shutdown(ctx context.Context, id int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "shutdown"}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ShutdownByTag shuts down Droplets matched by a Tag.
 func (s *DropletActionsServiceOp) ShutdownByTag(ctx context.Context, tag string) ([]Action, *Response, error) {
-	request := &ActionRequest{"type": "shutdown"}
-	return s.doActionByTag(ctx, tag, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // PowerOff a Droplet
 func (s *DropletActionsServiceOp) PowerOff(ctx context.Context, id int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "power_off"}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // PowerOffByTag powers off Droplets matched by a Tag.
 func (s *DropletActionsServiceOp) PowerOffByTag(ctx context.Context, tag string) ([]Action, *Response, error) {
-	request := &ActionRequest{"type": "power_off"}
-	return s.doActionByTag(ctx, tag, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // PowerOn a Droplet
 func (s *DropletActionsServiceOp) PowerOn(ctx context.Context, id int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "power_on"}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // PowerOnByTag powers on Droplets matched by a Tag.
 func (s *DropletActionsServiceOp) PowerOnByTag(ctx context.Context, tag string) ([]Action, *Response, error) {
-	request := &ActionRequest{"type": "power_on"}
-	return s.doActionByTag(ctx, tag, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // PowerCycle a Droplet
 func (s *DropletActionsServiceOp) PowerCycle(ctx context.Context, id int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "power_cycle"}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // PowerCycleByTag power cycles Droplets matched by a Tag.
 func (s *DropletActionsServiceOp) PowerCycleByTag(ctx context.Context, tag string) ([]Action, *Response, error) {
-	request := &ActionRequest{"type": "power_cycle"}
-	return s.doActionByTag(ctx, tag, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Reboot a Droplet
 func (s *DropletActionsServiceOp) Reboot(ctx context.Context, id int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "reboot"}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Restore an image to a Droplet
 func (s *DropletActionsServiceOp) Restore(ctx context.Context, id, imageID int) (*Action, *Response, error) {
-	requestType := "restore"
-	request := &ActionRequest{
-		"type":  requestType,
-		"image": float64(imageID),
-	}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Resize a Droplet
 func (s *DropletActionsServiceOp) Resize(ctx context.Context, id int, sizeSlug string, resizeDisk bool) (*Action, *Response, error) {
-	requestType := "resize"
-	request := &ActionRequest{
-		"type": requestType,
-		"size": sizeSlug,
-		"disk": resizeDisk,
-	}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Rename a Droplet
 func (s *DropletActionsServiceOp) Rename(ctx context.Context, id int, name string) (*Action, *Response, error) {
-	requestType := "rename"
-	request := &ActionRequest{
-		"type": requestType,
-		"name": name,
-	}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Snapshot a Droplet.
 func (s *DropletActionsServiceOp) Snapshot(ctx context.Context, id int, name string) (*Action, *Response, error) {
-	requestType := "snapshot"
-	request := &ActionRequest{
-		"type": requestType,
-		"name": name,
-	}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // SnapshotByTag snapshots Droplets matched by a Tag.
 func (s *DropletActionsServiceOp) SnapshotByTag(ctx context.Context, tag string, name string) ([]Action, *Response, error) {
-	requestType := "snapshot"
-	request := &ActionRequest{
-		"type": requestType,
-		"name": name,
-	}
-	return s.doActionByTag(ctx, tag, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // EnableBackups enables backups for a Droplet.
 func (s *DropletActionsServiceOp) EnableBackups(ctx context.Context, id int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "enable_backups"}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // EnableBackupsByTag enables backups for Droplets matched by a Tag.
 func (s *DropletActionsServiceOp) EnableBackupsByTag(ctx context.Context, tag string) ([]Action, *Response, error) {
-	request := &ActionRequest{"type": "enable_backups"}
-	return s.doActionByTag(ctx, tag, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // EnableBackupsWithPolicy enables droplet's backup with a backup policy applied.
 func (s *DropletActionsServiceOp) EnableBackupsWithPolicy(ctx context.Context, id int, policy *DropletBackupPolicyRequest) (*Action, *Response, error) {
-	if policy == nil {
-		return nil, nil, NewArgError("policy", "policy can't be nil")
-	}
-
-	policyMap := map[string]interface{}{
-		"plan":    policy.Plan,
-		"weekday": policy.Weekday,
-	}
-	if policy.Hour != nil {
-		policyMap["hour"] = policy.Hour
-	}
-
-	request := &ActionRequest{"type": "enable_backups", "backup_policy": policyMap}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ChangeBackupPolicy updates a backup policy when backups are enabled.
 func (s *DropletActionsServiceOp) ChangeBackupPolicy(ctx context.Context, id int, policy *DropletBackupPolicyRequest) (*Action, *Response, error) {
-	if policy == nil {
-		return nil, nil, NewArgError("policy", "policy can't be nil")
-	}
-
-	policyMap := map[string]interface{}{
-		"plan":    policy.Plan,
-		"weekday": policy.Weekday,
-	}
-	if policy.Hour != nil {
-		policyMap["hour"] = policy.Hour
-	}
-
-	request := &ActionRequest{"type": "change_backup_policy", "backup_policy": policyMap}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DisableBackups disables backups for a Droplet.
 func (s *DropletActionsServiceOp) DisableBackups(ctx context.Context, id int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "disable_backups"}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DisableBackupsByTag disables backups for Droplet matched by a Tag.
 func (s *DropletActionsServiceOp) DisableBackupsByTag(ctx context.Context, tag string) ([]Action, *Response, error) {
-	request := &ActionRequest{"type": "disable_backups"}
-	return s.doActionByTag(ctx, tag, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // PasswordReset resets the password for a Droplet.
 func (s *DropletActionsServiceOp) PasswordReset(ctx context.Context, id int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "password_reset"}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // RebuildByImageID rebuilds a Droplet from an image with a given id.
 func (s *DropletActionsServiceOp) RebuildByImageID(ctx context.Context, id, imageID int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "rebuild", "image": imageID}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // RebuildByImageSlug rebuilds a Droplet from an Image matched by a given Slug.
 func (s *DropletActionsServiceOp) RebuildByImageSlug(ctx context.Context, id int, slug string) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "rebuild", "image": slug}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ChangeKernel changes the kernel for a Droplet.
 func (s *DropletActionsServiceOp) ChangeKernel(ctx context.Context, id, kernelID int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "change_kernel", "kernel": kernelID}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // EnableIPv6 enables IPv6 for a Droplet.
 func (s *DropletActionsServiceOp) EnableIPv6(ctx context.Context, id int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "enable_ipv6"}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // EnableIPv6ByTag enables IPv6 for Droplets matched by a Tag.
 func (s *DropletActionsServiceOp) EnableIPv6ByTag(ctx context.Context, tag string) ([]Action, *Response, error) {
-	request := &ActionRequest{"type": "enable_ipv6"}
-	return s.doActionByTag(ctx, tag, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // EnablePrivateNetworking enables private networking for a Droplet.
 func (s *DropletActionsServiceOp) EnablePrivateNetworking(ctx context.Context, id int) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "enable_private_networking"}
-	return s.doAction(ctx, id, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // EnablePrivateNetworkingByTag enables private networking for Droplets matched by a Tag.
 func (s *DropletActionsServiceOp) EnablePrivateNetworkingByTag(ctx context.Context, tag string) ([]Action, *Response, error) {
-	request := &ActionRequest{"type": "enable_private_networking"}
-	return s.doActionByTag(ctx, tag, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *DropletActionsServiceOp) doAction(ctx context.Context, id int, request *ActionRequest) (*Action, *Response, error) {
-	if id < 1 {
-		return nil, nil, NewArgError("id", "cannot be less than 1")
-	}
-
-	if request == nil {
-		return nil, nil, NewArgError("request", "request can't be nil")
-	}
-
-	path := dropletActionPath(id)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, request)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Event, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *DropletActionsServiceOp) doActionByTag(ctx context.Context, tag string, request *ActionRequest) ([]Action, *Response, error) {
-	if tag == "" {
-		return nil, nil, NewArgError("tag", "cannot be empty")
-	}
-
-	if request == nil {
-		return nil, nil, NewArgError("request", "request can't be nil")
-	}
-
-	path := dropletActionPathByTag(tag)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, request)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Actions, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an action for a particular Droplet by id.
 func (s *DropletActionsServiceOp) Get(ctx context.Context, dropletID, actionID int) (*Action, *Response, error) {
-	if dropletID < 1 {
-		return nil, nil, NewArgError("dropletID", "cannot be less than 1")
-	}
-
-	if actionID < 1 {
-		return nil, nil, NewArgError("actionID", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%d", dropletActionPath(dropletID), actionID)
-	return s.get(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetByURI gets an action for a particular Droplet by URI.
 func (s *DropletActionsServiceOp) GetByURI(ctx context.Context, rawurl string) (*Action, *Response, error) {
-	u, err := url.Parse(rawurl)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return s.get(ctx, u.Path)
-
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *DropletActionsServiceOp) get(ctx context.Context, path string) (*Action, *Response, error) {
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Event, resp, err
-
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
-func dropletActionPath(dropletID int) string {
-	return fmt.Sprintf("v2/droplets/%d/actions", dropletID)
-}
+func dropletActionPath(dropletID int) string { _ = "STUB: not implemented"; return "" }
 
-func dropletActionPathByTag(tag string) string {
-	return fmt.Sprintf("v2/droplets/actions?tag_name=%s", tag)
-}
+func dropletActionPathByTag(tag string) string { _ = "STUB: not implemented"; return "" }

@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 // ReservedIPActionsService is an interface for interfacing with the
@@ -24,86 +22,41 @@ type ReservedIPActionsServiceOp struct {
 
 // Assign a reserved IP to a droplet.
 func (s *ReservedIPActionsServiceOp) Assign(ctx context.Context, ip string, dropletID int) (*Action, *Response, error) {
-	request := &ActionRequest{
-		"type":       "assign",
-		"droplet_id": dropletID,
-	}
-	return s.doAction(ctx, ip, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Unassign a rerserved IP from the droplet it is currently assigned to.
 func (s *ReservedIPActionsServiceOp) Unassign(ctx context.Context, ip string) (*Action, *Response, error) {
-	request := &ActionRequest{"type": "unassign"}
-	return s.doAction(ctx, ip, request)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an action for a particular reserved IP by id.
 func (s *ReservedIPActionsServiceOp) Get(ctx context.Context, ip string, actionID int) (*Action, *Response, error) {
-	path := fmt.Sprintf("%s/%d", reservedIPActionPath(ip), actionID)
-	return s.get(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List the actions for a particular reserved IP.
 func (s *ReservedIPActionsServiceOp) List(ctx context.Context, ip string, opt *ListOptions) ([]Action, *Response, error) {
-	path := reservedIPActionPath(ip)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return s.list(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *ReservedIPActionsServiceOp) doAction(ctx context.Context, ip string, request *ActionRequest) (*Action, *Response, error) {
-	path := reservedIPActionPath(ip)
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, request)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Event, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *ReservedIPActionsServiceOp) get(ctx context.Context, path string) (*Action, *Response, error) {
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Event, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *ReservedIPActionsServiceOp) list(ctx context.Context, path string) ([]Action, *Response, error) {
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	return root.Actions, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
-func reservedIPActionPath(ip string) string {
-	return fmt.Sprintf("%s/%s/actions", reservedIPsBasePath, ip)
-}
+func reservedIPActionPath(ip string) string { _ = "STUB: not implemented"; return "" }

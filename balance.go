@@ -2,7 +2,6 @@ package godo
 
 import (
 	"context"
-	"net/http"
 	"time"
 )
 
@@ -29,24 +28,10 @@ type Balance struct {
 	GeneratedAt        time.Time `json:"generated_at"`
 }
 
-func (r Balance) String() string {
-	return Stringify(r)
-}
+func (r Balance) String() string { _ = "STUB: not implemented"; return "" }
 
 // Get DigitalOcean balance info
 func (s *BalanceServiceOp) Get(ctx context.Context) (*Balance, *Response, error) {
-	path := "v2/customers/my/balance"
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(Balance)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

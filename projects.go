@@ -2,10 +2,6 @@ package godo
 
 import (
 	"context"
-	"encoding/json"
-	"fmt"
-	"net/http"
-	"path"
 )
 
 const (
@@ -50,9 +46,7 @@ type Project struct {
 }
 
 // String creates a human-readable description of a Project.
-func (p Project) String() string {
-	return Stringify(p)
-}
+func (p Project) String() string { _ = "STUB: not implemented"; return "" }
 
 // CreateProjectRequest represents the request to create a new project.
 type CreateProjectRequest struct {
@@ -85,24 +79,8 @@ type updateProjectRequest struct {
 // which is sent to the projects API. This is a PATCH request, which allows
 // partial attributes, so `null` values are OK.
 func (upr *UpdateProjectRequest) MarshalJSON() ([]byte, error) {
-	d := &updateProjectRequest{}
-	if str, ok := upr.Name.(string); ok {
-		d.Name = &str
-	}
-	if str, ok := upr.Description.(string); ok {
-		d.Description = &str
-	}
-	if str, ok := upr.Purpose.(string); ok {
-		d.Purpose = &str
-	}
-	if str, ok := upr.Environment.(string); ok {
-		d.Environment = &str
-	}
-	if val, ok := upr.IsDefault.(bool); ok {
-		d.IsDefault = &val
-	}
-
-	return json.Marshal(d)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 type assignResourcesRequest struct {
@@ -142,112 +120,47 @@ var _ ProjectsService = &ProjectsServiceOp{}
 
 // List Projects.
 func (p *ProjectsServiceOp) List(ctx context.Context, opts *ListOptions) ([]Project, *Response, error) {
-	path, err := addOptions(projectsBasePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := p.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(projectsRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Projects, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetDefault project.
 func (p *ProjectsServiceOp) GetDefault(ctx context.Context) (*Project, *Response, error) {
-	return p.getHelper(ctx, "default")
+	_ = "STUB: not implemented"
+	return nil, nil, nil
+
+	// Get retrieves a single project by its ID.
 }
 
-// Get retrieves a single project by its ID.
 func (p *ProjectsServiceOp) Get(ctx context.Context, projectID string) (*Project, *Response, error) {
-	return p.getHelper(ctx, projectID)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
+
+	// Create a new project.
 }
 
-// Create a new project.
 func (p *ProjectsServiceOp) Create(ctx context.Context, cr *CreateProjectRequest) (*Project, *Response, error) {
-	req, err := p.client.NewRequest(ctx, http.MethodPost, projectsBasePath, cr)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(projectRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Project, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Update an existing project.
 func (p *ProjectsServiceOp) Update(ctx context.Context, projectID string, ur *UpdateProjectRequest) (*Project, *Response, error) {
-	path := path.Join(projectsBasePath, projectID)
-	req, err := p.client.NewRequest(ctx, http.MethodPatch, path, ur)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(projectRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Project, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete an existing project. You cannot have any resources in a project
 // before deleting it. See the API documentation for more details.
 func (p *ProjectsServiceOp) Delete(ctx context.Context, projectID string) (*Response, error) {
-	path := path.Join(projectsBasePath, projectID)
-	req, err := p.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return p.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListResources lists all resources in a project.
 func (p *ProjectsServiceOp) ListResources(ctx context.Context, projectID string, opts *ListOptions) ([]ProjectResource, *Response, error) {
-	basePath := path.Join(projectsBasePath, projectID, "resources")
-	path, err := addOptions(basePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := p.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(projectResourcesRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Resources, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // AssignResources assigns one or more resources to a project. AssignResources
@@ -258,52 +171,11 @@ func (p *ProjectsServiceOp) ListResources(ctx context.Context, projectID string,
 // There is no unassign. To move a resource to another project, just assign
 // it to that other project.
 func (p *ProjectsServiceOp) AssignResources(ctx context.Context, projectID string, resources ...interface{}) ([]ProjectResource, *Response, error) {
-	path := path.Join(projectsBasePath, projectID, "resources")
-
-	ar := &assignResourcesRequest{
-		Resources: make([]string, len(resources)),
-	}
-
-	for i, resource := range resources {
-		switch resource := resource.(type) {
-		case ResourceWithURN:
-			ar.Resources[i] = resource.URN()
-		case string:
-			ar.Resources[i] = resource
-		default:
-			return nil, nil, fmt.Errorf("%T must either be a string or have a valid URN method", resource)
-		}
-	}
-	req, err := p.client.NewRequest(ctx, http.MethodPost, path, ar)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(projectResourcesRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	return root.Resources, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (p *ProjectsServiceOp) getHelper(ctx context.Context, projectID string) (*Project, *Response, error) {
-	path := path.Join(projectsBasePath, projectID)
-
-	req, err := p.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(projectRoot)
-	resp, err := p.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Project, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

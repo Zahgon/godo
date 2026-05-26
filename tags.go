@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 const tagsBasePath = "v2/tags"
@@ -122,126 +120,36 @@ type tagRoot struct {
 
 // List all tags
 func (s *TagsServiceOp) List(ctx context.Context, opt *ListOptions) ([]Tag, *Response, error) {
-	path := tagsBasePath
-	path, err := addOptions(path, opt)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(tagsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Tags, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get a single tag
 func (s *TagsServiceOp) Get(ctx context.Context, name string) (*Tag, *Response, error) {
-	path := fmt.Sprintf("%s/%s", tagsBasePath, name)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(tagRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Tag, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create a new tag
 func (s *TagsServiceOp) Create(ctx context.Context, createRequest *TagCreateRequest) (*Tag, *Response, error) {
-	if createRequest == nil {
-		return nil, nil, NewArgError("createRequest", "cannot be nil")
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, tagsBasePath, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(tagRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Tag, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete an existing tag
 func (s *TagsServiceOp) Delete(ctx context.Context, name string) (*Response, error) {
-	if name == "" {
-		return nil, NewArgError("name", "cannot be empty")
-	}
-
-	path := fmt.Sprintf("%s/%s", tagsBasePath, name)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(ctx, req, nil)
-
-	return resp, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // TagResources associates resources with a given Tag.
 func (s *TagsServiceOp) TagResources(ctx context.Context, name string, tagRequest *TagResourcesRequest) (*Response, error) {
-	if name == "" {
-		return nil, NewArgError("name", "cannot be empty")
-	}
-
-	if tagRequest == nil {
-		return nil, NewArgError("tagRequest", "cannot be nil")
-	}
-
-	path := fmt.Sprintf("%s/%s/resources", tagsBasePath, name)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, tagRequest)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(ctx, req, nil)
-
-	return resp, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // UntagResources dissociates resources with a given Tag.
 func (s *TagsServiceOp) UntagResources(ctx context.Context, name string, untagRequest *UntagResourcesRequest) (*Response, error) {
-	if name == "" {
-		return nil, NewArgError("name", "cannot be empty")
-	}
-
-	if untagRequest == nil {
-		return nil, NewArgError("tagRequest", "cannot be nil")
-	}
-
-	path := fmt.Sprintf("%s/%s/resources", tagsBasePath, name)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, untagRequest)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(ctx, req, nil)
-
-	return resp, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }

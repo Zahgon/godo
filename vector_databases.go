@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -160,182 +158,69 @@ type vectorDBRestoreStatusRoot struct {
 
 // List returns a list of vector databases visible with the caller's API token.
 func (svc *VectorDBsServiceOp) List(ctx context.Context, opts *ListOptions) ([]VectorDB, *Response, error) {
-	path := vectorDatabaseBasePath
-	path, err := addOptions(path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vectorDBsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	resp.Meta = &Meta{Total: int(root.Total)}
-	return root.VectorDBs, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get retrieves the details of a vector database.
 func (svc *VectorDBsServiceOp) Get(ctx context.Context, id string) (*VectorDB, *Response, error) {
-	path := fmt.Sprintf(vectorDatabaseSinglePath, id)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vectorDBRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.VectorDB, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create creates a vector database.
 func (svc *VectorDBsServiceOp) Create(ctx context.Context, create *VectorDBCreateRequest) (*VectorDB, *Response, error) {
-	path := vectorDatabaseBasePath
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, create)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vectorDBRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.VectorDB, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Update updates a vector database's configuration.
 func (svc *VectorDBsServiceOp) Update(ctx context.Context, id string, update *VectorDBUpdateRequest) (*VectorDB, *Response, error) {
-	path := fmt.Sprintf(vectorDatabaseSinglePath, id)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vectorDBRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.VectorDB, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete deletes a vector database. There is no way to recover an instance once
 // it has been destroyed.
 func (svc *VectorDBsServiceOp) Delete(ctx context.Context, id string) (*Response, error) {
-	path := fmt.Sprintf(vectorDatabaseSinglePath, id)
-	req, err := svc.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := svc.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Resize resizes a vector database to a new resource tier.
 func (svc *VectorDBsServiceOp) Resize(ctx context.Context, id string, resize *VectorDBResizeRequest) (*VectorDB, *Response, error) {
-	path := fmt.Sprintf(vectorDatabaseResizePath, id)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, resize)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vectorDBRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.VectorDB, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateTags replaces all tags on a vector database.
 func (svc *VectorDBsServiceOp) UpdateTags(ctx context.Context, id string, update *VectorDBUpdateTagsRequest) (*VectorDB, *Response, error) {
-	path := fmt.Sprintf(vectorDatabaseTagsPath, id)
-	req, err := svc.client.NewRequest(ctx, http.MethodPut, path, update)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vectorDBRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.VectorDB, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetCredentials retrieves admin credentials for a vector database.
 func (svc *VectorDBsServiceOp) GetCredentials(ctx context.Context, id string) (*VectorDBAdminCredentials, *Response, error) {
-	path := fmt.Sprintf(vectorDatabaseCredentialsPath, id)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vectorDBAdminCredentialsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return &VectorDBAdminCredentials{
-		UserID:   root.UserID,
-		APIToken: root.APIToken,
-	}, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListBackups returns the available backups for a vector database.
 // Only backups with status SUCCESS are returned.
 func (svc *VectorDBsServiceOp) ListBackups(ctx context.Context, id string) ([]VectorDBBackup, *Response, error) {
-	path := fmt.Sprintf(vectorDatabaseBackupsPath, id)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vectorDBBackupsRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Backups, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // RestoreBackup initiates a restore from a backup.
 // The restore is performed asynchronously; use GetRestoreStatus to monitor progress.
 func (svc *VectorDBsServiceOp) RestoreBackup(ctx context.Context, id, backupID string, restore *VectorDBRestoreBackupRequest) (*VectorDBRestoreBackupResponse, *Response, error) {
-	path := fmt.Sprintf(vectorDatabaseRestorePath, id, backupID)
-	req, err := svc.client.NewRequest(ctx, http.MethodPost, path, restore)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vectorDBRestoreBackupRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return &VectorDBRestoreBackupResponse{
-		BackupID: root.BackupID,
-		Status:   root.Status,
-	}, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetRestoreStatus returns the current status of a restore operation.
 func (svc *VectorDBsServiceOp) GetRestoreStatus(ctx context.Context, id, backupID string) (*VectorDBRestoreStatus, *Response, error) {
-	path := fmt.Sprintf(vectorDatabaseRestorePath, id, backupID)
-	req, err := svc.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(vectorDBRestoreStatusRoot)
-	resp, err := svc.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return &VectorDBRestoreStatus{
-		BackupID: root.BackupID,
-		Status:   root.Status,
-		Error:    root.Error,
-	}, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

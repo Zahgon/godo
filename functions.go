@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -135,195 +133,78 @@ type FunctionsAccessKeyUpdateRequest struct {
 
 // Gets a list of namespaces
 func (s *FunctionsServiceOp) ListNamespaces(ctx context.Context) ([]FunctionsNamespace, *Response, error) {
-	req, err := s.client.NewRequest(ctx, http.MethodGet, functionsBasePath, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	nsRoot := new(namespacesRoot)
-	resp, err := s.client.Do(ctx, req, nsRoot)
-	if err != nil {
-		return nil, resp, err
-	}
-	return nsRoot.Namespaces, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Gets a single namespace
 func (s *FunctionsServiceOp) GetNamespace(ctx context.Context, namespace string) (*FunctionsNamespace, *Response, error) {
-	path := fmt.Sprintf(functionsNamespacePath, namespace)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	nsRoot := new(namespaceRoot)
-	resp, err := s.client.Do(ctx, req, nsRoot)
-	if err != nil {
-		return nil, resp, err
-	}
-	return nsRoot.Namespace, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Creates a namespace
 func (s *FunctionsServiceOp) CreateNamespace(ctx context.Context, opts *FunctionsNamespaceCreateRequest) (*FunctionsNamespace, *Response, error) {
-	req, err := s.client.NewRequest(ctx, http.MethodPost, functionsBasePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	nsRoot := new(namespaceRoot)
-	resp, err := s.client.Do(ctx, req, nsRoot)
-	if err != nil {
-		return nil, resp, err
-	}
-	return nsRoot.Namespace, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete a namespace
 func (s *FunctionsServiceOp) DeleteNamespace(ctx context.Context, namespace string) (*Response, error) {
-	path := fmt.Sprintf(functionsNamespacePath, namespace)
-
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListTriggers gets a list of triggers
 func (s *FunctionsServiceOp) ListTriggers(ctx context.Context, namespace string) ([]FunctionsTrigger, *Response, error) {
-	path := fmt.Sprintf(functionsTriggerBasePath, namespace)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(triggersRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Triggers, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // GetTrigger gets a single trigger
 func (s *FunctionsServiceOp) GetTrigger(ctx context.Context, namespace string, trigger string) (*FunctionsTrigger, *Response, error) {
-	path := fmt.Sprintf(functionsTriggerBasePath+"/%s", namespace, trigger)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(triggerRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Trigger, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateTrigger creates a trigger
 func (s *FunctionsServiceOp) CreateTrigger(ctx context.Context, namespace string, opts *FunctionsTriggerCreateRequest) (*FunctionsTrigger, *Response, error) {
-	path := fmt.Sprintf(functionsTriggerBasePath, namespace)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(triggerRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Trigger, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateTrigger updates a trigger
 func (s *FunctionsServiceOp) UpdateTrigger(ctx context.Context, namespace string, trigger string, opts *FunctionsTriggerUpdateRequest) (*FunctionsTrigger, *Response, error) {
-	path := fmt.Sprintf(functionsTriggerBasePath+"/%s", namespace, trigger)
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, opts)
-
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(triggerRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.Trigger, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteTrigger deletes a trigger
 func (s *FunctionsServiceOp) DeleteTrigger(ctx context.Context, namespace string, trigger string) (*Response, error) {
-	path := fmt.Sprintf(functionsTriggerBasePath+"/%s", namespace, trigger)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-
-	if err != nil {
-		return nil, err
-	}
-	resp, err := s.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListAccessKeys lists access keys for a namespace
 func (s *FunctionsServiceOp) ListAccessKeys(ctx context.Context, namespace string) ([]FunctionsAccessKey, *Response, error) {
-	path := fmt.Sprintf(functionsAccessKeyBasePath, namespace)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(accessKeysRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.AccessKeys, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateAccessKey creates an access key for a namespace
 func (s *FunctionsServiceOp) CreateAccessKey(ctx context.Context, namespace string, opts *FunctionsAccessKeyCreateRequest) (*FunctionsAccessKey, *Response, error) {
-	path := fmt.Sprintf(functionsAccessKeyBasePath, namespace)
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(accessKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.AccessKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // UpdateAccessKey updates an access key for a namespace
 func (s *FunctionsServiceOp) UpdateAccessKey(ctx context.Context, namespace string, keyID string, opts *FunctionsAccessKeyUpdateRequest) (*FunctionsAccessKey, *Response, error) {
-	path := fmt.Sprintf(functionsAccessKeyBasePath+"/%s", namespace, keyID)
-	req, err := s.client.NewRequest(ctx, http.MethodPut, path, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-	root := new(accessKeyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	return root.AccessKey, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // DeleteAccessKey deletes an access key for a namespace
 func (s *FunctionsServiceOp) DeleteAccessKey(ctx context.Context, namespace string, keyID string) (*Response, error) {
-	path := fmt.Sprintf(functionsAccessKeyBasePath+"/%s", namespace, keyID)
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := s.client.Do(ctx, req, nil)
-	if err != nil {
-		return resp, err
-	}
-	return resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }

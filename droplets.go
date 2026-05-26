@@ -2,10 +2,7 @@ package godo
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
-	"fmt"
-	"net/http"
 )
 
 const dropletBasePath = "v2/droplets"
@@ -70,49 +67,13 @@ type Droplet struct {
 }
 
 // PublicIPv4 returns the public IPv4 address for the Droplet.
-func (d *Droplet) PublicIPv4() (string, error) {
-	if d.Networks == nil {
-		return "", errNoNetworks
-	}
-
-	for _, v4 := range d.Networks.V4 {
-		if v4.Type == "public" {
-			return v4.IPAddress, nil
-		}
-	}
-
-	return "", nil
-}
+func (d *Droplet) PublicIPv4() (string, error) { _ = "STUB: not implemented"; return "", nil }
 
 // PrivateIPv4 returns the private IPv4 address for the Droplet.
-func (d *Droplet) PrivateIPv4() (string, error) {
-	if d.Networks == nil {
-		return "", errNoNetworks
-	}
-
-	for _, v4 := range d.Networks.V4 {
-		if v4.Type == "private" {
-			return v4.IPAddress, nil
-		}
-	}
-
-	return "", nil
-}
+func (d *Droplet) PrivateIPv4() (string, error) { _ = "STUB: not implemented"; return "", nil }
 
 // PublicIPv6 returns the public IPv6 address for the Droplet.
-func (d *Droplet) PublicIPv6() (string, error) {
-	if d.Networks == nil {
-		return "", errNoNetworks
-	}
-
-	for _, v6 := range d.Networks.V6 {
-		if v6.Type == "public" {
-			return v6.IPAddress, nil
-		}
-	}
-
-	return "", nil
-}
+func (d *Droplet) PublicIPv6() (string, error) { _ = "STUB: not implemented"; return "", nil }
 
 // Kernel object
 type Kernel struct {
@@ -128,14 +89,10 @@ type BackupWindow struct {
 }
 
 // Convert Droplet to a string
-func (d Droplet) String() string {
-	return Stringify(d)
-}
+func (d Droplet) String() string { _ = "STUB: not implemented"; return "" }
 
 // URN returns the droplet ID in a valid DO API URN form.
-func (d Droplet) URN() string {
-	return ToURN("Droplet", d.ID)
-}
+func (d Droplet) URN() string { _ = "STUB: not implemented"; return "" }
 
 // DropletRoot represents a Droplet root
 type dropletRoot struct {
@@ -176,11 +133,8 @@ type DropletCreateImage struct {
 // MarshalJSON returns either the slug or id of the image. It returns the id
 // if the slug is empty.
 func (d DropletCreateImage) MarshalJSON() ([]byte, error) {
-	if d.Slug != "" {
-		return json.Marshal(d.Slug)
-	}
-
-	return json.Marshal(d.ID)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DropletCreateVolume identifies a volume to attach for the create request.
@@ -193,15 +147,8 @@ type DropletCreateVolume struct {
 // MarshalJSON returns an object with either the ID or name of the volume. It
 // prefers the ID over the name.
 func (d DropletCreateVolume) MarshalJSON() ([]byte, error) {
-	if d.ID != "" {
-		return json.Marshal(struct {
-			ID string `json:"id"`
-		}{ID: d.ID})
-	}
-
-	return json.Marshal(struct {
-		Name string `json:"name"`
-	}{Name: d.Name})
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DropletCreateSSHKey identifies a SSH Key for the create request. It prefers fingerprint over ID.
@@ -213,11 +160,8 @@ type DropletCreateSSHKey struct {
 // MarshalJSON returns either the fingerprint or id of the ssh key. It returns
 // the id if the fingerprint is empty.
 func (d DropletCreateSSHKey) MarshalJSON() ([]byte, error) {
-	if d.Fingerprint != "" {
-		return json.Marshal(d.Fingerprint)
-	}
-
-	return json.Marshal(d.ID)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DropletCreateRequest represents a request to create a Droplet.
@@ -282,17 +226,11 @@ type DropletAssociatedResources struct {
 	VolumeSnapshots []*DropletAssociatedResource `json:"volume_snapshots"`
 }
 
-func (a DropletAssociatedResources) String() string {
-	return Stringify(a)
-}
+func (a DropletAssociatedResources) String() string { _ = "STUB: not implemented"; return "" }
 
-func (d DropletCreateRequest) String() string {
-	return Stringify(d)
-}
+func (d DropletCreateRequest) String() string { _ = "STUB: not implemented"; return "" }
 
-func (d DropletMultiCreateRequest) String() string {
-	return Stringify(d)
-}
+func (d DropletMultiCreateRequest) String() string { _ = "STUB: not implemented"; return "" }
 
 // Networks represents the Droplet's Networks.
 type Networks struct {
@@ -308,9 +246,7 @@ type NetworkV4 struct {
 	Type      string `json:"type,omitempty"`
 }
 
-func (n NetworkV4) String() string {
-	return Stringify(n)
-}
+func (n NetworkV4) String() string { _ = "STUB: not implemented"; return "" }
 
 // NetworkV6 represents a DigitalOcean IPv6 network.
 type NetworkV6 struct {
@@ -320,359 +256,115 @@ type NetworkV6 struct {
 	Type      string `json:"type,omitempty"`
 }
 
-func (n NetworkV6) String() string {
-	return Stringify(n)
-}
+func (n NetworkV6) String() string { _ = "STUB: not implemented"; return "" }
 
 // Performs a list request given a path.
 func (s *DropletsServiceOp) list(ctx context.Context, path string) ([]Droplet, *Response, error) {
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dropletsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Droplets, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List all Droplets.
 func (s *DropletsServiceOp) List(ctx context.Context, opt *ListOptions) ([]Droplet, *Response, error) {
-	path := dropletBasePath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return s.list(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListWithGPUs lists all Droplets with GPUs.
 func (s *DropletsServiceOp) ListWithGPUs(ctx context.Context, opt *ListOptions) ([]Droplet, *Response, error) {
-	path := fmt.Sprintf("%s?type=gpus", dropletBasePath)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return s.list(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListByName lists all Droplets filtered by name returning only exact matches.
 // It is case-insensitive
 func (s *DropletsServiceOp) ListByName(ctx context.Context, name string, opt *ListOptions) ([]Droplet, *Response, error) {
-	path := fmt.Sprintf("%s?name=%s", dropletBasePath, name)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return s.list(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListByTag lists all Droplets matched by a Tag.
 func (s *DropletsServiceOp) ListByTag(ctx context.Context, tag string, opt *ListOptions) ([]Droplet, *Response, error) {
-	path := fmt.Sprintf("%s?tag_name=%s", dropletBasePath, tag)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return s.list(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get individual Droplet.
 func (s *DropletsServiceOp) Get(ctx context.Context, dropletID int) (*Droplet, *Response, error) {
-	if dropletID < 1 {
-		return nil, nil, NewArgError("dropletID", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%d", dropletBasePath, dropletID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dropletRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Droplet, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create Droplet
 func (s *DropletsServiceOp) Create(ctx context.Context, createRequest *DropletCreateRequest) (*Droplet, *Response, error) {
-	if createRequest == nil {
-		return nil, nil, NewArgError("createRequest", "cannot be nil")
-	}
-
-	path := dropletBasePath
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dropletRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	return root.Droplet, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // CreateMultiple creates multiple Droplets.
 func (s *DropletsServiceOp) CreateMultiple(ctx context.Context, createRequest *DropletMultiCreateRequest) ([]Droplet, *Response, error) {
-	if createRequest == nil {
-		return nil, nil, NewArgError("createRequest", "cannot be nil")
-	}
-
-	path := dropletBasePath
-
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dropletsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	return root.Droplets, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Performs a delete request given a path
 func (s *DropletsServiceOp) delete(ctx context.Context, path string) (*Response, error) {
-	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(ctx, req, nil)
-
-	return resp, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Delete Droplet.
 func (s *DropletsServiceOp) Delete(ctx context.Context, dropletID int) (*Response, error) {
-	if dropletID < 1 {
-		return nil, NewArgError("dropletID", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%d", dropletBasePath, dropletID)
-
-	return s.delete(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DeleteByTag deletes Droplets matched by a Tag.
 func (s *DropletsServiceOp) DeleteByTag(ctx context.Context, tag string) (*Response, error) {
-	if tag == "" {
-		return nil, NewArgError("tag", "cannot be empty")
-	}
-
-	path := fmt.Sprintf("%s?tag_name=%s", dropletBasePath, tag)
-
-	return s.delete(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Kernels lists kernels available for a Droplet.
 func (s *DropletsServiceOp) Kernels(ctx context.Context, dropletID int, opt *ListOptions) ([]Kernel, *Response, error) {
-	if dropletID < 1 {
-		return nil, nil, NewArgError("dropletID", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%d/kernels", dropletBasePath, dropletID)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(kernelsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Kernels, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Actions lists the actions for a Droplet.
 func (s *DropletsServiceOp) Actions(ctx context.Context, dropletID int, opt *ListOptions) ([]Action, *Response, error) {
-	if dropletID < 1 {
-		return nil, nil, NewArgError("dropletID", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%d/actions", dropletBasePath, dropletID)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(actionsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Actions, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Backups lists the backups for a Droplet.
 func (s *DropletsServiceOp) Backups(ctx context.Context, dropletID int, opt *ListOptions) ([]Image, *Response, error) {
-	if dropletID < 1 {
-		return nil, nil, NewArgError("dropletID", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%d/backups", dropletBasePath, dropletID)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(backupsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Backups, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Snapshots lists the snapshots available for a Droplet.
 func (s *DropletsServiceOp) Snapshots(ctx context.Context, dropletID int, opt *ListOptions) ([]Image, *Response, error) {
-	if dropletID < 1 {
-		return nil, nil, NewArgError("dropletID", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%d/snapshots", dropletBasePath, dropletID)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dropletSnapshotsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Snapshots, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Neighbors lists the neighbors for a Droplet.
 func (s *DropletsServiceOp) Neighbors(ctx context.Context, dropletID int) ([]Droplet, *Response, error) {
-	if dropletID < 1 {
-		return nil, nil, NewArgError("dropletID", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%d/neighbors", dropletBasePath, dropletID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dropletsRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Droplets, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListAssociatedResourcesForDeletion lists a Droplet's associated resources that can be destroyed along with the Droplet.
 // Associated resources include reserved IPs, floating IPs, snapshots, volumes, and volume snapshots.
 func (s *DropletsServiceOp) ListAssociatedResourcesForDeletion(ctx context.Context, dropletID int) (*DropletAssociatedResources, *Response, error) {
-	if dropletID < 1 {
-		return nil, nil, NewArgError("dropletID", "cannot be less than 1")
-	}
-	path := fmt.Sprintf("%s/%d/destroy_with_associated_resources", dropletBasePath, dropletID)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(DropletAssociatedResources)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func (s *DropletsServiceOp) dropletActionStatus(ctx context.Context, uri string) (string, error) {
-	action, _, err := s.client.DropletActions.GetByURI(ctx, uri)
-
-	if err != nil {
-		return "", err
-	}
-
-	return action.Status, nil
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // DropletBackupPolicy defines the information about a droplet's backup policy.
@@ -705,51 +397,14 @@ type dropletBackupPoliciesRoot struct {
 
 // Get individual droplet backup policy.
 func (s *DropletsServiceOp) GetBackupPolicy(ctx context.Context, dropletID int) (*DropletBackupPolicy, *Response, error) {
-	if dropletID < 1 {
-		return nil, nil, NewArgError("dropletID", "cannot be less than 1")
-	}
-
-	path := fmt.Sprintf("%s/%d/backups/policy", dropletBasePath, dropletID)
-
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dropletBackupPolicyRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.DropletBackupPolicy, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // List all droplet backup policies.
 func (s *DropletsServiceOp) ListBackupPolicies(ctx context.Context, opt *ListOptions) (map[int]*DropletBackupPolicy, *Response, error) {
-	path := fmt.Sprintf("%s/backups/policies", dropletBasePath)
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dropletBackupPoliciesRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.DropletBackupPolicies, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 type SupportedBackupPolicy struct {
@@ -766,17 +421,6 @@ type dropletSupportedBackupPoliciesRoot struct {
 
 // List supported droplet backup policies.
 func (s *DropletsServiceOp) ListSupportedBackupPolicies(ctx context.Context) ([]*SupportedBackupPolicy, *Response, error) {
-	path := fmt.Sprintf("%s/backups/supported_policies", dropletBasePath)
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(dropletSupportedBackupPoliciesRoot)
-	resp, err := s.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.SupportedBackupPolicies, resp, nil
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

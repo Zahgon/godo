@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 const floatingBasePath = "v2/floating_ips"
@@ -35,14 +33,10 @@ type FloatingIP struct {
 	Locked    bool     `json:"locked"`
 }
 
-func (f FloatingIP) String() string {
-	return Stringify(f)
-}
+func (f FloatingIP) String() string { _ = "STUB: not implemented"; return "" }
 
 // URN returns the floating IP in a valid DO API URN form.
-func (f FloatingIP) URN() string {
-	return ToURN("FloatingIP", f.IP)
-}
+func (f FloatingIP) URN() string { _ = "STUB: not implemented"; return "" }
 
 type floatingIPsRoot struct {
 	FloatingIPs []FloatingIP `json:"floating_ips"`
@@ -66,82 +60,25 @@ type FloatingIPCreateRequest struct {
 
 // List all floating IPs.
 func (f *FloatingIPsServiceOp) List(ctx context.Context, opt *ListOptions) ([]FloatingIP, *Response, error) {
-	path := floatingBasePath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := f.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(floatingIPsRoot)
-	resp, err := f.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.FloatingIPs, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an individual floating IP.
 func (f *FloatingIPsServiceOp) Get(ctx context.Context, ip string) (*FloatingIP, *Response, error) {
-	path := fmt.Sprintf("%s/%s", floatingBasePath, ip)
-
-	req, err := f.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(floatingIPRoot)
-	resp, err := f.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.FloatingIP, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create a floating IP. If the DropletID field of the request is not empty,
 // the floating IP will also be assigned to the droplet.
 func (f *FloatingIPsServiceOp) Create(ctx context.Context, createRequest *FloatingIPCreateRequest) (*FloatingIP, *Response, error) {
-	path := floatingBasePath
-
-	req, err := f.client.NewRequest(ctx, http.MethodPost, path, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(floatingIPRoot)
-	resp, err := f.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	return root.FloatingIP, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete a floating IP.
 func (f *FloatingIPsServiceOp) Delete(ctx context.Context, ip string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", floatingBasePath, ip)
-
-	req, err := f.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := f.client.Do(ctx, req, nil)
-
-	return resp, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }

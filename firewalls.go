@@ -2,9 +2,6 @@ package godo
 
 import (
 	"context"
-	"net/http"
-	"path"
-	"strconv"
 )
 
 const firewallsBasePath = "/v2/firewalls"
@@ -45,14 +42,10 @@ type Firewall struct {
 }
 
 // String creates a human-readable description of a Firewall.
-func (fw Firewall) String() string {
-	return Stringify(fw)
-}
+func (fw Firewall) String() string { _ = "STUB: not implemented"; return "" }
 
 // URN returns the firewall name in a valid DO API URN form.
-func (fw Firewall) URN() string {
-	return ToURN("Firewall", fw.ID)
-}
+func (fw Firewall) URN() string { _ = "STUB: not implemented"; return "" }
 
 // FirewallRequest represents the configuration to be applied to an existing or a new Firewall.
 type FirewallRequest struct {
@@ -112,117 +105,74 @@ var _ FirewallsService = &FirewallsServiceOp{}
 
 // Get an existing Firewall by its identifier.
 func (fw *FirewallsServiceOp) Get(ctx context.Context, fID string) (*Firewall, *Response, error) {
-	path := path.Join(firewallsBasePath, fID)
-
-	req, err := fw.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(firewallRoot)
-	resp, err := fw.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Firewall, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create a new Firewall with a given configuration.
 func (fw *FirewallsServiceOp) Create(ctx context.Context, fr *FirewallRequest) (*Firewall, *Response, error) {
-	req, err := fw.client.NewRequest(ctx, http.MethodPost, firewallsBasePath, fr)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(firewallRoot)
-	resp, err := fw.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Firewall, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Update an existing Firewall with new configuration.
 func (fw *FirewallsServiceOp) Update(ctx context.Context, fID string, fr *FirewallRequest) (*Firewall, *Response, error) {
-	path := path.Join(firewallsBasePath, fID)
-
-	req, err := fw.client.NewRequest(ctx, "PUT", path, fr)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(firewallRoot)
-	resp, err := fw.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.Firewall, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete a Firewall by its identifier.
 func (fw *FirewallsServiceOp) Delete(ctx context.Context, fID string) (*Response, error) {
-	path := path.Join(firewallsBasePath, fID)
-	return fw.createAndDoReq(ctx, http.MethodDelete, path, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // List Firewalls.
 func (fw *FirewallsServiceOp) List(ctx context.Context, opt *ListOptions) ([]Firewall, *Response, error) {
-	path, err := addOptions(firewallsBasePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return fw.listHelper(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // ListByDroplet Firewalls.
 func (fw *FirewallsServiceOp) ListByDroplet(ctx context.Context, dID int, opt *ListOptions) ([]Firewall, *Response, error) {
-	basePath := path.Join(dropletBasePath, strconv.Itoa(dID), "firewalls")
-	path, err := addOptions(basePath, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	return fw.listHelper(ctx, path)
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // AddDroplets to a Firewall.
 func (fw *FirewallsServiceOp) AddDroplets(ctx context.Context, fID string, dropletIDs ...int) (*Response, error) {
-	path := path.Join(firewallsBasePath, fID, "droplets")
-	return fw.createAndDoReq(ctx, http.MethodPost, path, &dropletsRequest{IDs: dropletIDs})
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // RemoveDroplets from a Firewall.
 func (fw *FirewallsServiceOp) RemoveDroplets(ctx context.Context, fID string, dropletIDs ...int) (*Response, error) {
-	path := path.Join(firewallsBasePath, fID, "droplets")
-	return fw.createAndDoReq(ctx, http.MethodDelete, path, &dropletsRequest{IDs: dropletIDs})
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // AddTags to a Firewall.
 func (fw *FirewallsServiceOp) AddTags(ctx context.Context, fID string, tags ...string) (*Response, error) {
-	path := path.Join(firewallsBasePath, fID, "tags")
-	return fw.createAndDoReq(ctx, http.MethodPost, path, &tagsRequest{Tags: tags})
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // RemoveTags from a Firewall.
 func (fw *FirewallsServiceOp) RemoveTags(ctx context.Context, fID string, tags ...string) (*Response, error) {
-	path := path.Join(firewallsBasePath, fID, "tags")
-	return fw.createAndDoReq(ctx, http.MethodDelete, path, &tagsRequest{Tags: tags})
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // AddRules to a Firewall.
 func (fw *FirewallsServiceOp) AddRules(ctx context.Context, fID string, rr *FirewallRulesRequest) (*Response, error) {
-	path := path.Join(firewallsBasePath, fID, "rules")
-	return fw.createAndDoReq(ctx, http.MethodPost, path, rr)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // RemoveRules from a Firewall.
 func (fw *FirewallsServiceOp) RemoveRules(ctx context.Context, fID string, rr *FirewallRulesRequest) (*Response, error) {
-	path := path.Join(firewallsBasePath, fID, "rules")
-	return fw.createAndDoReq(ctx, http.MethodDelete, path, rr)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 type dropletsRequest struct {
@@ -244,31 +194,11 @@ type firewallsRoot struct {
 }
 
 func (fw *FirewallsServiceOp) createAndDoReq(ctx context.Context, method, path string, v interface{}) (*Response, error) {
-	req, err := fw.client.NewRequest(ctx, method, path, v)
-	if err != nil {
-		return nil, err
-	}
-
-	return fw.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (fw *FirewallsServiceOp) listHelper(ctx context.Context, path string) ([]Firewall, *Response, error) {
-	req, err := fw.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(firewallsRoot)
-	resp, err := fw.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.Firewalls, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }

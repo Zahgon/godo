@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -44,14 +42,10 @@ type reservedIPV6sRoot struct {
 	Meta          *Meta          `json:"meta"`
 }
 
-func (f ReservedIPV6) String() string {
-	return Stringify(f)
-}
+func (f ReservedIPV6) String() string { _ = "STUB: not implemented"; return "" }
 
 // URN returns the reserved IP in a valid DO API URN form.
-func (f ReservedIPV6) URN() string {
-	return ToURN(resourceV6Type, f.IP)
-}
+func (f ReservedIPV6) URN() string { _ = "STUB: not implemented"; return "" }
 
 // ReservedIPV6CreateRequest represents a request to reserve a reserved IP.
 type ReservedIPV6CreateRequest struct {
@@ -60,76 +54,24 @@ type ReservedIPV6CreateRequest struct {
 
 // List all reserved IPV6s.
 func (r *ReservedIPV6sServiceOp) List(ctx context.Context, opt *ListOptions) ([]ReservedIPV6, *Response, error) {
-	path := reservedIPV6sBasePath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := r.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(reservedIPV6sRoot)
-	resp, err := r.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, nil, err
-	}
-	if root.Meta != nil {
-		resp.Meta = root.Meta
-	}
-	if root.Links != nil {
-		resp.Links = root.Links
-	}
-
-	return root.ReservedIPV6s, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an individual reserved IPv6.
 func (r *ReservedIPV6sServiceOp) Get(ctx context.Context, ip string) (*ReservedIPV6, *Response, error) {
-	path := fmt.Sprintf("%s/%s", reservedIPV6sBasePath, ip)
-
-	req, err := r.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(reservedIPV6Root)
-	resp, err := r.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.ReservedIPV6, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create a new IPv6
 func (r *ReservedIPV6sServiceOp) Create(ctx context.Context, reserveRequest *ReservedIPV6CreateRequest) (*ReservedIPV6, *Response, error) {
-	path := reservedIPV6sBasePath
-
-	req, err := r.client.NewRequest(ctx, http.MethodPost, path, reserveRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(reservedIPV6Root)
-	resp, err := r.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.ReservedIPV6, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete a reserved IPv6.
 func (r *ReservedIPV6sServiceOp) Delete(ctx context.Context, ip string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", reservedIPV6sBasePath, ip)
-
-	req, err := r.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return r.client.Do(ctx, req, nil)
+	_ = "STUB: not implemented"
+	return nil, nil
 }

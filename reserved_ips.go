@@ -2,8 +2,6 @@ package godo
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 )
 
 const resourceType = "ReservedIP"
@@ -36,14 +34,10 @@ type ReservedIP struct {
 	Locked    bool     `json:"locked"`
 }
 
-func (f ReservedIP) String() string {
-	return Stringify(f)
-}
+func (f ReservedIP) String() string { _ = "STUB: not implemented"; return "" }
 
 // URN returns the reserved IP in a valid DO API URN form.
-func (f ReservedIP) URN() string {
-	return ToURN(resourceType, f.IP)
-}
+func (f ReservedIP) URN() string { _ = "STUB: not implemented"; return "" }
 
 type reservedIPsRoot struct {
 	ReservedIPs []ReservedIP `json:"reserved_ips"`
@@ -67,82 +61,25 @@ type ReservedIPCreateRequest struct {
 
 // List all reserved IPs.
 func (r *ReservedIPsServiceOp) List(ctx context.Context, opt *ListOptions) ([]ReservedIP, *Response, error) {
-	path := reservedIPsBasePath
-	path, err := addOptions(path, opt)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := r.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(reservedIPsRoot)
-	resp, err := r.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-	if m := root.Meta; m != nil {
-		resp.Meta = m
-	}
-
-	return root.ReservedIPs, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Get an individual reserved IP.
 func (r *ReservedIPsServiceOp) Get(ctx context.Context, ip string) (*ReservedIP, *Response, error) {
-	path := fmt.Sprintf("%s/%s", reservedIPsBasePath, ip)
-
-	req, err := r.client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(reservedIPRoot)
-	resp, err := r.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root.ReservedIP, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Create a reserved IP. If the DropletID field of the request is not empty,
 // the reserved IP will also be assigned to the droplet.
 func (r *ReservedIPsServiceOp) Create(ctx context.Context, createRequest *ReservedIPCreateRequest) (*ReservedIP, *Response, error) {
-	path := reservedIPsBasePath
-
-	req, err := r.client.NewRequest(ctx, http.MethodPost, path, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(reservedIPRoot)
-	resp, err := r.client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	return root.ReservedIP, resp, err
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // Delete a reserved IP.
 func (r *ReservedIPsServiceOp) Delete(ctx context.Context, ip string) (*Response, error) {
-	path := fmt.Sprintf("%s/%s", reservedIPsBasePath, ip)
-
-	req, err := r.client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := r.client.Do(ctx, req, nil)
-
-	return resp, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
